@@ -1,12 +1,18 @@
 // www.waivez.com/about
-
+import Head from 'next/head';
 import React from 'react';
 
 const AboutPage = () => {
     return (
-        <div>
+        <React.Fragment>
+            <Head>
+                <title>
+                    About Us
+                </title>
+                <meta/>
+            </Head>
             <h1>ABOUT PAGE</h1>
-        </div>
+        </React.Fragment>
     );
 };
 

@@ -1,11 +1,18 @@
 // www.waivez.com/partners
 import React from 'react';
+import Head from "next/head";
 
 const PartnersPage = () => {
     return (
-        <div>
+        <React.Fragment>
+            <Head>
+                <title>
+                    Partners
+                </title>
+                <meta/>
+            </Head>
             <h1>PARTNERS PAGE</h1>
-        </div>
+        </React.Fragment>
     );
 };
 

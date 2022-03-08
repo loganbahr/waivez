@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     button: {
         color: 'white',
         fontSize: '1.25em',
-        fontFamily: 'Raleway, Arial',
+        fontFamily: 'Poppins, sans-serif',
     },
     logo: {
         fontSize: '2em',

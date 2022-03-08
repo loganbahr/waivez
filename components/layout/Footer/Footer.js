@@ -6,16 +6,19 @@ const useStyles = makeStyles({
 
     root: {
         backgroundColor: '#7F00FF',
-        height: '15%',
-    },
+        height: 90,
+        bottom: 0,
+        position: 'sticky',
+    }
 });
 
 const Footer = () => {
+
     const classes = useStyles();
+
     return (
         <React.Fragment>
             <Box className={classes.root}/>
-
         </React.Fragment>
     );
 };

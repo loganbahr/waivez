@@ -1,11 +1,18 @@
 // www.waivez.com/pricing
 import React from 'react';
+import Head from "next/head";
 
 const PricingPage = () => {
     return (
-        <div>
+        <React.Fragment>
+            <Head>
+                <title>
+                    Pricing
+                </title>
+                <meta/>
+            </Head>
             <h1>PRICING PAGE</h1>
-        </div>
+        </React.Fragment>
     );
 };
 
