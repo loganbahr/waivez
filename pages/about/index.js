@@ -11,7 +11,7 @@ const AboutPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>ABOUT PAGE</h1>
+            <h1>about us</h1>
         </React.Fragment>
     );
 };

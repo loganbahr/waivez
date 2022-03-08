@@ -11,7 +11,7 @@ const PricingPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>PRICING PAGE</h1>
+            <h1>pricing</h1>
         </React.Fragment>
     );
 };

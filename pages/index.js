@@ -13,7 +13,7 @@ const HomePage = () => {
                     content='Any waiver, all in one spot.'
                 />
             </Head>
-            <h1>WAIVEZ</h1>
+            <h1>waivez</h1>
         </React.Fragment>
 
     );

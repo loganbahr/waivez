@@ -11,7 +11,7 @@ const PartnersPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>PARTNERS PAGE</h1>
+            <h1>partners</h1>
         </React.Fragment>
     );
 };

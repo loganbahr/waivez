@@ -10,7 +10,7 @@ const SignInPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>SIGN IN PAGE</h1>
+            <h1>sign in / register</h1>
         </React.Fragment>
     );
 };

@@ -15,6 +15,7 @@ const useStyles = makeStyles({
         width: '100%',
         height: 175,
         backgroundColor: 'white',
+        opacity: '1',
         display: 'flex',
         alignItems: 'end',
         justifyContent: 'center',
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
     taskbar: {
         height: 80,
         display: 'flex',
+        position: 'absolute',
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: '#7F00FF',
@@ -34,7 +36,7 @@ const useStyles = makeStyles({
         zIndex: 1101,
         width: '35%',
         marginLeft: '1.5%',
-        marginRight: '1.5%'
+        marginRight: '1.5%',
     },
     oval: {
         width: 350,
@@ -76,13 +78,6 @@ const NavBar = () => {
                             </Typography>
                         </IconButton>
                     </Link>
-                    <Link href='/about'>
-                        <IconButton>
-                            <Typography className={classes.button}>
-                                About Us
-                            </Typography>
-                        </IconButton>
-                    </Link>
                     <Link href='/partners'>
                         <IconButton>
                             <Typography className={classes.button}>
@@ -90,13 +85,19 @@ const NavBar = () => {
                             </Typography>
                         </IconButton>
                     </Link>
-                </Toolbar>
-
-                <Toolbar className={classes.toolbar}>
                     <Link href='/pricing'>
                         <IconButton>
                             <Typography className={classes.button}>
                                 Pricing
+                            </Typography>
+                        </IconButton>
+                    </Link>
+                </Toolbar>
+                <Toolbar className={classes.toolbar}>
+                    <Link href='/about'>
+                        <IconButton>
+                            <Typography className={classes.button}>
+                                About Us
                             </Typography>
                         </IconButton>
                     </Link>

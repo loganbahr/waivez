@@ -11,7 +11,7 @@ const ContactPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>CONTACT PAGE</h1>
+            <h1>contact us</h1>
         </React.Fragment>
     );
 };
