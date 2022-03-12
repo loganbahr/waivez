@@ -1,3 +1,4 @@
 
 # Ignore node modules (big)
 /node_modules
+.env
