@@ -1,4 +1,5 @@
 // www.waivez.com/partners
+// dynamic routing for each partner page (www.waivez.com/partners/marcoislandwatersports)
 import React from 'react';
 import Head from "next/head";
 
