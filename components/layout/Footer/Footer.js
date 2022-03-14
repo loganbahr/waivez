@@ -1,38 +1,30 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import {makeStyles} from "@mui/styles";
-import {Typography} from "@mui/material";
-
-const useStyles = makeStyles({
-
-    root: {
-        backgroundColor: '#7F00FF',
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        marginTop: '100vh',
-        justifyContent: 'center',
-    },
-    text: {
-        color: 'white',
-        fontFamily: 'Poppins, sans-serif',
-        fontSize: '4em'
-    }
-});
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
+import { Typography } from "@mui/material";
 
 const Footer = () => {
-
-    const classes = useStyles();
-
-    return (
-        <React.Fragment>
-            <Box className={classes.root}>
-                <Typography className={classes.text}>
-                    waivez
-                </Typography>
-            </Box>
-        </React.Fragment>
-    );
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#7F00FF",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        bottom: 0
+      }}
+    >
+      <Typography
+        sx={{
+          color: "white",
+          fontFamily: "Poppins, sans-serif",
+          fontSize: "4em",
+        }}
+      >
+        waivez
+      </Typography>
+    </Box>
+  );
 };
 
 export default Footer;

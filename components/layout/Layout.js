@@ -1,14 +1,15 @@
 import NavBar from "./Header/NavBar";
 import Footer from "./Footer/Footer";
-import classes from './Layout.module.css'
+import classes from "./Layout.module.css";
+import { Box } from "@mui/material";
 
-function Layout(props){
-    return(
-        <div>
-            <NavBar/>
-            <main className={classes.content}>{props.children}</main>
-            <Footer/>
-        </div>
-    )
-}
+const Layout = (props) => {
+  return (
+    <Box>
+      <NavBar />
+      {props.children}
+      <Footer />
+    </Box>
+  );
+};
 export default Layout;

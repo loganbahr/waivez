@@ -6,7 +6,7 @@
 */
 const PORT = 5000; // still kinda undecided, consult with Logan
 
-const express = require('express');
+const express = require('express');    
 require('dotenv').config();
 const { Pool } = require('pg');
 
@@ -26,12 +26,11 @@ const app = express();
 /**
  * Test request to ping the server.
  */
-app.get('/user/:id', (req, resp) => {
-    const id = req.params.id;
+app.get('/user', (req, resp) => {
 
     pool.query('SELECT * FROM users WHERE id=$1', [id], (err, res) => {
-        if (err) {
-            resp.send(err.message);
+        if (err || res.rowCount < 1) {
+            resp.send("Failed to find a user with that ID.");
         } else {
             resp.send({
                 id: id,
@@ -43,7 +42,6 @@ app.get('/user/:id', (req, resp) => {
                 phone_number: res.rows[0].phone_number,
             });
         }
-        pool.end();
     });
 });
 
