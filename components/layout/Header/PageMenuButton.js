@@ -2,19 +2,45 @@ import React from 'react';
 import IconButton from "@mui/material/IconButton";
 import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import PageLinkButton from "./PageLinkButton";
+import Link from "next/link";
 
-const pages = ['Home', 'Partners', 'Pricing', 'About', 'Contact', 'Sign In'];
-
+const pages = [
+    {
+        name: 'Home',
+        link: '/'
+    },
+    {
+        name: 'Partners',
+        link: '/partners'
+    },
+    {
+        name: 'Pricing',
+        link: '/pricing'
+    },
+    {
+        name: 'About',
+        link: '/about'
+    },
+    {
+        name: 'Contact',
+        link: '/contact'
+    },
+    {
+        name: 'Sign In',
+        link: '/signin'
+    },
+];
 
 const PageMenuButton = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [navAnchor, setNavAnchor] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
+        setNavAnchor(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
+        setNavAnchor(null);
     };
     return (
         <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -27,7 +53,7 @@ const PageMenuButton = () => {
             </IconButton>
             <Menu
                 id="menu-appbar"
-                anchorEl={anchorElNav}
+                anchorEl={navAnchor}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
@@ -37,17 +63,27 @@ const PageMenuButton = () => {
                     vertical: 'top',
                     horizontal: 'left',
                 }}
-                open={Boolean(anchorElNav)}
+                open={Boolean(navAnchor)}
                 onClose={handleCloseNavMenu}
                 sx={{
                     display: {xs: 'flex', md: 'none'},
                 }}
             >
+                {/*{pages.map((page) => (*/}
+                {/*    <MenuItem key={page} onClick={handleCloseNavMenu}>*/}
+                {/*        <Typography textAlign="center">{page}</Typography>*/}
+                {/*    </MenuItem>*/}
+                {/*))}*/}
+
                 {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{page}</Typography>
+                    <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{page.name}</Typography>
+                        {/*
+                          * TODO: find a way to get a <Link> into this function without throwing an error. Throwing an error because there are multiple children calling a <Link>, one from the normal header and one from the mobile menu
+                          */}
                     </MenuItem>
                 ))}
+
             </Menu>
         </Box>
     );

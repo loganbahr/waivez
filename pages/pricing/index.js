@@ -2,7 +2,7 @@
 import React from 'react';
 import Head from "next/head";
 import {Typography} from "@mui/material";
-import WaivezPricingCard from '../../components/layout/Card';
+import WaivezPricingCard from '../../components/pricing/PricingCard';
 import Box from "@mui/material/Box";
 
 

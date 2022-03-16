@@ -2,8 +2,8 @@
 import React from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
-import SearchComboBox from '../components/layout/SearchComboBox';
 import {Container, Typography} from "@mui/material";
+import LandingPageSearchBar from "../components/SearchBars/LandingPageSearchBar";
 
 const HomePage = () => {
     return (
@@ -27,12 +27,11 @@ const HomePage = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: 50, sm: 60, md: 80, lg: 100, xl: 120},
-
+                        fontSize: {xs: 55, sm: 60, md: 80, lg: 100, xl: 120},
                     }}>
                     waivez
                 </Typography>
-                {/*<SearchComboBox/>*/}
+                <LandingPageSearchBar />
             </Container>
         </Box>
 

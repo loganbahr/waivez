@@ -6,8 +6,6 @@ import PageLinkButton from './PageLinkButton'
 import LogoButton from './LogoButton'
 import PageMenuButton from "./PageMenuButton";
 
-// TODO: need to generate a menu button in mobile mode that allows us to navigate through pages
-
 export default function Header() {
 
     return (
