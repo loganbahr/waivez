@@ -1,15 +1,18 @@
 import NavBar from "./Header/NavBar";
 import Footer from "./Footer/Footer";
-import classes from "./Layout.module.css";
-import { Box } from "@mui/material";
+import React from "react";
+import {Box} from "@mui/material";
+import Header from "./Header/Header";
 
 const Layout = (props) => {
-  return (
-    <Box>
-      <NavBar />
-      {props.children}
-      <Footer />
-    </Box>
-  );
+    return (
+        <React.Fragment>
+            {/*<NavBar/>*/}
+            <Header/>
+            {props.children}
+            <Footer/>
+        </React.Fragment>
+
+    );
 };
 export default Layout;

@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 
 const PricingPage = () => {
     return (
-        <React.Fragment>
+        <Box>
             <Head>
                 <title>
                     Pricing
@@ -53,7 +53,7 @@ const PricingPage = () => {
             </Box>
 
 
-        </React.Fragment>
+        </Box>
     );
 };
 
