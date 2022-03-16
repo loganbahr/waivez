@@ -4,6 +4,7 @@ import React from 'react';
 import Head from "next/head";
 import {Box, Typography} from "@mui/material";
 
+
 const PartnersPage = () => {
     return (
         <React.Fragment>

@@ -6,6 +6,8 @@ import WaivezPricingCard from '../../components/layout/Card';
 import Box from "@mui/material/Box";
 
 
+// TODO: reformat page for mobile, add proper pricing structure
+
 const PricingPage = () => {
     return (
         <Box>
