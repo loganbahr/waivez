@@ -13,7 +13,7 @@ export default function Header() {
 
         return (
             <Link href={link}>
-                <IconButton>
+                <IconButton sx={{display: {xs: 'none', sm: 'flex'}}}>
                     <Typography
                         sx={{
                             color: "white",
