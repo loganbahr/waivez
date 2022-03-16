@@ -3,8 +3,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete, {createFilterOptions} from '@mui/material/Autocomplete';
 import {Box} from "@mui/material";
 
-const filter = createFilterOptions();
-
 export default function LandingPageSearchBar() {
     const [value, setValue] = React.useState(null);
 
@@ -14,42 +12,13 @@ export default function LandingPageSearchBar() {
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            mt: '100px'
+            mt: '100px',
         }}>
             <Autocomplete
                 value={value}
-                onChange={(event, newValue) => {
-                    if (typeof newValue === 'string') {
-                        setValue({
-                            title: newValue,
-                        });
-                    } else if (newValue && newValue.inputValue) {
-                        // Create a new value from the user input
-                        setValue({
-                            title: newValue.inputValue,
-                        });
-                    } else {
-                        setValue(newValue);
-                    }
-                }}
-                filterOptions={(options, params) => {
-                    const filtered = filter(options, params);
-
-                    const {inputValue} = params;
-                    // Suggest the creation of a new value
-                    const isExisting = options.some((option) => inputValue === option.title);
-                    if (inputValue !== '' && !isExisting) {
-                        filtered.push({
-                            inputValue,
-                            title: `Add "${inputValue}"`,
-                        });
-                    }
-                    return filtered;
-                }}
                 selectOnFocus
                 clearOnBlur
                 handleHomeEndKeys
-                id="free-solo-with-text-demo"
                 options={partners}
                 getOptionLabel={(option) => {
                     // Value selected with enter, right from the input
@@ -65,17 +34,15 @@ export default function LandingPageSearchBar() {
                 }}
                 renderOption={(props, option) => <li {...props}>{option.title}</li>}
                 sx={{
-                    width: '90%',
+                    width: '85%',
                     border: '4px solid #7F00FF',
                     borderRadius: '25px 25px 25px 25px',
-                    "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
-                        fontSize: {xs: '23px', sm: '28px'},
-                        fontFamily: "Poppins, sans-serif",
-                        color: '#7F00FF',
 
-                    }
+                    "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+                        fontSize: {xs: '19px', sm: '26px'},
+                    },
                 }}
-                freeSolo
+
                 renderInput={(params) => (
                     <TextField {...params} label="Search for a company!"/>
                 )}
@@ -84,8 +51,9 @@ export default function LandingPageSearchBar() {
     );
 }
 
+// TODO: need to make a new file that contains all of the partners, then that list is populated into the search bar.
 const partners = [
-    {title: 'Marco Island Watersports'},
-    {title: 'Naples Beach Watersports'},
+    {title: 'Marco Island Watersports', url: '/partners/marcoislandwatersports'},
+    {title: 'Naples Beach Watersports', url: '/partners/naplesbeachwatersports'},
 ];
 

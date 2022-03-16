@@ -1,12 +1,12 @@
-// www.waivez.com/pricing
+// www.waivez.com/Cards
 import React from 'react';
 import Head from "next/head";
 import {Typography} from "@mui/material";
-import WaivezPricingCard from '../../components/pricing/PricingCard';
+import WaivezPricingCard from '../../components/Cards/PricingCard';
 import Box from "@mui/material/Box";
 
 
-// TODO: reformat page for mobile, add proper pricing structure
+// TODO: reformat page for mobile, add proper Cards structure
 
 const PricingPage = () => {
     return (

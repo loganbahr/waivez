@@ -16,7 +16,7 @@ const pages = [
     },
     {
         name: 'Pricing',
-        link: '/pricing'
+        link: '/Cards'
     },
     {
         name: 'About',
