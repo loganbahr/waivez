@@ -3,6 +3,7 @@
 import React from 'react';
 import Head from "next/head";
 import {Box, Typography} from "@mui/material";
+import PageTitleText from "../../components/PageTitleText";
 
 
 const PartnersPage = () => {
@@ -14,16 +15,9 @@ const PartnersPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <Box mt='300px'>
-                <Typography
-                    sx={{
-                        fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: 50, sm: 60, md: 70},
-                        color: '#7F00FF'
-                    }}>
-                    partners
-                </Typography>
-            </Box>
+
+
+            <PageTitleText content='partners'/>
 
 
 

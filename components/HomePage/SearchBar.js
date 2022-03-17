@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete, {createFilterOptions} from '@mui/material/Autocomplete';
 import {Box} from "@mui/material";
 
-export default function LandingPageSearchBar() {
+export default function SearchBar() {
     const [value, setValue] = React.useState(null);
 
     return (
@@ -12,7 +12,7 @@ export default function LandingPageSearchBar() {
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            mt: '100px',
+            my: 10,
         }}>
             <Autocomplete
                 value={value}

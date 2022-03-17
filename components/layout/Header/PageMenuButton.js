@@ -43,7 +43,7 @@ const PageMenuButton = () => {
         setNavAnchor(null);
     };
     return (
-        <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+        <Box sx={{flexGrow: 1, display: {xs: 'flex', sm: 'none'}}}>
             <IconButton
                 size="large"
                 onClick={handleOpenNavMenu}

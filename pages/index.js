@@ -2,65 +2,52 @@
 import React from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
-import {Container, Typography} from "@mui/material";
-import LandingPageSearchBar from "../components/SearchBars/LandingPageSearchBar";
-import Card from "@mui/material/Card";
-import LandingPageCard from "../components/Cards/LandingPageCard";
+import {Container} from "@mui/material";
+import SearchBar from "../components/HomePage/SearchBar";
+import FirstSection from "../components/HomePage/FirstSection";
+import PageTitleText from "../components/PageTitleText";
+import SecondSection from "../components/HomePage/SecondSection";
+import ThirdSection from "../components/HomePage/ThirdSection";
+
 
 const HomePage = () => {
     return (
         <Box>
             <Container maxWidth='md'
                        sx={{
-                           mt: '20px', //keeps shadow on header
+                           mb: 15,
                            backgroundColor: 'clear',
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
-                           minHeight: '100vh'
+                           flexGrow: 1,
                        }}>
                 <Head>
                     <title>waivez</title>
                     <meta
                         name='description'
-                        content='Any waiver, all in one spot.'
+                        content='Any waiver, all in one place.'
                     />
                 </Head>
-                <Typography
-                    sx={{
-                        fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: 55, sm: 60, md: 80, lg: 100, xl: 120},
-                        mt: 10
-                    }}>
-                    waivez
-                </Typography>
+                <PageTitleText content='waivez'/>
+                <SearchBar/>
+            </Container>
 
-                <LandingPageSearchBar/>
-
-                <Box container sx={{
-                    backgroundColor: 'clear',
-                    flexGrow: 1,
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: {xs: 'column', md: 'row'},
-                    justifyContent: 'center',
-                    my: 15
-                }}>
-                    <LandingPageCard/>
-
-                    <LandingPageCard/>
-
-                    <LandingPageCard/>
-
-                </Box>
+            <Container sx={{
+                backgroundColor: 'clear',
+                // minHeight: '150vh',
+                minWidth: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: {xs: 0, sm: 0, lg: 0, xl: 0} //keeps content to edge of screen
+            }}>
+                <FirstSection/>
+                <SecondSection/>
+                <ThirdSection/>
             </Container>
         </Box>
 
     );
 };
-
-// export async function getStaticProps() {
-//
-// }
 
 export default HomePage;
