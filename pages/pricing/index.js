@@ -4,18 +4,20 @@ import Head from "next/head";
 import {Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import PageTitleText from "../../components/PageTitleText";
+import PricingPageCard from "../../components/Cards/PricingPageCard";
+import Card from "@mui/material/Card";
 
 
 const PricingPage = () => {
     return (
         <Box>
             <Container maxWidth='lg'
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                // backgroundColor: 'red',
-            }}>
+                       sx={{
+                           display: 'flex',
+                           flexDirection: 'column',
+                           alignItems: 'center',
+                           // backgroundColor: 'red',
+                       }}>
                 <Head>
                     <title>
                         Pricing
@@ -37,14 +39,20 @@ const PricingPage = () => {
                 </Typography>
             </Container>
 
-            <Container maxWidth='lg'
-                sx={{height: '100vh'}}
-            >
+            <Container maxWidth='xl'
+                       sx={{
+                           border: '2px solid red',
+                           padding: {xs: 0, sm: 0, md: 0, lg: 0, xl: 0},
+                           display: 'flex',
+                           flexDirection: {xs: 'column', md: 'row'},
+                           alignItems: 'center',
+                       }}>
+
+                <PricingPageCard/>
+                <PricingPageCard/>
+                <PricingPageCard/>
 
             </Container>
-
-
-
         </Box>
     );
 };

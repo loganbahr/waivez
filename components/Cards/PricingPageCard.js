@@ -3,15 +3,14 @@ import Card from "@mui/material/Card";
 
 const PricingPageCard = () => {
     return (
-        <Card sx={{
-            backgroundColor: '#7F00FF',
-            height: {xs: '250px', sm: '350px', md: '550px', lg: '650px', xl: '750px'},
-            minWidth: {md: '33%', lg: '42%', xl: '55%'},
-            width: '100%',
-            boxShadow: 2,
-            mx: 1,
-            my: 1,
-        }}>
+        <Card
+            sx={{
+                height: {xs: '19rem', sm: '27rem', md: '25rem', lg: '35rem', xl: '40rem'},
+                width: {xs: '21rem', sm: '37rem', md: '25rem', lg: '30rem', xl: '35rem'},
+                backgroundColor: 'green',
+                mx: 1,
+                my: 1
+            }}>
         </Card>
     );
 };
