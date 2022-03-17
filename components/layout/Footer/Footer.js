@@ -1,30 +1,38 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
-import { Typography } from "@mui/material";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import MoreIcon from '@mui/icons-material/MoreVert';
 
-const Footer = () => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "#7F00FF",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        bottom: 0
-      }}
-    >
-      <Typography
-        sx={{
-          color: "white",
-          fontFamily: "Poppins, sans-serif",
-          fontSize: "4em",
-        }}
-      >
-        waivez
-      </Typography>
-    </Box>
-  );
-};
 
-export default Footer;
+export default function Footer() {
+    return (
+        <React.Fragment>
+            <AppBar sx={{
+                backgroundColor: '#7F00FF',
+                top: 'auto',
+                bottom: '0',
+                position: 'static',
+            }}>
+                <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
+                    <IconButton color="inherit">
+                        <SearchIcon/>
+                    </IconButton>
+                    <Typography
+                        sx={{
+                            color: "white",
+                            fontSize: {xs: 25, sm: 35, md: 50, lg: 60},
+                            fontFamily: "Poppins, sans-serif",
+                        }}>
+                        waivez
+                    </Typography>
+                    <IconButton color="inherit">
+                        <MoreIcon/>
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+        </React.Fragment>
+    );
+}

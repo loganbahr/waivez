@@ -1,7 +1,10 @@
 // www.waivez.com/partners
-// dynamic routing for each partner page (www.waivez.com/partners/marcoislandwatersports)
+
 import React from 'react';
 import Head from "next/head";
+import {Box, Typography} from "@mui/material";
+import PageTitleText from "../../components/PageTitleText";
+
 
 const PartnersPage = () => {
     return (
@@ -12,7 +15,12 @@ const PartnersPage = () => {
                 </title>
                 <meta/>
             </Head>
-            <h1>partners</h1>
+
+
+            <PageTitleText content='partners'/>
+
+
+
         </React.Fragment>
     );
 };
