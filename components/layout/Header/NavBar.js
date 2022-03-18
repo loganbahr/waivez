@@ -45,13 +45,13 @@ const NavBar = () => {
           position: "absolute",
           flexDirection: "row",
           justifyContent: "space-between",
-          backgroundColor: "#7F00FF",
+          backgroundColor: "primary",
           zIndex: 1100,
         }}
       >
         <Toolbar
           sx={{
-            backgroundColor: "#7F00FF",
+            backgroundColor: "primary",
             display: "flex",
             justifyContent: "space-between",
             zIndex: 1101,
@@ -80,7 +80,7 @@ const NavBar = () => {
         </Box>
         <Toolbar
           sx={{
-            backgroundColor: "#7F00FF",
+            backgroundColor: "primary",
             display: "flex",
             justifyContent: "space-between",
             zIndex: 1101,

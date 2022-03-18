@@ -19,7 +19,7 @@ const HomePage = () => {
           sx={{
             height: "400px",
             width: "40%",
-            backgroundColor: "#7F00FF",
+            backgroundColor: "primary",
             marginTop: "200px",
             borderRadius: "25px 25px 25px 25px",
             display: "flex",

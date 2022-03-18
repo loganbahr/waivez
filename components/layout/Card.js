@@ -42,7 +42,7 @@ export default function WaivezPricingCard(props) {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#7F00FF',
+            backgroundColor: 'primary',
             borderRadius: '40px 40px 40px 40px'
         }}>
             <CardHeader
