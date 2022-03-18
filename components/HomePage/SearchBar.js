@@ -1,10 +1,22 @@
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function SearchBar() {
   const [value, setValue] = useState("");
+  const router = useRouter();
+
+  /**
+   * Attempts to route the user to a given page if it exists when they click an entry in autocomplete.
+   * Use effect hook triggers when value changes (to make sure its updated)
+   */
+  useEffect(() => {
+    if (value) {
+      router.push(value.url);
+    }
+  }, [value]);
 
   // Ask logan, where should we store companies.
 
@@ -24,6 +36,7 @@ export default function SearchBar() {
         handleHomeEndKeys
         options={partners}
         value={value}
+        freeSolo
         onChange={(_e, nv) => setValue(nv)}
         getOptionLabel={(option) =>
           typeof option.title === "string" || option.title instanceof String
