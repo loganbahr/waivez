@@ -26,7 +26,7 @@ const PricingPage = () => {
 
                 <Typography sx={{
                     fontFamily: 'Poppins, sans-serif',
-                    fontSize: {xs: 15, sm: 18, md: 20, lg: 24, xl: 26},
+                    fontSize: {xs: 15, sm: 22, md: 26, lg: 33, xl: 38},
                     lineHeight: 1.5,
                     textAlign: 'center',
                     mt: 2,
@@ -54,9 +54,15 @@ const PricingPage = () => {
                            backgroundPosition: '0 0,40px 40px',
                        }}>
 
-                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Standard"}/>
-                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 30}} titleText={"Growing"}/>
-                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Corporate"}/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Standard"}
+                                 price={'$9.99 / month + $0.20 / waiver'}
+                                 priceDetails={"The best option for businesses that have less than 100 customer a day. Has access to basic features."}/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 30}} titleText={"Growing"}
+                                 price={'$19.99 / month + $0.15 / waiver'}
+                                 priceDetails={"Generally for business that have less than 1,000 customers a day, but are growing quickly. Has access to most features.  "}/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Corporate"}
+                                 price={'$99.99/ month+ $0.10 / waiver'}
+                                 priceDetails={"For businesses with thousands of customers daily. Has access to all features, including future features."}/>
 
 
             </Container>
