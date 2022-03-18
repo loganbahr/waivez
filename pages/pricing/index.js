@@ -5,8 +5,6 @@ import {Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import PageTitleText from "../../components/PageTitleText";
 import PricingPageCard from "../../components/Cards/PricingPageCard";
-import Card from "@mui/material/Card";
-
 
 const PricingPage = () => {
     return (
@@ -41,16 +39,25 @@ const PricingPage = () => {
 
             <Container maxWidth='xl'
                        sx={{
-                           border: '2px solid red',
-                           padding: {xs: 0, sm: 0, md: 0, lg: 0, xl: 0},
+                           // border: '2px solid red',
+                           padding: {xs: 1, sm: 1, md: 1, lg: 1, xl: 1},
                            display: 'flex',
+                           alignItems: {xs: 'center', sm: 'center', md: 'start'},
+                           justifyContent: {xs: 'space-evenly', sm: 'space-evenly', md: '', lg: '', xl: ''},
                            flexDirection: {xs: 'column', md: 'row'},
-                           alignItems: 'center',
+                           height: {xs: '130vh', sm: '160vh', md: '90vh', lg: '110vh', xl: '120vh'},
+                           minWidth: '100%',
+                           backgroundColor: '#ffffff',
+                           opacity: '0.8',
+                           backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
+                           backgroundSize: '90px 90px',
+                           backgroundPosition: '0 0,40px 40px',
                        }}>
 
-                <PricingPageCard/>
-                <PricingPageCard/>
-                <PricingPageCard/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Standard"}/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 30}} titleText={"Growing"}/>
+                <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Corporate"}/>
+
 
             </Container>
         </Box>
