@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <Box sx={{flexGrow: 1}}>
-            <AppBar sx={{position: {xs: 'fixed', sm: 'static'}, backgroundColor: '#7F00FF'}}>
+            <AppBar sx={{position: {xs: 'fixed', sm: 'static'}, backgroundColor: 'primary'}}>
                     <Toolbar sx={{display: 'flex', justifyContent: 'space-evenly'}}>
                         <PageMenuButton />
                         <PageLinkButton link='/' text='Home'/>
