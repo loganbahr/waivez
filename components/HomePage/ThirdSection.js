@@ -25,7 +25,7 @@ const ThirdSection = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Poppins, sans-serif',
-                        color: '#7F00FF',
+                        color: 'primary.main',
                         fontSize: {xs: 30, sm: 45, md: 55, lg: 65, xl: 75},
                         // border: '1px solid green',
                         mb: 2,

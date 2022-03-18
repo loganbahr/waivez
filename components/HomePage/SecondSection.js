@@ -10,7 +10,7 @@ const SecondSection = () => {
                 height: '50vh',
                 display: 'flex',
                 flexDirection: 'row',
-                backgroundColor: '#7F00FF'
+                backgroundColor: 'primary.main'
             }}>
             <Box sx={{
                 // border: '1px solid red',

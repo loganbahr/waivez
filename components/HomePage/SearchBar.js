@@ -35,7 +35,8 @@ export default function SearchBar() {
                 renderOption={(props, option) => <li {...props}>{option.title}</li>}
                 sx={{
                     width: '85%',
-                    border: '4px solid #7F00FF',
+                    border: '4px solid',
+                    borderColor: 'primary',
                     borderRadius: '25px 25px 25px 25px',
 
                     "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
