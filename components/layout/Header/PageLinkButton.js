@@ -7,7 +7,9 @@ const PageLinkButton = ({ link, text }) => {
   return (
     <NextLink href={link} passHref>
       <Link>
-        <Button sx={{ display: { xs: "none", sm: "flex" } }}>
+        <Button
+          sx={{ display: { xs: "none", sm: "flex", textTransform: "none" } }}
+        >
           <Typography
             sx={{
               color: "white",

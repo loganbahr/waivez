@@ -62,6 +62,11 @@ export default function SearchBar() {
                 fontSize: { xs: "19px", sm: "26px" },
               },
             }}
+            sx={{
+              "& .MuiInputLabel-shrink": {
+                transform: "translate(5%, -100%)",
+              },
+            }}
           />
         )}
       />
