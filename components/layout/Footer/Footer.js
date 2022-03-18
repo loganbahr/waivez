@@ -7,11 +7,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
 
-export default function Footer() {
+const Footer = () => {
     return (
-        <React.Fragment>
+        <Box>
             <AppBar sx={{
-                backgroundColor: '#7F00FF',
+                backgroundColor: 'primary',
                 top: 'auto',
                 bottom: '0',
                 position: 'static',
@@ -33,6 +33,8 @@ export default function Footer() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-        </React.Fragment>
+        </Box>
     );
 }
+
+export default Footer;
