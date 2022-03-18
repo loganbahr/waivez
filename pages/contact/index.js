@@ -3,13 +3,14 @@ import React from 'react';
 import Head from "next/head";
 import {Box, Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
+import FormikForm from "../../components/Contact Page/FormikForm";
 
-
-// TODO: practice Formik by creating a custom submission handler with Waivez styling
 
 const ContactPage = () => {
+
     return (
-        <Box>
+        <Box
+            sx={{}}>
             <Container maxWidth='lg'
                        sx={{
                            display: 'flex',
@@ -26,13 +27,15 @@ const ContactPage = () => {
             </Container>
 
             <Container maxWidth='xl'
-            sx={{
-                display: 'flex',
-                border: '2px solid red',
-                height: '100vh',
-                width: '100%'
-            }}>
-
+                       sx={{
+                           display: 'flex',
+                           border: '2px solid red',
+                           height: '80vh',
+                           width: '100%',
+                           justifyContent: 'center',
+                           alignItems: 'start',
+                       }}>
+                <FormikForm/>
             </Container>
 
         </Box>
