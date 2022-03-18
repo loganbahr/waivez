@@ -2,6 +2,9 @@
 import React from 'react';
 import Head from "next/head";
 
+
+// TODO: practice Formik by creating a custom submission handler with Waivez styling
+
 const ContactPage = () => {
     return (
         <React.Fragment>

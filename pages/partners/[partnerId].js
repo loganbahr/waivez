@@ -1,0 +1,1 @@
+// dynamic routing for each partner page (www.waivez.com/partners/marcoislandwatersports)
