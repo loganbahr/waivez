@@ -8,13 +8,18 @@ import PricingPageCard from "../../components/Cards/PricingPageCard";
 
 const PricingPage = () => {
     return (
-        <Box>
+        <Box sx={{
+            backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
+            backgroundSize: '90px 90px',
+            backgroundPosition: '0 0,40px 40px',
+        }}>
             <Container maxWidth='lg'
                        sx={{
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
                            // backgroundColor: 'red',
+
                        }}>
                 <Head>
                     <title>
@@ -30,6 +35,7 @@ const PricingPage = () => {
                     lineHeight: 1.5,
                     textAlign: 'center',
                     mt: 2,
+                    backgroundColor: 'white'
                 }}>
                     {/* eslint-disable-next-line react/no-unescaped-entities */}
                     Waivez has price points for any business size. Whether you're small family business,
@@ -47,11 +53,11 @@ const PricingPage = () => {
                            flexDirection: {xs: 'column', md: 'row'},
                            height: {xs: '130vh', sm: '160vh', md: '90vh', lg: '110vh', xl: '120vh'},
                            minWidth: '100%',
-                           backgroundColor: '#ffffff',
+                           backgroundColor: 'clear',
                            opacity: '0.8',
-                           backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
-                           backgroundSize: '90px 90px',
-                           backgroundPosition: '0 0,40px 40px',
+                           // backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
+                           // backgroundSize: '90px 90px',
+                           // backgroundPosition: '0 0,40px 40px',
                        }}>
 
                 <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 0, sm: 1, md: 10}} titleText={"Standard"}

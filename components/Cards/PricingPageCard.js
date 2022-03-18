@@ -23,6 +23,7 @@ const PricingPageCard = ({mx, my, titleText, price, priceDetails}) => {
                 backgroundColor: 'primary.main',
                 boxShadow: '5px 5px 15px 5px #7f00ff',
                 // border: '2px solid orange',
+                padding: 0.8,
                 mx: mx,
                 my: my,
                 display: 'flex',
@@ -76,7 +77,7 @@ const PricingPageCard = ({mx, my, titleText, price, priceDetails}) => {
                     <Typography sx={{
                         color: 'primary.main',
                         fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: '1em', sm: '1.6em', md: '1.2em', lg: '1.4em', xl: '1.6em'},
+                        fontSize: {xs: '1em', sm: '1.6em', md: '1em', lg: '1.4em', xl: '1.6em'},
                         mt: 1
                     }}>
                         {price}

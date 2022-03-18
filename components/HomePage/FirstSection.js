@@ -10,7 +10,7 @@ const FirstSection = () => {
             minWidth: '100%',
             height: '50vh',
             backgroundColor: 'clear',
-            // border: '1px solid red'
+            // border: '1px solid red',
         }}>
             {/*left box*/}
             <Box sx={{
@@ -30,7 +30,7 @@ const FirstSection = () => {
                         // border: '1px solid green',
                         mb: 2,
                         mx: {lg: 20},
-                        lineHeight: 1.2
+                        lineHeight: 1.2,
                     }}>
                     Any waiver.
                 </Typography>
@@ -41,7 +41,7 @@ const FirstSection = () => {
                         // border: '1px solid green',
                         my: 2,
                         mx: {lg: 20},
-                        lineHeight: 1.2
+                        lineHeight: 1.2,
                     }}>
                     All in one place.
                 </Typography>
