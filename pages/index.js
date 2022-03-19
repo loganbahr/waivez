@@ -40,28 +40,30 @@ const HomePage = () => {
                 flexDirection: 'column',
                 padding: {xs: 0, sm: 0, lg: 0, xl: 0} //keeps content to edge of screen
             }}>
+                {/*content takes up half the page and the large font is on LEFT*/}
                 <HalfPageLeft
                     bgColor={'white'}
                     largeFontColor={'primary'}
                     largeTextTop={'Any waiver.'}
                     largeTextBottom={'All in one place.'}
                     contentColor={'primary'}
-                    contentText={'describe what kinds of businesses can use waivez'}
+                    contentText={'If you need to sign a waiver, just search for the company in the search bar above. Just fill out your information and you will instantly receive a confirmation email!'}
                 />
+                {/*content takes up half the page and the large font is on RIGHT*/}
                 <HalfPageRight
                     bgColor={'primary.main'}
                     largeFontColor={'white'}
                     largeTextTop={'Any business.'}
                     largeTextBottom={'Anywhere.'}
                     contentColor={'white'}
-                    contentText={'describe'}
+                    contentText={'Jetskiing, parasailing, rock-climbing, skydiving, concerts, events, expos, gyms, shooting ranges, pools, bike shops... the list is endless.'}
                 />
                 <HalfPageLeft
                     bgColor={'white'}
                     largeFontColor={'primary'}
                     largeTextTop={'Valuable metrics about your customers.'}
                     contentColor={'primary'}
-                    contentText={'describe some of the dashboard features'}
+                    contentText={'Get to know your customers, understand your demographic: where they come from, and when they will be back.'}
                 />
             </Container>
         </Box>

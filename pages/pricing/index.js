@@ -79,14 +79,14 @@ const PricingPage = () => {
                 largeFontColor={'primary'}
                 largeTextTop={'Understand your customer.'}
                 contentColor={'primary'}
-                contentText={'describe'}
+                contentText={'Our user-friendly Partner Dashboard has information about your business that you didnt know existed. Demographic heat maps, a Return Probability Index, and many more. '}
             />
             <HalfPageLeft
                 bgColor={'clear'}
                 largeFontColor={'primary'}
                 largeTextTop={'Effectively advertise with a few clicks.'}
                 contentColor={'primary'}
-                contentText={'describe'}
+                contentText={'Integrate with popular mass mailing services to effectively target the audience you intended.'}
             />
         </Box>
     );

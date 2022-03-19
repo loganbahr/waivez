@@ -28,8 +28,11 @@ const HalfPageRight = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, 
                 <Typography
                     sx={{
                         fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: '0.92em', sm: '1.5em', md: '1.3em'},
+                        fontSize: {xs: '0.8em', sm: '1.3em', md: '1.3em'},
                         textAlign: 'center',
+                        lineHeight: 2,
+                        wordSpacing: 2,
+                        px: {xs: 1},
                     }}>
                     {contentText}
                 </Typography>

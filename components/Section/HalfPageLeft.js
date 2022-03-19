@@ -30,7 +30,7 @@ const HalfPageLeft = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, c
                         // border: '1px solid green',
                         mb: 2,
                         mx: {lg: 20},
-                        lineHeight: 1.2,
+                        lineHeight: 1.3,
                         textAlign: 'center',
                         color: largeFontColor,
                         backgroundColor: 'white',
@@ -44,7 +44,7 @@ const HalfPageLeft = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, c
                         // border: '1px solid green',
                         my: 2,
                         mx: {lg: 20},
-                        lineHeight: 1.2,
+                        lineHeight: 1.3,
                         textAlign: 'center',
                         color: largeFontColor,
                         backgroundColor: 'white',
@@ -64,14 +64,17 @@ const HalfPageLeft = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, c
                     justifyContent: 'center',
                     alignItems: 'center',
                     color: contentColor,
-                    padding: 2,
+                    pb: {xs: 3}
                 }}>
                 <Typography
                     sx={{
                         fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: '0.92em', sm: '1.5em', md: '1.3em'},
+                        fontSize: {xs: '0.8em', sm: '1.3em', md: '1.3em'},
                         textAlign: 'center',
                         backgroundColor: 'white',
+                        lineHeight: 2,
+                        wordSpacing: 2,
+                        px: {xs: 1},
                     }}>
                     {contentText}
                 </Typography>
