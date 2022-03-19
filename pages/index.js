@@ -4,10 +4,9 @@ import Head from 'next/head';
 import Box from '@mui/material/Box';
 import {Container} from "@mui/material";
 import SearchBar from "../components/HomePage/SearchBar";
-import FirstSection from "../components/HomePage/FirstSection";
 import PageTitleText from "../components/PageTitleText";
-import SecondSection from "../components/HomePage/SecondSection";
-import ThirdSection from "../components/HomePage/ThirdSection";
+import HalfPageLeft from "../components/Section/HalfPageLeft";
+import HalfPageRight from "../components/Section/HalfPageRight";
 
 
 const HomePage = () => {
@@ -41,9 +40,29 @@ const HomePage = () => {
                 flexDirection: 'column',
                 padding: {xs: 0, sm: 0, lg: 0, xl: 0} //keeps content to edge of screen
             }}>
-                <FirstSection/>
-                <SecondSection/>
-                <ThirdSection/>
+                <HalfPageLeft
+                    bgColor={'white'}
+                    largeFontColor={'primary'}
+                    largeTextTop={'Any waiver.'}
+                    largeTextBottom={'All in one place.'}
+                    contentColor={'primary'}
+                    contentText={'describe what kinds of businesses can use waivez'}
+                />
+                <HalfPageRight
+                    bgColor={'primary.main'}
+                    largeFontColor={'white'}
+                    largeTextTop={'Any business.'}
+                    largeTextBottom={'Anywhere.'}
+                    contentColor={'white'}
+                    contentText={'describe'}
+                />
+                <HalfPageLeft
+                    bgColor={'white'}
+                    largeFontColor={'primary'}
+                    largeTextTop={'Valuable metrics about your customers.'}
+                    contentColor={'primary'}
+                    contentText={'describe some of the dashboard features'}
+                />
             </Container>
         </Box>
 

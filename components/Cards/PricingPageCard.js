@@ -120,7 +120,7 @@ const PricingPageCard = ({mx, my, titleText, price, priceDetails}) => {
                 <Typography sx={{
                     color: 'white',
                     fontFamily: 'Poppins, sans-serif',
-                    fontSize: {xs: '0.92em', sm: '1.5em', md: '1.3em'},
+                    fontSize: {xs: '0.92em', sm: '1.5em', md: '1.15em'},
                     textAlign: 'center',
                 }}>
                     {priceDetails}
