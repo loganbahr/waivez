@@ -2,26 +2,47 @@
 
 import React from 'react';
 import Head from "next/head";
-import {Box, Typography} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
+import WaiverPage from "./waiver";
+import SearchBar from "../../components/HomePage/SearchBar";
 
 
 const PartnersPage = () => {
     return (
-        <React.Fragment>
-            <Head>
-                <title>
-                    Partners
-                </title>
-                <meta/>
-            </Head>
+        <Box>
+            <Container maxWidth='lg'
+                       sx={{
+                           display: 'flex',
+                           flexDirection: 'column',
+                           alignItems: 'center',
+                       }}>
+                <Head>
+                    <title>
+                        Partners
+                    </title>
+                    <meta/>
+                </Head>
+                <PageTitleText content='partners'/>
+                <SearchBar/>
+            </Container>
+
+            <Container sx={{
+                backgroundColor: 'clear',
+                border: '2px solid red',
+                minHeight: '100vh',
+                // minWidth: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: {xs: 0, sm: 0, lg: 0, xl: 0},//keeps content to edge of screen
+                mb: 10,
+            }}>
 
 
-            <PageTitleText content='partners'/>
+            </Container>
 
 
-
-        </React.Fragment>
+        </Box>
     );
 };
 
