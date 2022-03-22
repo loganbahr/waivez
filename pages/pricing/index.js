@@ -32,7 +32,7 @@ const PricingPage = () => {
 
                 <PageSubtitleText
                     content={'Waivez has price points for any business size. Whether you\'re small family business,\n' +
-                        'large franchise organization, or just getting started - we have you covered... literally.'}/>
+                        'large franchise organization, or just getting started — we have you covered... literally.'}/>
             </Container>
 
             <Container maxWidth='xl'
