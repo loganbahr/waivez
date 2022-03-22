@@ -47,7 +47,7 @@ const HomePage = () => {
                     largeTextTop={'Any waiver.'}
                     largeTextBottom={'All in one place.'}
                     contentColor={'primary'}
-                    contentText={'If you need to sign a waiver, just search for the company in the search bar above. Just fill out your information and you will instantly receive a confirmation email!'}
+                    contentText={'If you need to sign a waiver, just search for the company in the search bar above. Fill out your information and you will instantly receive a confirmation email!'}
                 />
                 {/*content takes up half the page and the large font is on RIGHT*/}
                 <HalfPageRight

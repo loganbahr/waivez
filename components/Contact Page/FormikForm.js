@@ -7,27 +7,33 @@ const validationSchema = yup.object({
     firstName: yup
         .string('Enter your first name.')
         .required('A first name is required.'),
+    lastName: yup
+        .string('Enter your last name.')
+        .required('A last name is required.'),
     email: yup
-        .string('Enter your email')
+        .string('Enter your email.')
         .email('Enter a valid email')
-        .required('Email is required'),
-    password: yup
-        .string('Enter your password')
-        .min(8, 'Password should be of minimum 8 characters length')
-        .required('Password is required'),
+        .required('An Email is required.'),
+    message: yup
+        .string('Enter a message.')
+        .required('A message is required')
 });
 
 const FormikForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            firstName: 'John',
-            email: 'foobar@example.com',
-            password: 'foobar',
+            firstName: '',
+            lastName: '',
+            email: '',
+            message: '',
         },
+
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
+            console.log(values);
+            formik.handleReset(values);
         },
     });
 
@@ -38,13 +44,22 @@ const FormikForm = () => {
                     fullWidth
                     id="firstName"
                     name="firstName"
-                    label="FirstName"
+                    label="First Name"
                     value={formik.values.firstName}
                     onChange={formik.handleChange}
+                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                     helperText={formik.touched.firstName && formik.errors.firstName}
-                >
-
-                </TextField>
+                />
+                <TextField
+                    fullWidth
+                    id="lastName"
+                    name="lastName"
+                    label="Last Name"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                    helperText={formik.touched.lastName && formik.errors.lastName}
+                />
                 <TextField
                     fullWidth
                     id="email"
@@ -55,16 +70,18 @@ const FormikForm = () => {
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                 />
+
                 <TextField
+                    multiline
                     fullWidth
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    value={formik.values.password}
+                    maxRows={5}
+                    id="message"
+                    name="message"
+                    label="Message"
+                    value={formik.values.message}
                     onChange={formik.handleChange}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.touched.password && formik.errors.password}
+                    error={formik.touched.message && Boolean(formik.errors.message)}
+                    helperText={formik.touched.message && formik.errors.message}
                 />
                 <Button color="primary" variant="contained" fullWidth type="submit">
                     Submit

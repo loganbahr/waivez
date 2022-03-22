@@ -26,14 +26,15 @@ const ContactPage = () => {
                 <PageTitleText content='contact us'/>
             </Container>
 
+
             <Container maxWidth='xl'
                        sx={{
                            display: 'flex',
                            border: '2px solid red',
                            height: '80vh',
-                           width: '100%',
+                           width: 'auto',
                            justifyContent: 'center',
-                           alignItems: 'start',
+                           alignItems: 'center',
                        }}>
                 <FormikForm/>
             </Container>
