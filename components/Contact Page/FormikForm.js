@@ -74,7 +74,7 @@ const FormikForm = () => {
                 <TextField
                     multiline
                     fullWidth
-                    maxRows={5}
+                    maxRows={8}
                     id="message"
                     name="message"
                     label="Message"

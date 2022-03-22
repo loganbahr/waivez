@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import PageTitleText from "../../components/PageTitleText";
 import PricingPageCard from "../../components/Cards/PricingPageCard";
 import HalfPageLeft from "../../components/Section/HalfPageLeft";
+import PageSubtitleText from "../../components/PageSubtitleText";
 
 const PricingPage = () => {
     return (
@@ -31,18 +32,9 @@ const PricingPage = () => {
                 </Head>
                 <PageTitleText content='pricing'/>
 
-                <Typography sx={{
-                    fontFamily: 'Poppins, sans-serif',
-                    fontSize: {xs: 15, sm: 22, md: 26, lg: 33, xl: 38},
-                    lineHeight: 1.5,
-                    textAlign: 'center',
-                    my: 2,
-                    backgroundColor: 'white'
-                }}>
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    Waivez has price points for any business size. Whether you're small family business,
-                    large franchise organization, or just getting started - we have you covered... literally.
-                </Typography>
+                <PageSubtitleText
+                    content={'Waivez has price points for any business size. Whether you\'re small family business,\n' +
+                        'large franchise organization, or just getting started - we have you covered... literally.'}/>
             </Container>
 
             <Container maxWidth='xl'

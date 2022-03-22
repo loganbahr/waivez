@@ -63,7 +63,7 @@ const HomePage = () => {
                     largeFontColor={'primary'}
                     largeTextTop={'Valuable metrics about your customers.'}
                     contentColor={'primary'}
-                    contentText={'Get to know your customers, understand your demographic: where they come from, and when they will be back.'}
+                    contentText={'Get to know your customers, understand your demographic — where they come from, and when they\'ll be back.'}
                 />
             </Container>
         </Box>
