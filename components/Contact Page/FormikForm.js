@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, TextField} from "@mui/material";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
+import Box from "@mui/material/Box";
 
 const validationSchema = yup.object({
     firstName: yup
@@ -38,7 +39,7 @@ const FormikForm = () => {
     });
 
     return (
-        <div>
+        <Box sx={{backgroundColor: 'white', opacity: '1'}}>
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     fullWidth
@@ -87,7 +88,7 @@ const FormikForm = () => {
                     Submit
                 </Button>
             </form>
-        </div>
+        </Box>
     );
 };
 

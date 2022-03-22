@@ -14,7 +14,6 @@ const PricingPage = () => {
             backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
             backgroundSize: '90px 90px',
             backgroundPosition: '0 0,40px 40px',
-            height: 'auto',
         }}>
             <Container maxWidth='lg'
                        sx={{
@@ -22,7 +21,6 @@ const PricingPage = () => {
                            flexDirection: 'column',
                            alignItems: 'center',
                            // backgroundColor: 'red',
-
                        }}>
                 <Head>
                     <title>
@@ -48,10 +46,6 @@ const PricingPage = () => {
                            height: {xs: '120vh', sm: '140vh', md: '80vh', lg: '100vh', xl: '90vh'},
                            minWidth: '100%',
                            backgroundColor: 'clear',
-                           opacity: '0.8',
-                           // backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
-                           // backgroundSize: '90px 90px',
-                           // backgroundPosition: '0 0,40px 40px',
                        }}>
 
                 <PricingPageCard mx={{xs: 0, md: 1}} my={{xs: 1, sm: 1, md: 10}} titleText={"Standard"}

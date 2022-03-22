@@ -11,13 +11,20 @@ const ContactPage = () => {
 
     return (
         <Box
-            sx={{}}>
+            sx={{
+                backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
+                backgroundSize: '90px 90px',
+                backgroundPosition: '0 0,40px 40px',
+
+            }}>
             <Container maxWidth='lg'
                        sx={{
+                           // border: '2px solid red',
                            display: 'flex',
                            alignItems: 'center',
                            flexDirection: 'column',
                            textAlign: 'center',
+                           backgroundColor: 'clear'
                        }}>
                 <Head>
                     <title>
@@ -40,6 +47,8 @@ const ContactPage = () => {
                            justifyContent: 'center',
                            alignItems: 'start',
                            mt: 10,
+                           opacity: '1',
+                           backgroundColor: 'clear'
                        }}>
                 <FormikForm/>
             </Container>
