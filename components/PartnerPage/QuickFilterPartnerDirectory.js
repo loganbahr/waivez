@@ -15,8 +15,12 @@ function QuickSearchToolbar(props) {
     return (
         <Box
             sx={{
-                p: 0.5,
-                pb: 0,
+                py: 1,
+                height: '100px',
+                // border: '2px solid red',
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundColor: 'primary.main',
             }}
         >
             <TextField
@@ -25,7 +29,7 @@ function QuickSearchToolbar(props) {
                 onChange={props.onChange}
                 placeholder="Search for a company…"
                 InputProps={{
-                    startAdornment: <SearchIcon fontSize="small"/>,
+                    startAdornment: <SearchIcon fontSize="medium"/>,
                     endAdornment: (
                         <IconButton
                             title="Clear"
@@ -39,19 +43,24 @@ function QuickSearchToolbar(props) {
                     ),
                 }}
                 sx={{
-                    width: {
-                        xs: 1,
-                        sm: 'auto',
-                        border: '2px solid red'
-                    },
-                    m: (theme) => theme.spacing(1, 0.5, 1.5),
+                    width: {md: 500},
+                    margin: {xs: 0, md: 0},
+                    // border: '2px solid orange',
+                    borderRadius: '20px 20px',
+                    backgroundColor: 'white',
+                    // m: (theme) => theme.spacing(1, 0.5, 1.5),
                     '& .MuiSvgIcon-root': {
-                        mr: 0.5,
+                        mx: 0.5,
                     },
                     '& .MuiInput-underline:before': {
                         borderBottom: 1,
                         borderColor: 'divider',
                     },
+                    '& 	.MuiInput-root': {
+                        height: 200,
+                        fontSize: '2rem',
+                    },
+
                 }}
             />
         </Box>
@@ -76,10 +85,9 @@ const rowData = [
 const columnData = [
     {field: 'companyName', headerName: 'Company Name', width: 600},
     {field: 'city', headerName: 'City', width: 350},
-    {field: 'state', headerName: 'State(s)', width: 200}
+    {field: 'state', headerName: 'State', width: 200}
 ];
 
-// TODO: not sure how useDemoData is formatting 'data', and what the function is doing to transform it into the table
 export default function QuickFilterPartnerDirectory() {
 
     // const { data } = useDemoData({
