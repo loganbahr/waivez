@@ -6,6 +6,8 @@ import {Box, Container, Typography} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import WaiverPage from "./waiver";
 import SearchBar from "../../components/HomePage/SearchBar";
+import PartnerDirectory from "../../components/PartnerPage/PartnerDirectory";
+import QuickFilteringGrid from "../../components/PartnerPage/QuickFilterDirectory";
 
 
 const PartnersPage = () => {
@@ -16,6 +18,7 @@ const PartnersPage = () => {
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
+                           pb: 10
                        }}>
                 <Head>
                     <title>
@@ -24,12 +27,12 @@ const PartnersPage = () => {
                     <meta/>
                 </Head>
                 <PageTitleText content='partners'/>
-                <SearchBar/>
+                {/*<SearchBar/>*/}
             </Container>
 
             <Container sx={{
                 backgroundColor: 'clear',
-                border: '2px solid red',
+                // border: '2px solid red',
                 minHeight: '100vh',
                 // minWidth: '100%',
                 display: 'flex',
@@ -37,7 +40,8 @@ const PartnersPage = () => {
                 padding: {xs: 0, sm: 0, lg: 0, xl: 0},//keeps content to edge of screen
                 mb: 10,
             }}>
-
+                <QuickFilteringGrid/>
+                {/*<PartnerDirectory/>*/}
 
             </Container>
 
