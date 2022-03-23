@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
-import { DataGrid } from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
+import {DataGrid} from '@mui/x-data-grid';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -26,16 +25,16 @@ function QuickSearchToolbar(props) {
                 onChange={props.onChange}
                 placeholder="Search for a company…"
                 InputProps={{
-                    startAdornment: <SearchIcon fontSize="small" />,
+                    startAdornment: <SearchIcon fontSize="small"/>,
                     endAdornment: (
                         <IconButton
                             title="Clear"
                             aria-label="Clear"
                             size="small"
-                            style={{ visibility: props.value ? 'visible' : 'hidden' }}
+                            style={{visibility: props.value ? 'visible' : 'hidden'}}
                             onClick={props.clearSearch}
                         >
-                            <ClearIcon fontSize="small" />
+                            <ClearIcon fontSize="small"/>
                         </IconButton>
                     ),
                 }}
@@ -65,7 +64,7 @@ QuickSearchToolbar.propTypes = {
     value: PropTypes.string.isRequired,
 };
 
-const data = [
+const rowData = [
     {id: 1, companyName: 'Naples Beach Watersports', city: 'Naples', state: 'FL'},
     {id: 2, companyName: 'Marco Island Watersports', city: 'Marco Island', state: 'FL'},
     {id: 3, companyName: 'Augusta Winery', city: 'Augusta', state: 'MO'},
@@ -74,27 +73,28 @@ const data = [
     {id: 6, companyName: 'Florida Everblades', city: 'Estero', state: 'FL'},
     {id: 7, companyName: 'Hertz Arena', city: 'Estero', state: 'FL'},
 ];
-
-
-// const VISIBLE_FIELDS = ['name', 'city', 'state'];
-
-const VISIBLE_FIELDS = ['name', 'rating', 'country', 'dateCreated', 'isAdmin'];
+const columnData = [
+    {field: 'companyName', headerName: 'Company Name', width: 600},
+    {field: 'city', headerName: 'City', width: 350},
+    {field: 'state', headerName: 'State(s)', width: 200}
+];
 
 // TODO: not sure how useDemoData is formatting 'data', and what the function is doing to transform it into the table
-export default function QuickFilteringGrid() {
-    const { data } = useDemoData({
-        dataSet: 'Employee',
-        visibleFields: VISIBLE_FIELDS,
-        rowLength: 100,
-    });
+export default function QuickFilterPartnerDirectory() {
+
+    // const { data } = useDemoData({
+    //     dataSet: 'Employee',
+    //     visibleFields: VISIBLE_FIELDS,
+    //     rowLength: 1000,
+    // });
 
     const [searchText, setSearchText] = React.useState('');
-    const [rows, setRows] = React.useState(data.rows);
+    const [rows, setRows] = React.useState(rowData);
 
     const requestSearch = (searchValue) => {
         setSearchText(searchValue);
         const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
-        const filteredRows = data.rows.filter((row) => {
+        const filteredRows = rowData.filter((row) => {
             return Object.keys(row).some((field) => {
                 return searchRegex.test(row[field].toString());
             });
@@ -103,15 +103,15 @@ export default function QuickFilteringGrid() {
     };
 
     React.useEffect(() => {
-        setRows(data.rows);
-    }, [data.rows]);
+        setRows(rowData);
+    }, [rowData]);
 
     return (
-        <Box sx={{ height: 1000, width: 1 }}>
+        <Box sx={{height: 1000, width: 1}}>
             <DataGrid
-                components={{ Toolbar: QuickSearchToolbar }}
+                components={{Toolbar: QuickSearchToolbar}}
                 rows={rows}
-                columns={data.columns}
+                columns={columnData}
                 componentsProps={{
                     toolbar: {
                         value: searchText,

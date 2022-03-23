@@ -2,12 +2,10 @@
 
 import React from 'react';
 import Head from "next/head";
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
-import WaiverPage from "./waiver";
-import SearchBar from "../../components/HomePage/SearchBar";
-import PartnerDirectory from "../../components/PartnerPage/PartnerDirectory";
-import QuickFilteringGrid from "../../components/PartnerPage/QuickFilterDirectory";
+import QuickFilteringGrid from "../../components/PartnerPage/QuickFilterPartnerDirectory";
+import PageSubtitleText from "../../components/PageSubtitleText";
 
 
 const PartnersPage = () => {
@@ -27,7 +25,7 @@ const PartnersPage = () => {
                     <meta/>
                 </Head>
                 <PageTitleText content='partners'/>
-                {/*<SearchBar/>*/}
+                <PageSubtitleText content='Find the company you want to sign a waiver with.'/>
             </Container>
 
             <Container sx={{
@@ -41,7 +39,6 @@ const PartnersPage = () => {
                 mb: 10,
             }}>
                 <QuickFilteringGrid/>
-                {/*<PartnerDirectory/>*/}
 
             </Container>
 
