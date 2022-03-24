@@ -16,7 +16,7 @@ function QuickSearchToolbar(props) {
         <Box
             sx={{
                 py: 1,
-                height: '100px',
+                height: {xs: 60, sm: 70, md: 80, lg: 90},
                 // border: '2px solid red',
                 display: 'flex',
                 justifyContent: 'center',
@@ -43,22 +43,23 @@ function QuickSearchToolbar(props) {
                     ),
                 }}
                 sx={{
-                    width: {md: 500},
+                    width: {xs: '100%', sm: '70%', md: '50%'},
                     margin: {xs: 0, md: 0},
                     // border: '2px solid orange',
                     borderRadius: '20px 20px',
                     backgroundColor: 'white',
                     // m: (theme) => theme.spacing(1, 0.5, 1.5),
                     '& .MuiSvgIcon-root': {
-                        mx: 0.5,
+                        mx: 1,
+                        color: 'primary.main'
                     },
                     '& .MuiInput-underline:before': {
                         borderBottom: 1,
                         borderColor: 'divider',
                     },
                     '& 	.MuiInput-root': {
-                        height: 200,
-                        fontSize: '2rem',
+                        height: '100%',
+                        fontSize: {xs: '1rem', sm: '1.1rem', md: '1.2rem'},
                     },
 
                 }}
@@ -82,10 +83,23 @@ const rowData = [
     {id: 6, companyName: 'Florida Everblades', city: 'Estero', state: 'FL'},
     {id: 7, companyName: 'Hertz Arena', city: 'Estero', state: 'FL'},
 ];
+
+// const columnData = [
+//     {field: 'companyName', headerName: 'Company Name', width: 600},
+//     {field: 'city', headerName: 'City', width: 350},
+//     {field: 'state', headerName: 'State', width: 200}
+// ];
+
 const columnData = [
-    {field: 'companyName', headerName: 'Company Name', width: 600},
-    {field: 'city', headerName: 'City', width: 350},
-    {field: 'state', headerName: 'State', width: 200}
+    {
+        field: "companyName",
+        headerName: "Company Name",
+        flex: 1,
+        minWidth: 200,
+        renderCell: (params) => <a href={params.id}>{params.value}</a>,
+    },
+    {field: "city", headerName: "City", minWidth: 100, flex: 1},
+    {field: "state", headerName: "State", minWidth: 50, flex: 1},
 ];
 
 export default function QuickFilterPartnerDirectory() {
@@ -115,9 +129,16 @@ export default function QuickFilterPartnerDirectory() {
     }, [rowData]);
 
     return (
-        <Box sx={{height: 1000, width: 1}}>
+        // the DataGrid just follows the size of the Box
+        <Box
+            sx={{
+                height: '100vh',
+                width: 'auto',
+                // border: '10px solid yellow'
+            }}>
             <DataGrid
                 components={{Toolbar: QuickSearchToolbar}}
+                autoPageSize={true}
                 rows={rows}
                 columns={columnData}
                 componentsProps={{
@@ -126,6 +147,15 @@ export default function QuickFilterPartnerDirectory() {
                         onChange: (event) => requestSearch(event.target.value),
                         clearSearch: () => requestSearch(''),
                     },
+                }}
+                sx={{
+                    border: '2px solid #7F00FF',
+                    '& .MuiDataGrid-columnHeader':{
+                        fontSize: {xs: '1.1rem', sm: '1.3rem', md: '1.5rem'},
+                        fontFamily: 'Poppins, sans-serif',
+                        color: 'primary.main'
+                    },
+                    fontSize: {xs: '0.85rem', sm: '1.1rem', md: '1.2rem'},
                 }}
             />
         </Box>
