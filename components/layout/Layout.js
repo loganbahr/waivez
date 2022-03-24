@@ -1,15 +1,14 @@
 import Footer from "./Footer/Footer";
-import React from "react";
 import Header from "./Header/Header";
+import { Box } from "@mui/material";
 
 const Layout = (props) => {
-    return (
-        <React.Fragment>
-            <Header/>
-            {props.children}
-            <Footer/>
-        </React.Fragment>
-
-    );
+  return (
+    <Box minHeight="100vh">
+      <Header />
+      <Box minHeight="80vh">{props.children}</Box>
+      <Footer />
+    </Box>
+  );
 };
 export default Layout;
