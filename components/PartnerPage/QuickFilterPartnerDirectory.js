@@ -85,13 +85,13 @@ const rowData = [
     {id: 6, companyName: 'Florida Everblades', city: 'Estero', state: 'FL'},
     {id: 7, companyName: 'Hertz Arena', city: 'Estero', state: 'FL'},
     {id: 8, companyName: 'Mid American Coaches', city: 'Washington', state: 'MO'},
-    {id: 9, companyName: '', city: '', state: ''},
-    {id: 10, companyName: '', city: '', state: ''},
-    {id: 11, companyName: '', city: '', state: ''},
-    {id: 12, companyName: '', city: '', state: ''},
-    {id: 13, companyName: '', city: '', state: ''},
-    {id: 14, companyName: '', city: '', state: ''},
-    {id: 15, companyName: '', city: '', state: ''},
+    {id: 9, companyName: 'The Java Butler', city: 'SWFL', state: 'FL'},
+    {id: 10, companyName: 'Mount Pleasant Estates', city: 'Augusta', state: 'MO'},
+    {id: 11, companyName: 'NOA Medical Industries', city: 'St. Louis', state: 'MO'},
+    {id: 12, companyName: 'Osprey Capital', city: 'Chicago', state: 'IL'},
+    {id: 13, companyName: 'Naples Transportation & Tours', city: 'Naples', state: 'FL'},
+    {id: 14, companyName: 'The Old Collier Golf Club', city: 'Naples', state: 'FL'},
+    {id: 15, companyName: 'Hoffmann Executive Suites', city: 'Naples', state: 'FL'},
 
 ];
 
