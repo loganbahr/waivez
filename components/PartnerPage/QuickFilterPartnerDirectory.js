@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import {DataGrid} from '@mui/x-data-grid';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import {Stack} from "@mui/material";
 
 function escapeRegExp(value) {
     return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
@@ -29,6 +30,7 @@ function QuickSearchToolbar(props) {
                 onChange={props.onChange}
                 placeholder="Search for a company…"
                 InputProps={{
+                    disableUnderline: true,
                     startAdornment: <SearchIcon fontSize="medium"/>,
                     endAdornment: (
                         <IconButton
@@ -50,7 +52,7 @@ function QuickSearchToolbar(props) {
                     backgroundColor: 'white',
                     // m: (theme) => theme.spacing(1, 0.5, 1.5),
                     '& .MuiSvgIcon-root': {
-                        mx: 1,
+                        mx: 2,
                         color: 'primary.main'
                     },
                     '& .MuiInput-underline:before': {
@@ -73,7 +75,7 @@ QuickSearchToolbar.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
 };
-
+// {id: , companyName: '', city: '', state: ''},
 const rowData = [
     {id: 1, companyName: 'Naples Beach Watersports', city: 'Naples', state: 'FL'},
     {id: 2, companyName: 'Marco Island Watersports', city: 'Marco Island', state: 'FL'},
@@ -82,13 +84,16 @@ const rowData = [
     {id: 5, companyName: 'BaseCamp', city: 'Avon', state: 'CO'},
     {id: 6, companyName: 'Florida Everblades', city: 'Estero', state: 'FL'},
     {id: 7, companyName: 'Hertz Arena', city: 'Estero', state: 'FL'},
-];
+    {id: 8, companyName: 'Mid American Coaches', city: 'Washington', state: 'MO'},
+    {id: 9, companyName: '', city: '', state: ''},
+    {id: 10, companyName: '', city: '', state: ''},
+    {id: 11, companyName: '', city: '', state: ''},
+    {id: 12, companyName: '', city: '', state: ''},
+    {id: 13, companyName: '', city: '', state: ''},
+    {id: 14, companyName: '', city: '', state: ''},
+    {id: 15, companyName: '', city: '', state: ''},
 
-// const columnData = [
-//     {field: 'companyName', headerName: 'Company Name', width: 600},
-//     {field: 'city', headerName: 'City', width: 350},
-//     {field: 'state', headerName: 'State', width: 200}
-// ];
+];
 
 const columnData = [
     {
@@ -101,6 +106,7 @@ const columnData = [
     {field: "city", headerName: "City", minWidth: 100, flex: 1},
     {field: "state", headerName: "State", minWidth: 50, flex: 1},
 ];
+
 
 export default function QuickFilterPartnerDirectory() {
 
@@ -129,16 +135,22 @@ export default function QuickFilterPartnerDirectory() {
     }, [rowData]);
 
     return (
-        // the DataGrid just follows the size of the Box
-        <Box
-            sx={{
-                height: '100vh',
-                width: 'auto',
-                // border: '10px solid yellow'
-            }}>
+        // the DataGrid doesn't care about the size of the Box
+        <Box>
             <DataGrid
-                components={{Toolbar: QuickSearchToolbar}}
-                autoPageSize={true}
+                // loading={true} a nice loading ring
+                components={{
+                    Toolbar: QuickSearchToolbar,
+                    NoRowsOverlay: () => (
+                        <Stack height="100%" alignItems="center" justifyContent="center">
+                            {/* eslint-disable-next-line react/no-unescaped-entities */}
+                            Hmm...that company isn't a partner with us — yet!
+                        </Stack>)
+                }}
+                // autoPageSize={true} this breaks the grid for some reason
+                pageSize={10}
+                autoHeight={true}
+                // rowSpacingType='border'
                 rows={rows}
                 columns={columnData}
                 componentsProps={{
@@ -149,13 +161,24 @@ export default function QuickFilterPartnerDirectory() {
                     },
                 }}
                 sx={{
-                    border: '2px solid #7F00FF',
-                    '& .MuiDataGrid-columnHeader':{
+                    border: '4px solid #7F00FF',
+                    // height: 1000,
+                    // flex: 1,
+                    fontSize: {xs: '0.85rem', sm: '1.1rem', md: '1.2rem'},
+                    '& .MuiDataGrid-columnHeader': {
                         fontSize: {xs: '1.1rem', sm: '1.3rem', md: '1.5rem'},
                         fontFamily: 'Poppins, sans-serif',
-                        color: 'primary.main'
+                        color: 'primary.main',
+                        // borderBottom: '10px solid #7F00FF',
                     },
-                    fontSize: {xs: '0.85rem', sm: '1.1rem', md: '1.2rem'},
+                    '& .MuiDataGrid-columnHeaderTitleContainer': {},
+                    '& .MuiDataGrid-columnHeader--sortable': {},
+
+                    '& .MuiDataGrid-row': {
+                        borderBottom: '2px solid #7F00FF',
+                    },
+
+
                 }}
             />
         </Box>

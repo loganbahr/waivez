@@ -36,8 +36,7 @@ const PartnersPage = () => {
                 sx={{
                     backgroundColor: 'clear',
                     // border: '2px solid black',
-                    minHeight: '100vh',
-
+                    // minHeight: '100vh',
                     display: 'flex',
                     flexDirection: 'column',
                     padding: {xs: 0, sm: 0, lg: 0, xl: 0}, //keeps content to edge of screen
