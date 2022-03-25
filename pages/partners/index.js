@@ -43,10 +43,7 @@ const PartnersPage = () => {
                     mb: 10,
                 }}>
                 <QuickFilterPartnerDirectory/>
-
             </Container>
-
-
         </Box>
     );
 };
