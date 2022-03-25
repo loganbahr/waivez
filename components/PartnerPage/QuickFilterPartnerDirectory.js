@@ -123,8 +123,8 @@ const columnData = [
     //   </NextLink>
     // ),
   },
-  { field: "city", headerName: "City", minWidth: 100 },
-  { field: "state", headerName: "State", minWidth: 50 },
+  { field: "city", headerName: "City", flex: 1, minWidth: 100 },
+  { field: "state", headerName: "State", flex: 1, minWidth: 50 },
 ];
 
 export default function QuickFilterPartnerDirectory() {
