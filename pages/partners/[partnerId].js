@@ -2,12 +2,12 @@
 // Okay daddy OwO
 
 import { Box, Container, Typography } from "@mui/material";
+import Axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import PageTitleText from "../../components/PageTitleText";
-import Partners from "../../components/Partners/PartnerListTemp";
 
 /**
  * @file [partnerId].js
@@ -18,9 +18,8 @@ import Partners from "../../components/Partners/PartnerListTemp";
 
 const PartnerPage = (props) => {
   const router = useRouter();
-  const { partnerId } = router.query;
 
-  useEffect(() => console.log(Partners), []);
+  useEffect(() => console.log(props), []);
 
   return (
     <Box>
@@ -34,15 +33,31 @@ const PartnerPage = (props) => {
         }}
       >
         <Head>
-          <title>{Partners[partnerId]["title"]}</title>
+          <title>{props.title}</title>
           <meta />
         </Head>
-        <PageTitleText content={Partners[partnerId]["title"]} />
-        <PageSubtitleText content={Partners[partnerId]["subtitle"]} />
-        <Typography variant="p">{Partners[partnerId]["paragraph"]}</Typography>
+        <PageTitleText content={props.title} />
+        <PageSubtitleText content={props.subtitle} />
+        <Typography variant="p">{props.paragraph}</Typography>
       </Container>
     </Box>
   );
+};
+
+PartnerPage.getInitialProps = async ({ req, query }) => {
+  const partnerId = query.partnerId;
+
+  const res = await Axios.get("http://localhost:5000/company", {
+    params: {
+      company: partnerId,
+    },
+  });
+
+  if (res.data) {
+    return res.data;
+  }
+
+  return {};
 };
 
 export default PartnerPage;
