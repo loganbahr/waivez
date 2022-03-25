@@ -6,6 +6,7 @@ import {Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import FormikForm from "../../components/SignIn Page/FormikForm";
+import SignatureCanvasDemo from "../../components/SignIn Page/SignatureCanvasDemo";
 
 
 const SignInPage = () => {
@@ -33,16 +34,30 @@ const SignInPage = () => {
             <Container maxWidth='xl'
                        sx={{
                            display: 'flex',
-                           // border: '2px solid red',
-                           height: {xs: '70vh', sm: '65vh', md: '70vh', lg: '90vh'},
+                           flexDirection: 'column',
+                           border: '2px solid red',
+                           // height: {xs: '50vh', sm: '30vh', md: '30vh', lg: '20vh'},
+                           height: '100vh',
                            width: 'auto',
-                           justifyContent: 'center',
-                           alignItems: 'start',
-                           mt: 10,
+                           justifyContent: 'start',
+                           alignItems: 'center',
+                           my: 10,
                            opacity: '1',
                            backgroundColor: 'clear'
                        }}>
                 <FormikForm/>
+
+                <Box
+                    sx={{
+                        mt: 10,
+                        height: '250px',
+                        width: '500px',
+                        border: '4px solid #7F00FF'
+                    }}>
+                    <SignatureCanvasDemo/>
+                </Box>
+
+
             </Container>
 
         </Box>

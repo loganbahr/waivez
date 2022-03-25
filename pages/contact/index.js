@@ -42,6 +42,7 @@ const ContactPage = () => {
                            display: 'flex',
                            // border: '2px solid red',
                            height: {xs: '70vh', sm: '65vh', md: '70vh', lg: '90vh'},
+                           // height: {xs: '50vh', sm: '30vh', md: '30vh', lg: '20vh'},
                            width: 'auto',
                            justifyContent: 'center',
                            alignItems: 'start',
