@@ -8,7 +8,6 @@ import PageSubtitleText from "../../components/PageSubtitleText";
 
 
 const ContactPage = () => {
-
     return (
         <Box
             sx={{
