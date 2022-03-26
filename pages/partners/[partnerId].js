@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import PageTitleText from "../../components/PageTitleText";
+import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
+import WaiverRenderer from "../../components/Waivers/WaiverRenderer";
 
 /**
  * @file [partnerId].js
@@ -37,8 +39,8 @@ const PartnerPage = (props) => {
           <meta />
         </Head>
         <PageTitleText content={props.title} />
-        <PageSubtitleText content={props.subtitle} />
-        <Typography variant="p">{props.paragraph}</Typography>
+        <WaiverInfoForm />
+        <WaiverRenderer />
       </Container>
     </Box>
   );

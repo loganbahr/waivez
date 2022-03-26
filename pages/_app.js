@@ -4,7 +4,7 @@ import Layout from "/components/layout/Layout";
 import theme from "../components/theme.js";
 import { CssBaseline } from "@mui/material";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

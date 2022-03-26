@@ -63,8 +63,8 @@ app.get("/company", (req, resp) => {
 
 const loadCompanies = () => {
   for (let company in companies) {
-    if (fs.existsSync(`./${company}/information.json`)) {
-      fs.readFile(`./${company}/information.json`, (err, data) => {
+    if (fs.existsSync(`./companies/${company}/information.json`)) {
+      fs.readFile(`./companies/${company}/information.json`, (err, data) => {
         if (err) {
           console.log(err);
         } else {
