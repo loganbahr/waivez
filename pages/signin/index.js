@@ -6,7 +6,6 @@ import {Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import FormikForm from "../../components/SignIn Page/FormikForm";
-import SignatureCanvas from "../../components/Waivers/SignatureCanvas";
 
 
 const SignInPage = () => {
@@ -52,9 +51,9 @@ const SignInPage = () => {
                         mt: 10,
                         height: '250px',
                         width: '500px',
-                        border: '4px solid #7F00FF'
+                        border: '4px solid #7F00FF',
+                        borderRadius: '25px'
                     }}>
-                    <SignatureCanvas/>
                 </Box>
 
 
