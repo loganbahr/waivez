@@ -8,9 +8,11 @@ const PORT = 5000; // still kinda undecided, consult with Logan
 const companies = { naplesbeachwatersports: {}, marcoislandwatersports: {} };
 
 const express = require("express");
+const bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
 const { Pool } = require("pg");
+const { createSignedWaiver } = require("./imageHandler");
 const fs = require("fs");
 
 const pool = new Pool({
@@ -23,6 +25,7 @@ const pool = new Pool({
 
 // Gonna have to fix cors eventually.
 const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 
 /**
@@ -61,6 +64,19 @@ app.get("/company", (req, resp) => {
   return resp.status(200).send(companies[company]);
 });
 
+const signWaiver = (req, resp) => {
+  console.log(req.body);
+  const signature = req.body.signature;
+
+  createSignedWaiver(
+    "marcoislandwatersports",
+    "generalliability.json",
+    signature
+  );
+
+  return resp.send("Successfully saved waiver!");
+};
+
 const loadCompanies = () => {
   for (let company in companies) {
     if (fs.existsSync(`./companies/${company}/information.json`)) {
@@ -75,6 +91,8 @@ const loadCompanies = () => {
     }
   }
 };
+
+app.post("/signWaiver", signWaiver);
 
 app.listen(PORT);
 console.log("Server started on port " + PORT);
