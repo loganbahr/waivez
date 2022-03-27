@@ -39,7 +39,7 @@ const steps = [
 const PartnerPage = (props) => {
   const router = useRouter();
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
   const [waiverInfo, setWaiverInfo] = useState({
     firstname: "",
     lastname: "",
