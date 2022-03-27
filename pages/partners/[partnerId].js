@@ -37,7 +37,7 @@ const steps = [
 const PartnerPage = (props) => {
   const router = useRouter();
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   /**
    * Grabs the step based on the active step.
