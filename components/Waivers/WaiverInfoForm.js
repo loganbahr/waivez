@@ -7,7 +7,7 @@
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validator from "validator";
 import * as yup from "yup";
 import differenceInYears from "date-fns/differenceInYears";
@@ -55,22 +55,19 @@ const WaiverInfoForm = (props) => {
   });
 
   const formik = useFormik({
-    initialValues: {
-      firstname: "",
-      lastname: "",
-      dob: "",
-      email: "",
-      addressLine: "",
-      addressCity: "",
-      addressState: "",
-      addressPostal: "",
-      phonenumber: "",
-    },
+    initialValues: props.waiverInfo,
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values);
     },
   });
+
+  const handleChange = (e) => {
+    formik.handleChange(e);
+    props.waiverInfo[e.target.name] = e.target.value
+    props.setWaiverInfo({...props.waiverInfo});
+    props.setFormValid(formik.isValid);
+  }
 
   return (
     <Box
@@ -97,7 +94,7 @@ const WaiverInfoForm = (props) => {
         name="firstName"
         label="First Name"
         value={formik.values.firstName || ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.firstName && Boolean(formik.errors.firstName)}
         helperText={formik.touched.firstName && formik.errors.firstName}
@@ -109,7 +106,7 @@ const WaiverInfoForm = (props) => {
         name="lastName"
         label="Last Name"
         value={formik.values.lastName || ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.lastName && Boolean(formik.errors.lastName)}
         helperText={formik.touched.lastName && formik.errors.lastName}
@@ -122,8 +119,8 @@ const WaiverInfoForm = (props) => {
         label="Date of Birth (MM/DD/YYYY)"
         type="date"
         InputLabelProps={{ shrink: true }}
-        value={formik.values.dateOfBirth}
-        onChange={formik.handleChange}
+        value={formik.values.dateOfBirth || ""}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)}
         helperText={formik.touched.dateOfBirth && formik.errors.dateOfBirth}
@@ -135,7 +132,7 @@ const WaiverInfoForm = (props) => {
         name="email"
         label="Email Address"
         value={formik.values.email || ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
@@ -147,7 +144,7 @@ const WaiverInfoForm = (props) => {
         name="addressLine"
         label="Address Line"
         value={formik.values.addressLine || ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.addressLine && Boolean(formik.errors.addressLine)}
         helperText={formik.touched.addressLine && formik.errors.addressLine}
@@ -168,7 +165,7 @@ const WaiverInfoForm = (props) => {
           name="addressCity"
           label="City"
           value={formik.values.addressCity || ""}
-          onChange={formik.handleChange}
+          onChange={handleChange}
           onBlur={formik.handleBlur}
           error={
             formik.touched.addressCity && Boolean(formik.errors.addressCity)
@@ -182,7 +179,7 @@ const WaiverInfoForm = (props) => {
           name="addressState"
           label="State"
           value={formik.values.addressState || ""}
-          onChange={formik.handleChange}
+          onChange={handleChange}
           onBlur={formik.handleBlur}
           error={
             formik.touched.addressState && Boolean(formik.errors.addressState)
@@ -195,7 +192,7 @@ const WaiverInfoForm = (props) => {
           name="addressPostal"
           label="Postal Code"
           value={formik.values.addressPostal || ""}
-          onChange={formik.handleChange}
+          onChange={handleChange}
           onBlur={formik.handleBlur}
           error={
             formik.touched.addressPostal && Boolean(formik.errors.addressPostal)
@@ -212,21 +209,12 @@ const WaiverInfoForm = (props) => {
         name="phoneNumber"
         label="Phone Number XXX-XXX-XXXX"
         value={formik.values.phoneNumber || ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
         helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
         sx={{ my: 2 }}
       />
-      <Button
-        color="primary"
-        variant="contained"
-        fullWidth
-        type="submit"
-        sx={{ my: 2 }}
-      >
-        Sign Waiver
-      </Button>
     </Box>
   );
 };
