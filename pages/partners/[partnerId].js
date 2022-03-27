@@ -1,13 +1,23 @@
 // dynamic routing for each partner page (www.waivez.com/partners/marcoislandwatersports)
 // Okay daddy OwO
 
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Step,
+  StepContent,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import Axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import PageTitleText from "../../components/PageTitleText";
+import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
 import WaiverRenderer from "../../components/Waivers/WaiverRenderer";
 
@@ -18,10 +28,42 @@ import WaiverRenderer from "../../components/Waivers/WaiverRenderer";
  * @since 3/23/2022
  **/
 
+const steps = [
+  "Read the waiver",
+  "Enter your information",
+  "Electronically Sign",
+];
+
 const PartnerPage = (props) => {
   const router = useRouter();
 
-  useEffect(() => console.log(props), []);
+  const [step, setStep] = useState(2);
+
+  /**
+   * Grabs the step based on the active step.
+   */
+  const getStep = () => {
+    switch (step) {
+      case 0:
+        return <WaiverRenderer />;
+      case 1:
+        return <WaiverInfoForm />;
+      case 2:
+        return <SignatureEntry />;
+      default:
+        return null;
+    }
+  };
+
+  const handleNext = () => {
+    setStep(step => step + 1);
+  }
+
+  const handlePrev = () => {
+    setStep(step => step - 1);
+  }
+
+  useEffect(() => console.log(step), []);
 
   return (
     <Box>
@@ -39,8 +81,32 @@ const PartnerPage = (props) => {
           <meta />
         </Head>
         <PageTitleText content={props.title} />
-        <WaiverInfoForm />
-        <WaiverRenderer />
+        <PageSubtitleText content="Please read the waiver below and enter your information to sign." />
+        <Box
+          width="100%"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Stepper activeStep={step} orientation="vertical" sx={{width: "100%"}}>
+            {steps.map((label, idx) => {
+              return (
+                <Step key={idx}>
+                  <StepLabel>{label}</StepLabel>
+                  <StepContent>
+                    {getStep()}
+                    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", mt: 1}}>
+                      {step > 0 && <Button variant="outlined" sx={{mr: 2}} onClick={handlePrev}>Previous</Button>}
+                      {step < steps.length - 1 && <Button variant="contained" sx={{ml: 2}} onClick={handleNext}>Continue</Button>}
+                    </Box>
+                  </StepContent>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </Box>
       </Container>
     </Box>
   );
@@ -49,7 +115,7 @@ const PartnerPage = (props) => {
 PartnerPage.getInitialProps = async ({ req, query }) => {
   const partnerId = query.partnerId;
 
-  const res = await Axios.get("http://localhost:5000/company", {
+  const res = await Axios.get("http://192.168.0.24:5000/company", {
     params: {
       company: partnerId,
     },
