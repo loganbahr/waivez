@@ -65,7 +65,6 @@ app.get("/company", (req, resp) => {
 });
 
 const signWaiver = (req, resp) => {
-  console.log(req.body);
   const signature = req.body.signature;
 
   createSignedWaiver(
