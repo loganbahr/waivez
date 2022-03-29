@@ -5,7 +5,6 @@
  * @since 3/10/2022
  */
 const PORT = 5000; // still kinda undecided, consult with Logan
-const companies = { naplesbeachwatersports: {}, marcoislandwatersports: {} };
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,6 +13,9 @@ const cors = require("cors");
 const { Pool } = require("pg");
 const { createSignedWaiver } = require("./imageHandler");
 const fs = require("fs");
+const path = require("path");
+
+const companies = {};
 
 const pool = new Pool({
   user: process.env.PGUSER,
@@ -76,19 +78,28 @@ const signWaiver = (req, resp) => {
   return resp.send("Successfully saved waiver!");
 };
 
+/**
+ * Crawl the company folder for all subdirectories (should be all companies).
+ */
 const loadCompanies = () => {
-  for (let company in companies) {
-    if (fs.existsSync(`./companies/${company}/information.json`)) {
-      fs.readFile(`./companies/${company}/information.json`, (err, data) => {
-        if (err) {
-          console.log(err);
-        } else {
-          companies[company] = JSON.parse(data);
-          console.log(companies[company]);
-        }
-      });
+  fs.readdir(path.join(__dirname, "companies"), (err, files) => {
+    if (err) throw err;
+    for (const company of files) {
+      if (fs.existsSync(path.join(__dirname, "companies", company))) {
+        fs.readFile(
+          path.join(__dirname, "companies", company, "information.json"),
+          (err, data) => {
+            if (err) {
+              console.log(err);
+            } else {
+              companies[company] = JSON.parse(data);
+              console.log(companies[company]);
+            }
+          }
+        );
+      }
     }
-  }
+  });
 };
 
 app.post("/signWaiver", signWaiver);
