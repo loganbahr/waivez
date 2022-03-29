@@ -70,7 +70,7 @@ const SignatureEntry = (props) => {
             className: "sigCanvas",
           }}
           onEnd={checkValid}
-        ></SignatureCanvas>
+        />
       </Box>
 
       <Button
