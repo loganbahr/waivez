@@ -66,16 +66,23 @@ app.get("/company", (req, resp) => {
   return resp.status(200).send(companies[company]);
 });
 
-const signWaiver = async (req, resp) => {
+const signWaivers = async (req, resp) => {
+  const partnerId = req.body.partnerId;
   const signature = req.body.signature;
+  const waivers = req.body.waivers;
 
-  const waiver = await createSignedWaiver(
-    "marcoislandwatersports",
-    "generalliability.json",
-    signature
-  );
+  const signedWaivers = [];
 
-  return resp.send({ signedWaiver: waiver });
+  for (const waiverId of waivers) {
+    const waiver = await createSignedWaiver(
+      partnerId,
+      companies[partnerId]["waivers"][waiverId]["json"],
+      signature
+    );
+    signedWaivers.push(waiver);
+  }
+
+  return resp.send({ signedWaivers });
 };
 
 /**
@@ -102,7 +109,7 @@ const loadCompanies = () => {
   });
 };
 
-app.post("/signWaiver", signWaiver);
+app.post("/signWaivers", signWaivers);
 
 app.listen(PORT);
 console.log("Server started on port " + PORT);

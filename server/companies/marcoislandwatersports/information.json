@@ -1,5 +1,15 @@
 {
   "title": "Marco Island Water Sports",
   "subtitle": "This is some filler text for Marco Island Water Sports",
-  "paragraph": "Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text."
+  "paragraph": "Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text. Marco Island Water sports paragraph filler text.",
+  "waivers": {
+    "1": {
+      "json": "general_liability.json",
+      "imagePath": "/waivers/companies/hoffmannwatersports/HoffmannGeneralLiability.png"
+    },
+    "3": {
+      "json": "crystal_shores_release.json",
+      "imagePath": "/waivers/companies/hoffmannwatersports/marcoislandwatersports/CrystalShoresReleaseForm.png"
+    }
+  }
 }
