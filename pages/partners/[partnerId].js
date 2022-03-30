@@ -39,7 +39,7 @@ const steps = [
 const PartnerPage = (props) => {
   const router = useRouter();
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [waiverInfo, setWaiverInfo] = useState({
     firstname: "",
     lastname: "",
@@ -54,6 +54,7 @@ const PartnerPage = (props) => {
   const [formValid, setFormValid] = useState(false);
   const [signature, setSignature] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [signedWaiver, setSignedWaiver] = useState("");
 
   /**
    * Grabs the step based on the active step.
@@ -61,7 +62,7 @@ const PartnerPage = (props) => {
   const getStep = () => {
     switch (step) {
       case 0:
-        return <WaiverRenderer />;
+        return <WaiverRenderer image={"/HoffmanWaiver.png"} />;
       case 1:
         return (
           <WaiverInfoForm
@@ -71,7 +72,9 @@ const PartnerPage = (props) => {
           />
         );
       case 2:
-        return <SignatureEntry setSignature={setSignature} />;
+        return <SignatureEntry setSignature={setSignature}  />;
+      case 3:
+        return <WaiverRenderer image={signedWaiver} />;
       default:
         return null;
     }
@@ -94,11 +97,11 @@ const PartnerPage = (props) => {
   };
 
   const submit = () => {
-    console.log(signature.split(",")[1]);
     Axios.post("http://localhost:5000/signWaiver", {
       signature: signature.split(",")[1],
     }).then((resp) => {
       console.log(resp);
+      setSignedWaiver(`${resp.data.signedWaiver}`);
     });
     setStep(steps.length - 1);
   };
@@ -147,7 +150,7 @@ const PartnerPage = (props) => {
                         mt: 1,
                       }}
                     >
-                      {step < 3 && (
+                      {step < 3 && step > 0 && (
                         <Button
                           variant="outlined"
                           sx={{ mr: 2 }}

@@ -25,8 +25,8 @@ const SignatureEntry = (props) => {
   };
 
   useEffect(() => {
+    props.setSignature("");
     const updateCanvasSize = () => {
-      console.log(canvasContainer.current);
       const width = Math.min(
         canvasContainer.current.getBoundingClientRect().width,
         MAX_SIGNATURE_WIDTH
@@ -70,6 +70,7 @@ const SignatureEntry = (props) => {
             className: "sigCanvas",
           }}
           onEnd={checkValid}
+          clearOnResize={false}
         ></SignatureCanvas>
       </Box>
 

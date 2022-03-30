@@ -5,13 +5,19 @@
  * @since 3/26/2022
  **/
 
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
 import validator from "validator";
 import * as yup from "yup";
 import differenceInYears from "date-fns/differenceInYears";
-import SignatureEntry from "./SignatureEntry";
+import states from "./States.json";
 
 const WaiverInfoForm = (props) => {
   const validationSchema = yup.object({
@@ -24,8 +30,14 @@ const WaiverInfoForm = (props) => {
     dateOfBirth: yup
       .date("Please enter your date of birth.")
       .required("Date of birth is required!")
+      .test("dob", "You cannot pick a date in the future!", (value) => {
+        return new Date() > new Date(value);
+      })
       .test("dob", "You must be 18 or older to sign a waiver!", (value) => {
         return differenceInYears(new Date(), new Date(value)) >= 18;
+      })
+      .test("dob", "That date is too far in the past!", (value) => {
+        return differenceInYears(new Date(), new Date(value)) < 120;
       }),
     email: yup
       .string("Please enter your email address.")
@@ -64,10 +76,10 @@ const WaiverInfoForm = (props) => {
 
   const handleChange = (e) => {
     formik.handleChange(e);
-    props.waiverInfo[e.target.name] = e.target.value
-    props.setWaiverInfo({...props.waiverInfo});
-    props.setFormValid(formik.isValid);
-  }
+    props.waiverInfo[e.target.name] = e.target.value;
+    props.setWaiverInfo({ ...props.waiverInfo });
+    props.setFormValid(validationSchema.isValidSync(props.waiverInfo));
+  };
 
   return (
     <Box
@@ -154,6 +166,7 @@ const WaiverInfoForm = (props) => {
         sx={{
           width: "100%",
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "space-between",
           alignItems: "center",
           my: 2,
@@ -171,21 +184,27 @@ const WaiverInfoForm = (props) => {
             formik.touched.addressCity && Boolean(formik.errors.addressCity)
           }
           helperText={formik.touched.addressCity && formik.errors.addressCity}
-          sx={{ mr: 1 }}
+          sx={{ mr: { xs: 0, sm: 1 }, my: { xs: 2, sm: 0 } }}
         />
         <TextField
+          select
           fullWidth
           id="addressState"
           name="addressState"
+          value={formik.values.addressState}
           label="State"
-          value={formik.values.addressState || ""}
           onChange={handleChange}
           onBlur={formik.handleBlur}
-          error={
-            formik.touched.addressState && Boolean(formik.errors.addressState)
-          }
-          helperText={formik.touched.addressState && formik.errors.addressState}
-        />
+          sx={{ my: { xs: 2, sm: 0 } }}
+        >
+          {states.map((state, idx) => {
+            return (
+              <MenuItem key={idx} value={state.State}>
+                {state.State}
+              </MenuItem>
+            );
+          })}
+        </TextField>
         <TextField
           fullWidth
           id="addressPostal"
@@ -200,7 +219,7 @@ const WaiverInfoForm = (props) => {
           helperText={
             formik.touched.addressPostal && formik.errors.addressPostal
           }
-          sx={{ ml: 1 }}
+          sx={{ ml: { xs: 0, sm: 1 }, my: { xs: 2, sm: 0 } }}
         />
       </Box>
       <TextField

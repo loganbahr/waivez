@@ -66,22 +66,23 @@ app.get("/company", (req, resp) => {
   return resp.status(200).send(companies[company]);
 });
 
-const signWaiver = (req, resp) => {
+const signWaiver = async (req, resp) => {
   const signature = req.body.signature;
 
-  createSignedWaiver(
+  const waiver = await createSignedWaiver(
     "marcoislandwatersports",
     "generalliability.json",
     signature
   );
 
-  return resp.send("Successfully saved waiver!");
+  return resp.send({ signedWaiver: waiver });
 };
 
 /**
  * Crawl the company folder for all subdirectories (should be all companies).
  */
 const loadCompanies = () => {
+  // We load these files to later reference them for image manipulation
   fs.readdir(path.join(__dirname, "companies"), (err, files) => {
     if (err) throw err;
     for (const company of files) {
@@ -93,7 +94,6 @@ const loadCompanies = () => {
               console.log(err);
             } else {
               companies[company] = JSON.parse(data);
-              console.log(companies[company]);
             }
           }
         );

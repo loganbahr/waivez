@@ -7,6 +7,7 @@
 
 const jimp = require("jimp");
 const fs = require("fs");
+const fsp = require("fs/promises");
 const path = require("path");
 
 const loadImage = async (path) => {
@@ -15,6 +16,7 @@ const loadImage = async (path) => {
 };
 
 const createSignedWaiver = async (company, waiverJSON, signatureData) => {
+  let genWaiver = "";
   const jsonPath = path.join(
     __dirname,
     "companies",
@@ -23,39 +25,23 @@ const createSignedWaiver = async (company, waiverJSON, signatureData) => {
     waiverJSON
   );
   if (fs.existsSync(jsonPath)) {
-    fs.readFile(jsonPath, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        const json = JSON.parse(data);
-        loadImage(
-          path.join(
-            __dirname,
-            "companies",
-            company,
-            "waivers",
-            json["imagePath"]
-          )
-        ).then((waiver) => {
-          const buffer = Buffer.from(signatureData, "base64");
-          loadImage(buffer).then((signature) => {
-            // signature.resize(
-            //   Math.min(signature.getWidth(), 140),
-            //   Math.min(signature.getHeight(), 84)
-            // );
-            for (let location of json["signatureLocations"]) {
-              waiver.blit(
-                signature,
-                location["x"] - signature.getWidth() / 2,
-                location["y"] - signature.getHeight() / 2
-              );
-            }
-            waiver.write("test.png");
-          });
-        });
-      }
-    });
+    const data = await fsp.readFile(jsonPath);
+    const json = JSON.parse(data);
+    const waiver = await loadImage(
+      path.join(__dirname, "companies", company, "waivers", json["imagePath"])
+    );
+    const buffer = Buffer.from(signatureData, "base64");
+    const signature = await loadImage(buffer);
+    for (let location of json["signatureLocations"]) {
+      waiver.blit(
+        signature,
+        location["x"] - signature.getWidth() / 2,
+        location["y"] - signature.getHeight() / 2
+      );
+    }
+    genWaiver = await waiver.getBase64Async(jimp.AUTO);
   }
+  return genWaiver;
 };
 
 module.exports = {
