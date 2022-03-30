@@ -3,9 +3,8 @@ import SignatureCanvas from "react-signature-canvas";
 import Box from "@mui/material/Box";
 import { Button, Typography } from "@mui/material";
 
-const SignatureEntry = () => {
+const SignatureEntry = (props) => {
   const [isClear, setIsClear] = useState(false);
-  const [trimURL, setTrimURL] = useState("");
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const MAX_SIGNATURE_WIDTH = 700;
@@ -16,12 +15,13 @@ const SignatureEntry = () => {
   const clearedHandler = () => {
     console.log("Cleared");
     ref.current.clear();
-    setTrimURL("");
     setIsClear(true);
+    props.setSignature("");
   };
 
-  const trimmedHandler = () => {
-    setTrimURL(ref.current.getTrimmedCanvas().toDataURL("image/png"));
+  const checkValid = () => {
+    const trimmed = ref.current.getTrimmedCanvas();
+    props.setSignature(trimmed.toDataURL("image/png"));
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const SignatureEntry = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        width: "90%",
+        width: "100%",
       }}
     >
       <Typography component="h1" variant="h5">
@@ -69,7 +69,8 @@ const SignatureEntry = () => {
             height: canvasSize.height - 6,
             className: "sigCanvas",
           }}
-        ></SignatureCanvas>
+          onEnd={checkValid}
+        />
       </Box>
 
       <Button
@@ -78,12 +79,6 @@ const SignatureEntry = () => {
       >
         clear
       </Button>
-
-      <Button onClick={trimmedHandler} sx={{ border: "2px solid #7F00FF" }}>
-        trim
-      </Button>
-
-      {trimURL && <img src={trimURL} />}
     </Box>
   );
 };

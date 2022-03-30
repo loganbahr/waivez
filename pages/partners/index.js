@@ -6,6 +6,7 @@ import {Box, Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import QuickFilterPartnerDirectory from "../../components/PartnerPage/QuickFilterPartnerDirectory";
+import WaiverSelectionGrid from "../../components/PartnerPage/WaiverSelectionGrid";
 
 
 const PartnersPage = () => {

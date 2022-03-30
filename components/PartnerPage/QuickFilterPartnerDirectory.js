@@ -207,6 +207,7 @@ export default function QuickFilterPartnerDirectory() {
                 }}
                 // autoPageSize={true} this breaks the grid for some reason
                 pageSize={10}
+                rowsPerPageOptions={[10]}
                 autoHeight={true}
                 // rowSpacingType='border'
                 rows={rows}

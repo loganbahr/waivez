@@ -1,0 +1,15 @@
+{
+  "name": "General Liability Waiver",
+  "revisison": 1,
+  "imagePath": "HoffmanWaiver.png",
+  "signatureLocations": [
+    {
+      "x": 2128,
+      "y": 2700
+    },
+    {
+      "x": 2128,
+      "y": 3000
+    }
+  ]
+}
