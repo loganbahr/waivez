@@ -5,8 +5,8 @@ import Head from "next/head";
 import {Box, Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import PageSubtitleText from "../../components/PageSubtitleText";
-import QuickFilterPartnerDirectory from "../../components/PartnerPage/QuickFilterPartnerDirectory";
-import WaiverSelectionGrid from "../../components/PartnerPage/WaiverSelectionGrid";
+import PartnerDirectory from "../../components/PartnerPage/PartnerDirectory";
+import WaiverSelection from "../../components/PartnerPage/WaiverSelection";
 
 
 const PartnersPage = () => {
@@ -43,7 +43,7 @@ const PartnersPage = () => {
                     padding: {xs: 0, sm: 0, lg: 0, xl: 0}, //keeps content to edge of screen
                     mb: 10,
                 }}>
-                <QuickFilterPartnerDirectory/>
+                <PartnerDirectory/>
             </Container>
         </Box>
     );
