@@ -40,43 +40,46 @@ const steps = [
 const PartnerPage = (props) => {
     const router = useRouter();
 
-    const [step, setStep] = useState(0);
-    const [waiverInfo, setWaiverInfo] = useState({
-        firstname: "",
-        lastname: "",
-        dob: "",
-        email: "",
-        addressLine: "",
-        addressCity: "",
-        addressState: "",
-        addressPostal: "",
-        phonenumber: "",
-    });
-    const [formValid, setFormValid] = useState(false);
-    const [signature, setSignature] = useState("");
-    const [dialogOpen, setDialogOpen] = useState(false);
+  const [step, setStep] = useState(1);
+  const [waiverInfo, setWaiverInfo] = useState({
+    firstname: "",
+    lastname: "",
+    dob: "",
+    email: "",
+    addressLine: "",
+    addressCity: "",
+    addressState: "",
+    addressPostal: "",
+    phonenumber: "",
+  });
+  const [formValid, setFormValid] = useState(false);
+  const [signature, setSignature] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [signedWaiver, setSignedWaiver] = useState("");
 
-    /**
-     * Grabs the step based on the active step.
-     */
-    const getStep = () => {
-        switch (step) {
-            case 0:
-                return <WaiverRenderer/>;
-            case 1:
-                return (
-                    <WaiverInfoForm
-                        waiverInfo={waiverInfo}
-                        setWaiverInfo={setWaiverInfo}
-                        setFormValid={setFormValid}
-                    />
-                );
-            case 2:
-                return <SignatureEntry setSignature={setSignature}/>;
-            default:
-                return null;
-        }
-    };
+  /**
+   * Grabs the step based on the active step.
+   */
+  const getStep = () => {
+    switch (step) {
+      case 0:
+        return <WaiverRenderer image={"/HoffmanWaiver.png"} />;
+      case 1:
+        return (
+          <WaiverInfoForm
+            waiverInfo={waiverInfo}
+            setWaiverInfo={setWaiverInfo}
+            setFormValid={setFormValid}
+          />
+        );
+      case 2:
+        return <SignatureEntry setSignature={setSignature}  />;
+      case 3:
+        return <WaiverRenderer image={signedWaiver} />;
+      default:
+        return null;
+    }
+  };
 
     const handleNext = () => {
         if (step === 1) {
@@ -94,15 +97,16 @@ const PartnerPage = (props) => {
         setStep((step) => step - 1);
     };
 
-    const submit = () => {
-        console.log(signature.split(",")[1]);
-        Axios.post("http://localhost:5000/signWaiver", {
-            signature: signature.split(",")[1],
-        }).then((resp) => {
-            console.log(resp);
-        });
-        setStep(steps.length - 1);
-    };
+  const submit = () => {
+    Axios.post("http://localhost:5000/signWaiver", {
+      signature: signature.split(",")[1],
+    }).then((resp) => {
+      console.log(resp);
+      setSignedWaiver(`${resp.data.signedWaiver}`);
+    });
+    setStep(steps.length - 1);
+  };
+
 
     return (
         <Box>
@@ -133,60 +137,47 @@ const PartnerPage = (props) => {
                         orientation="vertical"
                         sx={{width: "100%"}}
                     >
-                        {steps.map((label, idx) => {
-                            return (
-                                <Step key={idx}>
-                                    <StepLabel>{label}</StepLabel>
-                                    <StepContent>
-                                        {getStep()}
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                mt: 1,
-                                            }}
-                                        >
-                                            {step < 3 && (
-                                                <Button
-                                                    variant="outlined"
-                                                    sx={{mr: 2}}
-                                                    onClick={handlePrev}
-                                                >
-                                                    Previous
-                                                </Button>
-                                            )}
-                                            {step < 2 && (
-                                                <Button
-                                                    variant="contained"
-                                                    sx={{ml: 2}}
-                                                    onClick={handleNext}
-                                                    disabled={step === 1 && !formValid}
-                                                >
-                                                    Continue
-                                                </Button>
-                                            )}
-                                            {step === 2 && (
-                                                <Button
-                                                    variant="contained"
-                                                    sx={{ml: 2}}
-                                                    onClick={handleNext}
-                                                    disabled={!signature}
-                                                >
-                                                    Sign Waiver
-                                                </Button>
-                                            )}
-                                        </Box>
-                                    </StepContent>
-                                </Step>
-                            );
-                        })}
-                    </Stepper>
-                    <SubmitModal
-                        open={dialogOpen}
-                        setOpen={setDialogOpen}
-                        submit={submit}
-                    />
+                      {step < 3 && step > 0 && (
+                        <Button
+                          variant="outlined"
+                          sx={{ mr: 2 }}
+                          onClick={handlePrev}
+                        >
+                          Previous
+                        </Button>
+                      )}
+                      {step < 2 && (
+                        <Button
+                          variant="contained"
+                          sx={{ ml: 2 }}
+                          onClick={handleNext}
+                          disabled={step === 1 && !formValid}
+                        >
+                          Continue
+                        </Button>
+                      )}
+                      {step === 2 && (
+                        <Button
+                          variant="contained"
+                          sx={{ ml: 2 }}
+                          onClick={handleNext}
+                          disabled={!signature}
+                        >
+                          Sign Waiver
+                        </Button>
+                      )}
+                    </Box>
+                  </StepContent>
+                </Step>
+              );
+            })}
+          </Stepper>
+          <SubmitModal
+            open={dialogOpen}
+            setOpen={setDialogOpen}
+            submit={submit}
+          />
+
                 </Box>
             </Container>
         </Box>
@@ -195,12 +186,12 @@ const PartnerPage = (props) => {
 
 PartnerPage.getInitialProps = async ({req, query}) => {
     const partnerId = query.partnerId;
+  const res = await Axios.get("http://localhost:5000/company", {
+    params: {
+      company: partnerId,
+    },
+  });
 
-    const res = await Axios.get("http://localhost:5000/company", {
-        params: {
-            company: partnerId,
-        },
-    });
 
     if (res.data) {
         return res.data;
