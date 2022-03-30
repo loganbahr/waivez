@@ -6,14 +6,13 @@
  **/
 
 import { Box } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 
 const WaiverRenderer = (props) => {
   return (
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <Box component="img" src="/HoffmanWaiver.png" sx={{maxWidth: "100%"}} />
+      <Box component="img" src={`${props.image}`} sx={{maxWidth: "100%"}} />
     </Box>
   );
 };
