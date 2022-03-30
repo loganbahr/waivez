@@ -61,17 +61,22 @@ const PartnerPage = (props) => {
 
     //TODO: connect <WaiverRenderer> to the state of 'selectedWaivers' and render the appropriate waivers
 
+    const WAIVER_SELECTION = 0;
+    const VIEW_WAIVERS = 1;
+    const ENTER_FORM = 2;
+    const SIGNATURE = 3;
+    const REVIEW = 4;
+
     /**
      * Grabs the step based on the active step.
      */
     const getStep = () => {
         switch (step) {
-            case 0:
+            case WAIVER_SELECTION:
                 return <WaiverSelection selectedWaivers={selectedWaivers} setSelectedWaivers={setSelectedWaivers}/>
-
-            case 1:
+            case VIEW_WAIVERS:
                 return <WaiverRenderer image={"/HoffmanWaiver.png"}/>;
-            case 2:
+            case ENTER_FORM:
                 return (
                     <WaiverInfoForm
                         waiverInfo={waiverInfo}
@@ -79,9 +84,9 @@ const PartnerPage = (props) => {
                         setFormValid={setFormValid}
                     />
                 );
-            case 3:
+            case SIGNATURE:
                 return <SignatureEntry setSignature={setSignature}/>;
-            case 4:
+            case REVIEW:
                 return <WaiverRenderer image={signedWaiver}/>;
             default:
                 return null;
@@ -158,7 +163,7 @@ const PartnerPage = (props) => {
                                                 mt: 1,
                                             }}
                                         >
-                                            {step < 4 && step > 0 && (
+                                            {step < REVIEW && step > WAIVER_SELECTION && (
                                                 <Button
                                                     variant="outlined"
                                                     sx={{mr: 2}}
@@ -167,17 +172,17 @@ const PartnerPage = (props) => {
                                                     Previous
                                                 </Button>
                                             )}
-                                            {step < 3 && (
+                                            {step < SIGNATURE && (
                                                 <Button
                                                     variant="contained"
                                                     sx={{ml: 2}}
                                                     onClick={handleNext}
-                                                    disabled={(step === 2 && !formValid) || (step === 0 && selectedWaivers.length === 0)}
+                                                    disabled={(step === ENTER_FORM && !formValid) || (step === WAIVER_SELECTION && selectedWaivers.length === 0)}
                                                 >
                                                     Continue
                                                 </Button>
                                             )}
-                                            {step === 3 && (
+                                            {step === SIGNATURE && (
                                                 <Button
                                                     variant="contained"
                                                     sx={{ml: 2}}
