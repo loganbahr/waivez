@@ -1,8 +1,17 @@
+/**
+ * @file WaiverSelection.js
+ * @author Logan Bahr
+ * @description Displays multiple waivers.
+ * @since 3/28/22
+ */
+
 import React, {useState} from 'react';
 import {DataGrid} from '@mui/x-data-grid';
 import Box from "@mui/material/Box";
 
-const WaiverSelectionGrid = (props) => {
+const WaiverSelection = (props) => {
+
+    //TODO: convert the row/column data to a JSON file that is supplied by the back-end
 
     const rows = [
         {
@@ -57,6 +66,7 @@ const WaiverSelectionGrid = (props) => {
                 rows={rows}
                 columns={columns}
                 pageSize={5}
+                hideFooter={true}
                 rowsPerPageOptions={[5]}
                 checkboxSelection={true}
                 selectionModel={props.selectedWaivers}
@@ -85,4 +95,4 @@ const WaiverSelectionGrid = (props) => {
     );
 };
 
-export default WaiverSelectionGrid;
+export default WaiverSelection;

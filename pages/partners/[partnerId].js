@@ -21,7 +21,7 @@ import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
 import WaiverRenderer from "../../components/Waivers/WaiverRenderer";
-import WaiverSelectionGrid from "../../components/PartnerPage/WaiverSelectionGrid";
+import WaiverSelection from "../../components/PartnerPage/WaiverSelection";
 
 /**
  * @file [partnerId].js
@@ -59,8 +59,7 @@ const PartnerPage = (props) => {
     const [signedWaiver, setSignedWaiver] = useState("");
     const [selectedWaivers, setSelectedWaivers] = useState([]);
 
-    // console.log(selectedWaivers);
-    // want to find a way to auto select all the rows on page load
+    //TODO: connect <WaiverRenderer> to the state of 'selectedWaivers' and render the appropriate waivers
 
     /**
      * Grabs the step based on the active step.
@@ -68,7 +67,7 @@ const PartnerPage = (props) => {
     const getStep = () => {
         switch (step) {
             case 0:
-                return <WaiverSelectionGrid selectedWaivers={selectedWaivers} setSelectedWaivers={setSelectedWaivers}/>
+                return <WaiverSelection selectedWaivers={selectedWaivers} setSelectedWaivers={setSelectedWaivers}/>
 
             case 1:
                 return <WaiverRenderer image={"/HoffmanWaiver.png"}/>;
@@ -173,7 +172,7 @@ const PartnerPage = (props) => {
                                                     variant="contained"
                                                     sx={{ml: 2}}
                                                     onClick={handleNext}
-                                                    disabled={step === 2 && !formValid}
+                                                    disabled={(step === 2 && !formValid) || (step === 0 && selectedWaivers.length === 0)}
                                                 >
                                                     Continue
                                                 </Button>

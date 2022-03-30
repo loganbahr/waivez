@@ -1,3 +1,9 @@
+/**
+ * @file PartnerDirectory.js
+ * @author Logan Bahr
+ * @description Lists all of the Partners in a searchable, sortable, grid format.
+ * @since 3/20/22
+ */
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
@@ -161,7 +167,7 @@ const columnData = [
     {field: "state", headerName: "State", flex: 1, minWidth: 50},
 ];
 
-export default function QuickFilterPartnerDirectory() {
+export default function PartnerDirectory() {
     // const { data } = useDemoData({
     //     dataSet: 'Employee',
     //     visibleFields: VISIBLE_FIELDS,
