@@ -2,22 +2,22 @@ import React, {useState} from 'react';
 import {DataGrid} from '@mui/x-data-grid';
 import Box from "@mui/material/Box";
 
-const WaiverSelectionGrid = () => {
+const WaiverSelectionGrid = (props) => {
 
     const rows = [
         {
             id: '1',
-            documentName: 'General Liability',
+            documentType: 'General Liability',
             location: 'Ritz Carlton',
         },
         {
             id: '2',
-            documentName: 'WaveRunner Release',
+            documentType: 'WaveRunner Release',
             location: 'Ritz Carlton',
         },
         {
             id: '3',
-            documentName: 'Hotel Release',
+            documentType: 'Hotel Release',
             location: 'Ritz Carlton',
         },
     ];
@@ -31,8 +31,8 @@ const WaiverSelectionGrid = () => {
 
         },
         {
-            field: 'documentName',
-            headerName: 'Document Type',
+            field: 'documentType',
+            headerName: 'Type',
             minWidth: 160,
             editable: false,
             flex: 1,
@@ -47,20 +47,20 @@ const WaiverSelectionGrid = () => {
     ];
 
     // use 'selectionModel' to populate the correct forms
-    const [selectionModel, setSelectionModel] = useState(() => {
-        return rows.map((r) => r.id);
-    });
+    // const [selectionModel, setSelectionModel] = useState(() => {
+    //     return rows.map((r) => r.id);
+    // });
 
     return (
-        <Box style={{height: 400, width: '100%'}}>
+        <Box sx={{mb: 2}}>
             <DataGrid
                 rows={rows}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
                 checkboxSelection={true}
-                selectionModel={selectionModel}
-                onSelectionModelChange={setSelectionModel}
+                selectionModel={props.selectedWaivers}
+                onSelectionModelChange={props.setSelectedWaivers}
                 autoHeight={true}
                 sx={{
                     border: "4px solid #7F00FF",
