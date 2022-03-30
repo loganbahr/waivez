@@ -73,6 +73,9 @@ const WaiverSelectionGrid = () => {
                         color: "primary.main",
                         // borderBottom: '10px solid #7F00FF',
                     },
+                    "& .MuiDataGrid-columnHeaderTitleContainer": {},
+                    "& .MuiDataGrid-columnHeader--sortable": {},
+
                     "& .MuiDataGrid-row": {
                         borderBottom: "2px solid #7F00FF",
                     },

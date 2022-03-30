@@ -6,7 +6,6 @@ import {Container} from "@mui/material";
 import PageTitleText from "../../components/PageTitleText";
 import PageSubtitleText from "../../components/PageSubtitleText";
 import FormikForm from "../../components/SignIn Page/FormikForm";
-import WaiverSelectionGrid from "../../components/PartnerPage/WaiverSelectionGrid";
 
 
 const SignInPage = () => {
@@ -46,7 +45,7 @@ const SignInPage = () => {
                            backgroundColor: 'clear'
                        }}>
                 <FormikForm/>
-                {/*<WaiverSelectionGrid/>*/}
+
                 {/*<Box*/}
                 {/*    sx={{*/}
                 {/*        mt: 10,*/}
@@ -56,6 +55,8 @@ const SignInPage = () => {
                 {/*        borderRadius: '25px'*/}
                 {/*    }}>*/}
                 {/*</Box>*/}
+
+
             </Container>
 
         </Box>
