@@ -66,6 +66,13 @@ app.get("/company", (req, resp) => {
   return resp.status(200).send(companies[company]);
 });
 
+const getWaiverInformation = async (req, resp) => {
+  const { partnerId } = req.query;
+  const { waiverId } = req.query;
+
+  return resp.status(200).send(companies[partnerId][waivers][waiverId]);
+};
+
 const signWaivers = async (req, resp) => {
   const partnerId = req.body.partnerId;
   const signature = req.body.signature;
@@ -101,6 +108,21 @@ const loadCompanies = () => {
               console.log(err);
             } else {
               companies[company] = JSON.parse(data);
+              for (const waiverId in companies[company].waivers) {
+                fs.readFile(
+                  path.join(
+                    __dirname,
+                    "companies",
+                    company,
+                    "waivers",
+                    companies[company]["waivers"][waiverId]["json"]
+                  ),
+                  (err, data) => {
+                    if (err) console.log(err);
+                    companies[company].waivers[waiverId].metadata = JSON.parse(data);
+                  }
+                );
+              }
             }
           }
         );
@@ -109,6 +131,7 @@ const loadCompanies = () => {
   });
 };
 
+app.get("/waiver", getWaiverInformation);
 app.post("/signWaivers", signWaivers);
 
 app.listen(PORT);
