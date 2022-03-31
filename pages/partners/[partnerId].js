@@ -94,10 +94,10 @@ const PartnerPage = (props) => {
     };
 
     const handleNext = () => {
-        if (step === 2) {
+        if (step === ENTER_FORM) {
             if (!formValid) return;
         }
-        if (step === 3) {
+        if (step === SIGNATURE) {
             if (!signature) return;
             setDialogOpen(true);
             return;

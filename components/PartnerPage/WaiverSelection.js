@@ -66,6 +66,7 @@ const WaiverSelection = (props) => {
                 rows={rows}
                 columns={columns}
                 pageSize={5}
+                disableColumnMenu={true}
                 hideFooter={true}
                 rowsPerPageOptions={[5]}
                 checkboxSelection={true}

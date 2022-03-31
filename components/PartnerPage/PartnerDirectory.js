@@ -215,6 +215,7 @@ export default function PartnerDirectory() {
                 pageSize={10}
                 rowsPerPageOptions={[10]}
                 autoHeight={true}
+                disableColumnMenu={true}
                 // rowSpacingType='border'
                 rows={rows}
                 columns={columnData}
