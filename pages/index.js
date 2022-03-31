@@ -2,11 +2,12 @@
 import React from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
-import {Container} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import SearchBar from "../components/HomePage/SearchBar";
-import PageTitleText from "../components/PageTitleText";
+import TitleText from "../components/Text/TitleText";
 import HalfPageLeft from "../components/Section/HalfPageLeft";
 import HalfPageRight from "../components/Section/HalfPageRight";
+import ContentBlock from "../components/Section/ContentBlock";
 
 
 const HomePage = () => {
@@ -14,12 +15,10 @@ const HomePage = () => {
         <Box>
             <Container maxWidth='md'
                        sx={{
-                           mb: 15,
-                           backgroundColor: 'clear',
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
-                           flexGrow: 1,
+                           my: 2,
                        }}>
                 <Head>
                     <title>waivez</title>
@@ -28,42 +27,44 @@ const HomePage = () => {
                         content='Any waiver, all in one place.'
                     />
                 </Head>
-                <PageTitleText content='waivez'/>
+                <Typography variant={'h1'}>
+                    waivez
+                </Typography>
                 <SearchBar/>
             </Container>
 
-            <Container sx={{
-                backgroundColor: 'clear',
-                // minHeight: '150vh',
-                minWidth: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: {xs: 0, sm: 0, lg: 0, xl: 0} //keeps content to edge of screen
-            }}>
-                {/*content takes up half the page and the large font is on LEFT*/}
-                <HalfPageLeft
-                    bgColor={'white'}
-                    largeFontColor={'primary'}
-                    largeTextTop={'Any waiver.'}
-                    largeTextBottom={'All in one place.'}
-                    contentColor={'primary'}
-                    contentText={'If you need to sign a waiver, just search for the company in the search bar above. Fill out your information and you will instantly receive a confirmation email!'}
+            <Container
+                maxWidth={'xl'}
+                disableGutters={true}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'start',
+                    alignItems: 'center',
+                }}>
+
+                <ContentBlock variantTop={'h2'}
+                              lineHeightTop={2}
+                              topText={'Any waiver. Anytime.'}
+                              bottomText={'Search for a company, sign their wavier(s), and look for a confirmation email!'}
+                              lineHeightBottom={2}
+                              variantBottom={'h5'}
                 />
-                {/*content takes up half the page and the large font is on RIGHT*/}
-                <HalfPageRight
-                    bgColor={'primary.main'}
-                    largeFontColor={'white'}
-                    largeTextTop={'Any business.'}
-                    largeTextBottom={'Anywhere.'}
-                    contentColor={'white'}
-                    contentText={'Jetskiing, parasailing, rock-climbing, skydiving, concerts, events, expos, gyms, shooting ranges, pools, bike shops... the list is endless.'}
+
+                <ContentBlock variantTop={'h2'}
+                              lineHeightTop={2}
+                              topText={'Any business. Anywhere.'}
+                              bottomText={'Jet-skiing, parasailing, rock-climbing, skydiving, concerts, events, expos, gyms, shooting ranges, pools, bike shops... the list is endless.'}
+                              lineHeightBottom={1.5}
+                              variantBottom={'h5'}
                 />
-                <HalfPageLeft
-                    bgColor={'white'}
-                    largeFontColor={'primary'}
-                    largeTextTop={'Valuable metrics about your customers.'}
-                    contentColor={'primary'}
-                    contentText={'Get to know your customers, understand your demographic — where they come from, and when they\'ll be back.'}
+
+                <ContentBlock variantTop={'h3'}
+                              lineHeightTop={1.5}
+                              topText={'Valuable metrics about your customers.'}
+                              bottomText={'Get to know your customers, understand your demographic — where they come from, and when they\'ll be back.'}
+                              lineHeightBottom={2}
+                              variantBottom={'h5'}
                 />
             </Container>
         </Box>

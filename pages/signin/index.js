@@ -3,8 +3,8 @@ import Head from "next/head";
 import axios from 'axios';
 import Box from "@mui/material/Box";
 import {Container} from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import TitleText from "../../components/Text/TitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 import FormikForm from "../../components/SignIn Page/FormikForm";
 
 
@@ -26,8 +26,8 @@ const SignInPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='partner sign-in'/>
-                <PageSubtitleText content='Log in to access your Partner Dashboard.'/>
+                <TitleText content='partner sign-in'/>
+                <SubtitleText content='Log in to access your Partner Dashboard.'/>
             </Container>
 
             <Container maxWidth='xl'

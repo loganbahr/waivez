@@ -15,8 +15,8 @@ import Axios from "axios";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import {useEffect, useRef, useState} from "react";
-import PageSubtitleText from "../../components/PageSubtitleText";
-import PageTitleText from "../../components/PageTitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
+import TitleText from "../../components/Text/TitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
@@ -134,8 +134,8 @@ const PartnerPage = (props) => {
                     <title>{props.title}</title>
                     <meta/>
                 </Head>
-                <PageTitleText content={props.title}/>
-                <PageSubtitleText content="Please read the waiver below and enter your information to sign."/>
+                <TitleText content={props.title}/>
+                <SubtitleText content="Please read the waiver below and enter your information to sign."/>
                 <Box
                     width="100%"
                     sx={{

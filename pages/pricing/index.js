@@ -3,10 +3,10 @@ import React from 'react';
 import Head from "next/head";
 import {Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
-import PageTitleText from "../../components/PageTitleText";
+import TitleText from "../../components/Text/TitleText";
 import PricingPageCard from "../../components/Cards/PricingPageCard";
 import HalfPageLeft from "../../components/Section/HalfPageLeft";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 
 const PricingPage = () => {
     return (
@@ -28,9 +28,9 @@ const PricingPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='pricing'/>
+                <TitleText content='pricing'/>
 
-                <PageSubtitleText
+                <SubtitleText
                     content={'Waivez has price points for any business size. Whether you\'re small family business,\n' +
                         'large franchise organization, or just getting started — we have you covered... literally.'}/>
             </Container>

@@ -3,8 +3,8 @@ import Head from 'next/head';
 import React from 'react';
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import TitleText from "../../components/Text/TitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 import HalfPageCenter from "../../components/Section/HalfPageCenter";
 
 const AboutPage = () => {
@@ -25,10 +25,10 @@ const AboutPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='about us'/>
-                <PageSubtitleText
+                <TitleText content='about us'/>
+                <SubtitleText
                     content='Waivez started out as a college project for an old family business. We wanted to develop an online waiver system that operated as a centralized service — a hub where waivers of all kinds could be signed, documented, and analyzed — all in one place.'/>
-                <PageTitleText content='the developers:'/>
+                <TitleText content='the developers:'/>
             </Container>
 
 

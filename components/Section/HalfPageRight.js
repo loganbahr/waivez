@@ -7,23 +7,23 @@ const HalfPageRight = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, 
         <Container sx={{
             display: 'flex',
             flexDirection: 'row',
-            minWidth: '100%',
             height: '50vh',
+            width: '100%',
             backgroundColor: bgColor,
-            // border: '1px solid red',
+            border: '1px solid red',
+            padding: 0
         }}>
-            {/*right box*/}
+            {/*left box*/}
             <Box
                 sx={{
-                    // border: '1px solid red',
-                    minWidth: '50%',
-                    minHeight: '100%',
+                    border: '1px solid red',
+                    width: '50%',
+                    height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
                     color: contentColor,
-                    padding: 2
                 }}>
                 <Typography
                     sx={{
@@ -37,41 +37,21 @@ const HalfPageRight = ({bgColor, largeFontColor, largeTextTop, largeTextBottom, 
                     {contentText}
                 </Typography>
             </Box>
-            {/*left box*/}
+            {/*right box*/}
             <Box sx={{
-                // border: '2px solid green',
-                minWidth: '50%',
-                minHeight: '100%',
+                width: '50%',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: 0
+                justifyContent: 'space-evenly',
+                textAlign: 'center',
+                margin: 0,
+                color: largeFontColor,
             }}>
-                <Typography
-                    sx={{
-                        fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: 28, sm: 35, md: 45, lg: 55, xl: 65},
-                        // border: '1px solid green',
-                        mb: 2,
-                        mx: {lg: 20},
-                        lineHeight: 1.2,
-                        textAlign: 'center',
-                        color: largeFontColor,
-                    }}>
+                <Typography variant={'h2'}>
                     {largeTextTop}
                 </Typography>
-                <Typography
-                    sx={{
-                        fontFamily: 'Poppins, sans-serif',
-                        fontSize: {xs: 28, sm: 35, md: 45, lg: 55, xl: 65},
-                        // border: '1px solid green',
-                        my: 2,
-                        mx: {lg: 20},
-                        lineHeight: 1.2,
-                        textAlign: 'center',
-                        color: largeFontColor,
-                    }}>
+                <Typography variant={'h2'}>
                     {largeTextBottom}
                 </Typography>
             </Box>

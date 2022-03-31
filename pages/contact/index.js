@@ -2,9 +2,9 @@
 import React from 'react';
 import Head from "next/head";
 import {Box, Container} from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
+import TitleText from "../../components/Text/TitleText";
 import FormikForm from "../../components/Contact Page/FormikForm";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 
 
 const ContactPage = () => {
@@ -31,8 +31,8 @@ const ContactPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='contact us'/>
-                <PageSubtitleText
+                <TitleText content='contact us'/>
+                <SubtitleText
                     content={'If you have any questions, concerns, or ideas for improvements — please let us know!'}/>
             </Container>
 
