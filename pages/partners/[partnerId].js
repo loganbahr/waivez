@@ -69,6 +69,8 @@ const PartnerPage = (props) => {
   const SIGNATURE = 3;
   const REVIEW = 4;
 
+  useEffect(() => console.log(props), []);
+
   /**
    * Grabs the step based on the active step.
    */
@@ -82,12 +84,17 @@ const PartnerPage = (props) => {
           />
         );
       case VIEW_WAIVERS:
-        return <WaiverTabRenderer waivers={selectedWaivers} waiverData={props.waivers} /> 
-        // selectedWaivers.map((val, idx) => {
-        //   return (
-        //     <WaiverRenderer key={idx} image={props.waivers[val].imagePath} />
-        //   );
-        // });
+        return (
+          <WaiverTabRenderer
+            waivers={selectedWaivers}
+            waiverData={props.waivers}
+          />
+        );
+      // selectedWaivers.map((val, idx) => {
+      //   return (
+      //     <WaiverRenderer key={idx} image={props.waivers[val].imagePath} />
+      //   );
+      // });
       case ENTER_FORM:
         return (
           <WaiverInfoForm
@@ -99,9 +106,13 @@ const PartnerPage = (props) => {
       case SIGNATURE:
         return <SignatureEntry setSignature={setSignature} />;
       case REVIEW:
-        return signedWaivers.map((b64, idx) => {
-          return <WaiverRenderer key={idx} image={b64} />;
-        });
+        return (
+          <WaiverTabRenderer
+            waivers={selectedWaivers}
+            waiverData={props.waivers}
+            signedWaivers={signedWaivers}
+          />
+        );
       default:
         return null;
     }
