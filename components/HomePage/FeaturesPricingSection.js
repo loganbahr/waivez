@@ -12,7 +12,7 @@ const FeaturesPricingSection = () => {
     return (
         <Box sx={{
             width: '100vw',
-            height: {xs: 1800, sm: 2300, md: 2400, lg: 2700, xl: 3000},
+            height: {xs: 1800, sm: 2300, md: 2400, lg: 2700, xl: 2800},
             background: 'linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)',
 
         }}>
@@ -80,7 +80,7 @@ const FeaturesPricingSection = () => {
                         my: 2,
                         background: 'radial-gradient(ellipse at 101% 72%,#7f00ff, #9833ff, #b266ff, #cb99ff)',
                         boxShadow: '0px 0px 10px 0px rgba(127,0,255,0.75)',
-                        height: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
+                        height: {xs: 310, sm: 450, md: 500, lg: 550, xl: 600},
                         width: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
                         borderRadius: 5,
                     }}>
@@ -144,7 +144,7 @@ const FeaturesPricingSection = () => {
                         my: 2,
                         background: 'radial-gradient(ellipse at 101% 72%,#7f00ff, #9833ff, #b266ff, #cb99ff)',
                         boxShadow: '0px 0px 10px 0px rgba(127,0,255,0.75)',
-                        height: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
+                        height: {xs: 340, sm: 470, md: 510, lg: 600, xl: 650},
                         width: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
                         borderRadius: 5,
                     }}>
@@ -220,7 +220,7 @@ const FeaturesPricingSection = () => {
                         my: 2,
                         background: 'radial-gradient(ellipse at 101% 72%,#7f00ff, #9833ff, #b266ff, #cb99ff)',
                         boxShadow: '0px 0px 10px 0px rgba(127,0,255,0.75)',
-                        height: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
+                        height: {xs: 360, sm: 450, md: 550, lg: 600, xl: 650},
                         width: {xs: 340, sm: 490, md: 550, lg: 650, xl: 750},
                         borderRadius: 5,
                     }}>
