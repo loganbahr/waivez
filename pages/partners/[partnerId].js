@@ -14,7 +14,7 @@ import {
 import Axios from "axios";
 import Head from "next/head";
 import {useRouter} from "next/router";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import SubtitleText from "../../components/Text/SubtitleText";
 import TitleText from "../../components/Text/TitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
@@ -127,15 +127,18 @@ const PartnerPage = (props) => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    pb: 10,
-                }}
-            >
+                    mt: 15
+                }}>
                 <Head>
                     <title>{props.title}</title>
                     <meta/>
                 </Head>
-                <TitleText content={props.title}/>
-                <SubtitleText content="Please read the waiver below and enter your information to sign."/>
+                <Typography variant={'h2'}>
+                    {props.title}
+                </Typography>
+                <Typography variant={'h4'} sx={{textAlign: 'center', my: 5}}>
+                    Please select the waivers below and enter your information to sign.
+                </Typography>
                 <Box
                     width="100%"
                     sx={{
