@@ -2,10 +2,13 @@
 import React from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
-import {Container, Typography} from "@mui/material";
+import {Container, List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import SearchBar from "../components/HomePage/SearchBar";
 import HeroSection from "../components/HomePage/HeroSection";
 import ExampleSection from "../components/HomePage/ExampleSection";
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import FeaturesPricingSection from "../components/HomePage/FeaturesPricingSection";
 
 const HomePage = () => {
     return (
@@ -31,17 +34,7 @@ const HomePage = () => {
             </Container>
             <HeroSection/>
             <ExampleSection/>
-
-
-            <Box sx={{
-                width: '100vw',
-                height: {xs: 450, sm: 550, md: 650, lg: 700, xl: 750},
-                backgroundColor: 'background.default',
-                border: '2px solid red',
-            }}>
-            </Box>
-
-
+            <FeaturesPricingSection/>
         </Box>
 
     );
