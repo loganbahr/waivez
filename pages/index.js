@@ -37,6 +37,7 @@ const HomePage = () => {
                 width: '100vw',
                 height: {xs: 450, sm: 550, md: 650, lg: 700, xl: 750},
                 backgroundColor: 'background.default',
+                border: '2px solid red',
             }}>
             </Box>
 

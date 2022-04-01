@@ -71,10 +71,12 @@ const FormikForm = () => {
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                 />
-
                 <TextField
-                    multiline
+                    multiline={true}
+                    rows={8}
                     fullWidth
+                    size='400px'
+                    sx={{}}
                     maxRows={8}
                     id="message"
                     name="message"
@@ -84,7 +86,7 @@ const FormikForm = () => {
                     error={formik.touched.message && Boolean(formik.errors.message)}
                     helperText={formik.touched.message && formik.errors.message}
                 />
-                <Button color="primary" variant="contained" fullWidth type="submit">
+                <Button color="primary" variant="contained" fullWidth type="submit" sx={{mt: 1}}>
                     Submit
                 </Button>
             </form>

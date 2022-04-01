@@ -103,7 +103,7 @@ const ExampleSection = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     textAlign: 'center',
-                    pt: {xs: 5, lg: 12},
+                    pt: {xs: 5, sm: 10, md: 10, lg: 12},
                     px: 3,
                 }}>
                     <Typography variant={'h4'} color={'text.content'}>

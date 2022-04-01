@@ -16,6 +16,7 @@ const PartnersPage = () => {
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
+                           mt: 15,
                            pb: 10,
                            // border: '2px solid orange'
                        }}>

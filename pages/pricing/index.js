@@ -15,11 +15,12 @@ import ContentBlockVertical from "../../components/Section/ContentBlockVertical"
 const PricingPage = () => {
     return (
         <Box sx={{}}>
-            <Container maxWidth='lg'
+            <Container maxWidth='md'
                        sx={{
                            display: 'flex',
                            flexDirection: 'column',
                            alignItems: 'center',
+                           mt: 15
                            // backgroundColor: 'red',
                        }}>
                 <Head>
@@ -28,11 +29,11 @@ const PricingPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <Typography variant={'h1'} sx={{mt: 5}}>
+                <Typography variant={'h1'} sx={{}}>
                     pricing
                 </Typography>
 
-                <Typography variant={'h5'} sx={{my: 5, textAlign: 'center',}}>
+                <Typography variant={'h4'} sx={{my: 5, textAlign: 'center',}}>
                     {/* eslint-disable-next-line react/no-unescaped-entities */}
                     Waivez has price points for any business size. Whether you're a small family business, large
                     franchise organization, or just getting started — we have you covered... literally.
