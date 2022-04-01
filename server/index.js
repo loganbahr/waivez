@@ -13,6 +13,7 @@ const cors = require("cors");
 const { Pool } = require("pg");
 const { createSignedWaiver } = require("./imageHandler");
 const fs = require("fs");
+const fsp = require("fs/promises");
 const path = require("path");
 
 const companies = {};
@@ -66,6 +67,11 @@ app.get("/company", (req, resp) => {
   return resp.status(200).send(companies[company]);
 });
 
+const getCompanies = async (_req, resp) => {
+  console.log(companies);
+  return resp.status(200).send(companies);
+};
+
 const getWaiverInformation = async (req, resp) => {
   const { partnerId } = req.query;
   const { waiverId } = req.query;
@@ -77,14 +83,15 @@ const signWaivers = async (req, resp) => {
   const partnerId = req.body.partnerId;
   const signature = req.body.signature;
   const waivers = req.body.waivers;
+  const userInfo = req.body.userInfo;
 
   const signedWaivers = [];
 
   for (const waiverId of waivers) {
     const waiver = await createSignedWaiver(
-      partnerId,
       companies[partnerId]["waivers"][waiverId]["json"],
-      signature
+      signature,
+      userInfo
     );
     signedWaivers.push(waiver);
   }
@@ -95,45 +102,45 @@ const signWaivers = async (req, resp) => {
 /**
  * Crawl the company folder for all subdirectories (should be all companies).
  */
-const loadCompanies = () => {
-  // We load these files to later reference them for image manipulation
-  fs.readdir(path.join(__dirname, "companies"), (err, files) => {
-    if (err) throw err;
-    for (const company of files) {
-      if (fs.existsSync(path.join(__dirname, "companies", company))) {
-        fs.readFile(
-          path.join(__dirname, "companies", company, "information.json"),
-          (err, data) => {
-            if (err) {
-              console.log(err);
-            } else {
-              companies[company] = JSON.parse(data);
-              for (const waiverId in companies[company].waivers) {
-                fs.readFile(
-                  path.join(
-                    __dirname,
-                    "companies",
-                    company,
-                    "waivers",
-                    companies[company]["waivers"][waiverId]["json"]
-                  ),
-                  (err, data) => {
-                    if (err) console.log(err);
-                    companies[company].waivers[waiverId].metadata = JSON.parse(data);
-                  }
-                );
+const loadCompanies = async (root) => {
+  const files = await fsp.readdir(root);
+  for (const file of files) {
+    if (file === "information.json") {
+      const company = path.basename(root);
+      fs.readFile(path.join(root, file), (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          companies[company] = JSON.parse(data);
+          for (const waiverId in companies[company].waivers) {
+            fs.readFile(
+              path.join(
+                __dirname,
+                companies[company]["waivers"][waiverId]["json"]
+              ),
+              (err, data) => {
+                if (err) console.log(err);
+                companies[company].waivers[waiverId].metadata =
+                  JSON.parse(data);
               }
-            }
+            );
           }
-        );
-      }
+        }
+      });
+      break;
     }
-  });
+    const absPath = path.join(root, file);
+    fs.stat(absPath, (err, stats) => {
+      if (err) console.log(err);
+      if (stats.isDirectory()) loadCompanies(absPath);
+    });
+  }
 };
 
+app.get("/companies", getCompanies);
 app.get("/waiver", getWaiverInformation);
 app.post("/signWaivers", signWaivers);
 
 app.listen(PORT);
 console.log("Server started on port " + PORT);
-loadCompanies();
+loadCompanies(path.join(__dirname, "companies"));

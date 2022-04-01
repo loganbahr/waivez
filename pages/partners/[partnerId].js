@@ -20,8 +20,7 @@ import PageTitleText from "../../components/PageTitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
-import WaiverRenderer from "../../components/Waivers/WaiverRenderer";
-import WaiverSelection from "../../components/PartnerPage/WaiverSelection";
+import WaiverSelection from "../../components/Waivers/WaiverSelection";
 import WaiverTabRenderer from "../../components/Waivers/WaiverTabRenderer";
 
 /**
@@ -44,16 +43,16 @@ const PartnerPage = (props) => {
   const { partnerId } = router.query;
 
   const [step, setStep] = useState(0);
-  const [waiverInfo, setWaiverInfo] = useState({
-    firstname: "",
-    lastname: "",
-    dob: "",
-    email: "",
-    addressLine: "",
-    addressCity: "",
-    addressState: "",
-    addressPostal: "",
-    phonenumber: "",
+  const [userInfo, setUserInfo] = useState({
+    firstName: "Devin",
+    lastName: "Arena",
+    dateOfBirth: "",
+    email: "d3v1n302418@gmail.com",
+    addressLine: "1120 19th st sw",
+    addressCity: "Naples",
+    addressState: "Florida",
+    addressPostal: "34117",
+    phoneNumber: "2397761457",
   });
   const [formValid, setFormValid] = useState(false);
   const [signature, setSignature] = useState("");
@@ -79,6 +78,7 @@ const PartnerPage = (props) => {
       case WAIVER_SELECTION:
         return (
           <WaiverSelection
+            waivers={props.waivers}
             selectedWaivers={selectedWaivers}
             setSelectedWaivers={setSelectedWaivers}
           />
@@ -98,8 +98,8 @@ const PartnerPage = (props) => {
       case ENTER_FORM:
         return (
           <WaiverInfoForm
-            waiverInfo={waiverInfo}
-            setWaiverInfo={setWaiverInfo}
+            waiverInfo={userInfo}
+            setWaiverInfo={setUserInfo}
             setFormValid={setFormValid}
           />
         );
@@ -138,6 +138,7 @@ const PartnerPage = (props) => {
     Axios.post("http://localhost:5000/signWaivers", {
       partnerId: partnerId,
       signature: signature.split(",")[1],
+      userInfo: userInfo,
       waivers: selectedWaivers,
     }).then((resp) => {
       console.log(resp);

@@ -1,0 +1,59 @@
+{
+  "name": "General Liability Waiver",
+  "revisison": 1,
+  "imagePath": "HoffmannGeneralLiabilityWaiver.png",
+  "signatureLocations": [
+    {
+      "x": 2128,
+      "y": 2700
+    },
+    {
+      "x": 2128,
+      "y": 3000
+    }
+  ],
+  "printNameLocations": [
+    {
+      "x": 405,
+      "y": 2700
+    },
+    {
+      "x": 405,
+      "y": 2770
+    },
+    {
+      "x": 405,
+      "y": 2840
+    },
+    {
+      "x": 405,
+      "y": 2910
+    },
+    {
+      "x": 405,
+      "y": 2980
+    }
+  ],
+  "currentDateLocations": [
+    {
+      "x": 850,
+      "y": 2700
+    },
+    {
+      "x": 850,
+      "y": 2770
+    },
+    {
+      "x": 850,
+      "y": 2840
+    },
+    {
+      "x": 850,
+      "y": 2910
+    },
+    {
+      "x": 850,
+      "y": 2980
+    }
+  ]
+}

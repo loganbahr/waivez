@@ -81,14 +81,6 @@ const WaiverInfoForm = (props) => {
     props.setFormValid(validationSchema.isValidSync(props.waiverInfo));
   };
 
-  const handleDateChange = (e) => {
-    handleChange(e);
-    if (Number.parseInt(e.target.value.split("-")[0]) < 1900) {
-      props.setFormValid(false);
-      formik.errors.dateOfBirth = "That date is too far in the past!";
-    }
-  };
-
   return (
     <Box
       as="form"
@@ -140,7 +132,7 @@ const WaiverInfoForm = (props) => {
         type="date"
         InputLabelProps={{ shrink: true }}
         value={formik.values.dateOfBirth || ""}
-        onChange={handleDateChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         error={formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)}
         helperText={formik.touched.dateOfBirth && formik.errors.dateOfBirth}
