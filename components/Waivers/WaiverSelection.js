@@ -5,31 +5,13 @@
  * @since 3/28/22
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {DataGrid} from '@mui/x-data-grid';
 import Box from "@mui/material/Box";
 
 const WaiverSelection = (props) => {
 
     //TODO: convert the row/column data to a JSON file that is supplied by the back-end
-
-    const rows = [
-        {
-            id: '1',
-            documentType: 'General Liability',
-            location: 'Ritz Carlton',
-        },
-        {
-            id: '2',
-            documentType: 'WaveRunner Release',
-            location: 'Ritz Carlton',
-        },
-        {
-            id: '3',
-            documentType: 'Hotel Release',
-            location: 'Ritz Carlton',
-        },
-    ];
 
     const columns = [
         {
@@ -46,14 +28,9 @@ const WaiverSelection = (props) => {
             editable: false,
             flex: 1,
         },
-        {
-            field: 'location',
-            headerName: 'Location',
-            minWidth: 130,
-            editable: false,
-            flex: 1,
-        },
     ];
+
+    useEffect(() => console.log(props.waivers), []);
 
     // use 'selectionModel' to populate the correct forms
     // const [selectionModel, setSelectionModel] = useState(() => {
@@ -63,7 +40,12 @@ const WaiverSelection = (props) => {
     return (
         <Box sx={{mb: 2}}>
             <DataGrid
-                rows={rows}
+                rows={Object.keys(props.waivers).map((waiverId, idx) => {
+                    return {
+                        id: waiverId,
+                        documentType: props.waivers[waiverId].metadata.name,
+                    }
+                })}
                 columns={columns}
                 pageSize={5}
                 hideFooter={true}
