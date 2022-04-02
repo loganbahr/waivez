@@ -1,29 +1,23 @@
 // www.waivez.com/contact
 import React from 'react';
 import Head from "next/head";
-import {Box, Container} from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
+import {Box, Container, Typography} from "@mui/material";
+import TitleText from "../../components/Text/TitleText";
 import FormikForm from "../../components/Contact Page/FormikForm";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 
 
 const ContactPage = () => {
     return (
-        <Box
-            sx={{
-                backgroundImage: 'radial-gradient(#7F00FF 2px, transparent 2px), radial-gradient(#7F00FF 2px, #ffffff 2px)',
-                backgroundSize: '90px 90px',
-                backgroundPosition: '0 0,40px 40px',
-
-            }}>
-            <Container maxWidth='lg'
+        <Box>
+            <Container maxWidth='md'
                        sx={{
                            // border: '2px solid red',
                            display: 'flex',
                            alignItems: 'center',
                            flexDirection: 'column',
                            textAlign: 'center',
-                           backgroundColor: 'clear'
+                           mt: 15,
                        }}>
                 <Head>
                     <title>
@@ -31,22 +25,25 @@ const ContactPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='contact us'/>
-                <PageSubtitleText
-                    content={'If you have any questions, concerns, or ideas for improvements — please let us know!'}/>
+                <Typography variant={'h1'}>
+                    contact us
+                </Typography>
+                <Typography variant={'h4'} sx={{mt: 5}}>
+                    If you have any questions, concerns, or ideas for improvements — please let us know!
+                </Typography>
             </Container>
 
 
-            <Container maxWidth='xl'
+            <Container maxWidth='md'
                        sx={{
                            display: 'flex',
                            // border: '2px solid red',
-                           height: {xs: '70vh', sm: '65vh', md: '70vh', lg: '90vh'},
-                           // height: {xs: '50vh', sm: '30vh', md: '30vh', lg: '20vh'},
+                           // height: {xs: '70vh', sm: '65vh', md: '70vh', lg: '50vh', xl: '30vh'},
                            width: 'auto',
                            justifyContent: 'center',
                            alignItems: 'start',
-                           mt: 10,
+                           my: 10,
+                           pb: 10,
                            opacity: '1',
                            backgroundColor: 'clear'
                        }}>

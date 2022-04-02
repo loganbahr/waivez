@@ -1,15 +1,16 @@
 import React from 'react';
 import {Typography} from "@mui/material";
 
-const PageSubtitleText = ({content}) => {
+const ContentText = ({content, color}) => {
     return (
         <Typography sx={{
             fontFamily: 'Poppins, sans-serif',
-            fontSize: {xs: 15, sm: 22, md: 26, lg: 33, xl: 38},
+            fontSize: {xs: 13, sm: 19, md: 22, lg: 28, xl: 32},
             lineHeight: 1.5,
             textAlign: 'center',
             my: 2,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            color: color,
         }}>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             {content}
@@ -17,4 +18,4 @@ const PageSubtitleText = ({content}) => {
     );
 };
 
-export default PageSubtitleText;
+export default ContentText;

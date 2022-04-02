@@ -1,7 +1,7 @@
 import React from 'react';
 import {Typography} from "@mui/material";
 
-const PageTitleText = ({content}) => {
+const TitleText = ({content}) => {
     return (
         <Typography
             sx={{
@@ -15,4 +15,4 @@ const PageTitleText = ({content}) => {
     );
 };
 
-export default PageTitleText;
+export default TitleText;

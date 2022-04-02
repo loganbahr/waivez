@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import Head from "next/head";
 import axios from 'axios';
 import Box from "@mui/material/Box";
-import {Container} from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import {Container, Typography} from "@mui/material";
+import TitleText from "../../components/Text/TitleText";
+import SubtitleText from "../../components/Text/SubtitleText";
 import FormikForm from "../../components/SignIn Page/FormikForm";
 
 
@@ -18,7 +18,7 @@ const SignInPage = () => {
                            alignItems: 'center',
                            flexDirection: 'column',
                            textAlign: 'center',
-                           backgroundColor: 'clear'
+                           mt: 15
                        }}>
                 <Head>
                     <title>
@@ -26,17 +26,18 @@ const SignInPage = () => {
                     </title>
                     <meta/>
                 </Head>
-                <PageTitleText content='partner sign-in'/>
-                <PageSubtitleText content='Log in to access your Partner Dashboard.'/>
+                <Typography variant={'h1'}>
+                    partner sign-in
+                </Typography>
+                <Typography variant={'h4'} sx={{mt: 5}}>
+                    Log in to access your Partner Dashboard!
+                </Typography>
             </Container>
 
             <Container maxWidth='xl'
                        sx={{
                            display: 'flex',
                            flexDirection: 'column',
-                           // border: '2px solid red',
-                           // height: {xs: '50vh', sm: '30vh', md: '30vh', lg: '20vh'},
-                           height: '100vh',
                            width: 'auto',
                            justifyContent: 'start',
                            alignItems: 'center',
@@ -45,18 +46,6 @@ const SignInPage = () => {
                            backgroundColor: 'clear'
                        }}>
                 <FormikForm/>
-
-                {/*<Box*/}
-                {/*    sx={{*/}
-                {/*        mt: 10,*/}
-                {/*        height: '250px',*/}
-                {/*        width: '500px',*/}
-                {/*        border: '4px solid #7F00FF',*/}
-                {/*        borderRadius: '25px'*/}
-                {/*    }}>*/}
-                {/*</Box>*/}
-
-
             </Container>
 
         </Box>

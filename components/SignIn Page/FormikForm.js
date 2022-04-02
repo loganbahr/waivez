@@ -53,7 +53,7 @@ const FormikForm = () => {
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
                 />
-                <Button color="primary" variant="contained" fullWidth type="submit">
+                <Button color="primary" variant="contained" fullWidth type="submit" sx={{mt: 1}}>
                     Submit
                 </Button>
             </form>

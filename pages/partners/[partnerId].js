@@ -14,9 +14,9 @@ import {
 import Axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import PageSubtitleText from "../../components/PageSubtitleText";
-import PageTitleText from "../../components/PageTitleText";
+import React, { useEffect, useRef, useState } from "react";
+import SubtitleText from "../../components/Text/SubtitleText";
+import TitleText from "../../components/Text/TitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
@@ -162,8 +162,10 @@ const PartnerPage = (props) => {
           <title>{props.title}</title>
           <meta />
         </Head>
-        <PageTitleText content={props.title} />
-        <PageSubtitleText content="Please read the waiver below and enter your information to sign." />
+        <Typography variant={"h2"}>{props.title}</Typography>
+        <Typography variant={"h4"} sx={{ textAlign: "center", my: 5 }}>
+          Please select the waivers below and enter your information to sign.
+        </Typography>
         <Box
           width="100%"
           sx={{
@@ -184,6 +186,7 @@ const PartnerPage = (props) => {
                   <StepContent>
                     {getStep()}
                     <Box
+                      width="100%"
                       sx={{
                         display: "flex",
                         justifyContent: "center",

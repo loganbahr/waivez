@@ -2,14 +2,10 @@
 
 import React from "react";
 import Head from "next/head";
-import { Box, Container } from "@mui/material";
-import PageTitleText from "../../components/PageTitleText";
-import PageSubtitleText from "../../components/PageSubtitleText";
+import { Box, Container, Typography } from "@mui/material";
 import PartnerDirectory from "../../components/PartnerPage/PartnerDirectory";
-import WaiverSelection from "../../components/Waivers/WaiverSelection";
-import Axios from "axios";
 
-const PartnersPage = (props) => {
+const PartnersPage = () => {
   return (
     <Box
       sx={
@@ -24,6 +20,7 @@ const PartnersPage = (props) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          mt: 15,
           pb: 10,
           // border: '2px solid orange'
         }}
@@ -32,8 +29,10 @@ const PartnersPage = (props) => {
           <title>Partners</title>
           <meta />
         </Head>
-        <PageTitleText content="partners" />
-        <PageSubtitleText content="Find the company you want to sign a waiver with." />
+        <Typography variant={"h1"}>partners</Typography>
+        <Typography variant={"h4"} sx={{ mt: 5 }}>
+          Find the company you want to sign a waiver with.
+        </Typography>
       </Container>
 
       <Container
