@@ -2,9 +2,12 @@
 // Okay daddy OwO
 
 import {
+  Backdrop,
   Box,
   Button,
+  CircularProgress,
   Container,
+  Skeleton,
   Step,
   StepContent,
   StepLabel,
@@ -42,7 +45,7 @@ const PartnerPage = (props) => {
   const router = useRouter();
   const { partnerId } = router.query;
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
     firstName: "Devin",
     lastName: "Arena",
@@ -106,6 +109,8 @@ const PartnerPage = (props) => {
       case SIGNATURE:
         return <SignatureEntry setSignature={setSignature} />;
       case REVIEW:
+        if (signedWaivers.length === 0)
+          return <Skeleton variant="rectangular" sx={{ height: 400 }} />;
         return (
           <WaiverTabRenderer
             waivers={selectedWaivers}
@@ -233,6 +238,12 @@ const PartnerPage = (props) => {
               );
             })}
           </Stepper>
+          <Backdrop
+            sx={{ color: "#fff", zIndex: 999 }}
+            open={signedWaivers.length === 0 && step === REVIEW}
+          >
+            <CircularProgress color="primary" />
+          </Backdrop>
           <SubmitModal
             open={dialogOpen}
             setOpen={setDialogOpen}
@@ -246,7 +257,7 @@ const PartnerPage = (props) => {
 
 PartnerPage.getInitialProps = async ({ req, query }) => {
   const partnerId = query.partnerId;
-  const res = await Axios.get("http://localhost:5000/company", {
+  const res = await Axios.get("http://192.168.0.24:5000/company", {
     params: {
       company: partnerId,
     },

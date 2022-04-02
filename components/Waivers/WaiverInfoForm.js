@@ -110,7 +110,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.firstName && Boolean(formik.errors.firstName)}
         helperText={formik.touched.firstName && formik.errors.firstName}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
       <TextField
         fullWidth
@@ -122,7 +122,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.lastName && Boolean(formik.errors.lastName)}
         helperText={formik.touched.lastName && formik.errors.lastName}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
       <TextField
         fullWidth
@@ -136,7 +136,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)}
         helperText={formik.touched.dateOfBirth && formik.errors.dateOfBirth}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
       <TextField
         fullWidth
@@ -148,7 +148,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
       <TextField
         fullWidth
@@ -160,7 +160,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.addressLine && Boolean(formik.errors.addressLine)}
         helperText={formik.touched.addressLine && formik.errors.addressLine}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
       <Box
         sx={{
@@ -184,7 +184,11 @@ const WaiverInfoForm = (props) => {
             formik.touched.addressCity && Boolean(formik.errors.addressCity)
           }
           helperText={formik.touched.addressCity && formik.errors.addressCity}
-          sx={{ mr: { xs: 0, sm: 1 }, my: { xs: 2, sm: 0 } }}
+          sx={{
+            mr: { xs: 0, sm: 1 },
+            my: { xs: 2, sm: 0 },
+            input: { color: "#000" },
+          }}
         />
         <TextField
           select
@@ -195,11 +199,14 @@ const WaiverInfoForm = (props) => {
           label="State"
           onChange={handleChange}
           onBlur={formik.handleBlur}
-          sx={{ my: { xs: 2, sm: 0 } }}
+          sx={{
+            my: { xs: 2, sm: 0 },
+            "& .MuiSelect-select": { color: "#000000" },
+          }}
         >
           {states.map((state, idx) => {
             return (
-              <MenuItem key={idx} value={state.State}>
+              <MenuItem key={idx} value={state.State} sx={{ color: "#000" }}>
                 {state.State}
               </MenuItem>
             );
@@ -219,7 +226,11 @@ const WaiverInfoForm = (props) => {
           helperText={
             formik.touched.addressPostal && formik.errors.addressPostal
           }
-          sx={{ ml: { xs: 0, sm: 1 }, my: { xs: 2, sm: 0 } }}
+          sx={{
+            ml: { xs: 0, sm: 1 },
+            my: { xs: 2, sm: 0 },
+            input: { color: "#000" },
+          }}
         />
       </Box>
       <TextField
@@ -232,7 +243,7 @@ const WaiverInfoForm = (props) => {
         onBlur={formik.handleBlur}
         error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
         helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-        sx={{ my: 2 }}
+        sx={{ my: 2, input: { color: "#000" } }}
       />
     </Box>
   );
