@@ -4,8 +4,9 @@ import React from "react";
 import Head from "next/head";
 import { Box, Container, Typography } from "@mui/material";
 import PartnerDirectory from "../../components/PartnerPage/PartnerDirectory";
+import Axios from "axios";
 
-const PartnersPage = () => {
+const PartnersPage = (props) => {
   return (
     <Box
       sx={

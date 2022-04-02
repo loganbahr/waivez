@@ -82,74 +82,74 @@ QuickSearchToolbar.propTypes = {
   value: PropTypes.string.isRequired,
 };
 // {id: , companyName: '', city: '', state: ''},
-const rowData = [
-  {
-    id: "naplesbeachwatersports",
-    companyName: "Naples Beach Watersports",
-    city: "Naples",
-    state: "FL",
-  },
-  {
-    id: "marcoislandwatersports",
-    companyName: "Marco Island Watersports",
-    city: "Marco Island",
-    state: "FL",
-  },
-  {
-    id: "augustawinery",
-    companyName: "Augusta Winery",
-    city: "Augusta",
-    state: "MO",
-  },
-  {
-    id: "fivestarvalet",
-    companyName: "5 Star Valet",
-    city: "Naples",
-    state: "FL",
-  },
-  {
-    id: "basecamp",
-    companyName: "BaseCamp",
-    city: "Avon",
-    state: "CO",
-  },
-  {
-    id: "floridaeverblades",
-    companyName: "Florida Everblades",
-    city: "Estero",
-    state: "FL",
-  },
-  {
-    id: "hertzarena",
-    companyName: "Hertz Arena",
-    city: "Estero",
-    state: "FL",
-  },
-  {
-    id: "hoffmanncreativeagency",
-    companyName: "Hoffmann Creative Agency",
-    city: "Naples",
-    state: "FL",
-  },
-  {
-    id: "orangelineoil",
-    companyName: "Orange Line Oil Company",
-    city: "Pomona",
-    state: "CA",
-  },
-  {
-    id: "ospreycapital",
-    companyName: "Osprey Capital",
-    city: "Chicago",
-    state: "IL",
-  },
-  {
-    id: "tacosandtequila",
-    companyName: "Tacos & Tequila",
-    city: "Naples",
-    state: "FL",
-  },
-];
+// const rowData = [
+//   {
+//     id: "naplesbeachwatersports",
+//     companyName: "Naples Beach Watersports",
+//     city: "Naples",
+//     state: "FL",
+//   },
+//   {
+//     id: "marcoislandwatersports",
+//     companyName: "Marco Island Watersports",
+//     city: "Marco Island",
+//     state: "FL",
+//   },
+//   {
+//     id: "augustawinery",
+//     companyName: "Augusta Winery",
+//     city: "Augusta",
+//     state: "MO",
+//   },
+//   {
+//     id: "fivestarvalet",
+//     companyName: "5 Star Valet",
+//     city: "Naples",
+//     state: "FL",
+//   },
+//   {
+//     id: "basecamp",
+//     companyName: "BaseCamp",
+//     city: "Avon",
+//     state: "CO",
+//   },
+//   {
+//     id: "floridaeverblades",
+//     companyName: "Florida Everblades",
+//     city: "Estero",
+//     state: "FL",
+//   },
+//   {
+//     id: "hertzarena",
+//     companyName: "Hertz Arena",
+//     city: "Estero",
+//     state: "FL",
+//   },
+//   {
+//     id: "hoffmanncreativeagency",
+//     companyName: "Hoffmann Creative Agency",
+//     city: "Naples",
+//     state: "FL",
+//   },
+//   {
+//     id: "orangelineoil",
+//     companyName: "Orange Line Oil Company",
+//     city: "Pomona",
+//     state: "CA",
+//   },
+//   {
+//     id: "ospreycapital",
+//     companyName: "Osprey Capital",
+//     city: "Chicago",
+//     state: "IL",
+//   },
+//   {
+//     id: "tacosandtequila",
+//     companyName: "Tacos & Tequila",
+//     city: "Naples",
+//     state: "FL",
+//   },
+// ];
 
 const PartnerDirectory = (props) => {
   // const { data } = useDemoData({
@@ -174,15 +174,17 @@ const PartnerDirectory = (props) => {
     { field: "state", headerName: "State", flex: 1, minWidth: 50 },
   ];
 
+  const rowData = Object.keys(props.partners).map((id, _idx) => {
+    return {
+      id: id,
+      companyName: props.partners[id].title,
+      city: props.partners[id].city,
+      state: props.partners[id].state,
+    };
+  });
+
   const [searchText, setSearchText] = useState("");
-  const [rows, setRows] = useState(Object.keys(props.partners).map((id, idx) => {
-      return {
-          id: id,
-          companyName: props.partners[id].title,
-          city: props.partners[id].city,
-          state: props.partners[id].state,
-      }
-  }));
+  const [rows, setRows] = useState(rowData);
   const router = useRouter();
 
   const requestSearch = (searchValue) => {
@@ -240,6 +242,7 @@ const PartnerDirectory = (props) => {
 
           "& .MuiDataGrid-row": {
             borderBottom: "2px solid #7F00FF",
+            color: "#000",
           },
         }}
         onRowClick={(params) => {

@@ -42,7 +42,7 @@ const PartnerPage = (props) => {
   const router = useRouter();
   const { partnerId } = router.query;
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [userInfo, setUserInfo] = useState({
     firstName: "Devin",
     lastName: "Arena",
