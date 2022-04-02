@@ -17,6 +17,7 @@ const SubmitModal = (props) => {
     <Modal open={props.open} onClose={handleClose}>
       <Paper
         sx={{
+          width: { sm: "80%", md: "auto" },
           position: "absolute",
           left: "50%",
           top: "50%",
@@ -39,7 +40,7 @@ const SubmitModal = (props) => {
           Once you press submit, you cannot go back and edit your information or
           signature.
         </Typography>
-        <Box sx={{ mt: 4 }}>
+        <Box sx={{ mt: 4, display: "flex" }}>
           <Button variant="outlined" sx={{ mr: 2 }} onClick={handleClose}>
             Cancel
           </Button>
