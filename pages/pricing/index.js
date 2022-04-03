@@ -1,7 +1,7 @@
 // www.waivez.com/pricing
 import React from 'react';
 import Head from "next/head";
-import {Container, Typography} from "@mui/material";
+import {Container, List, ListItem, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import StandardPricingCard from "../../components/HomePage/PricingSection/StandardPricingCard";
 import AdvancedPricingCard from "../../components/HomePage/PricingSection/AdvancedPricingCard";
@@ -9,7 +9,7 @@ import ProPricingCard from "../../components/HomePage/PricingSection/ProPricingC
 import FeaturesTimeline from "../../components/PricingPage/FeaturesTimeline";
 
 const PricingPage = () => {
-
+    // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
     return (
         <Box sx={{}}>
             <Container maxWidth='lg'
@@ -56,22 +56,50 @@ const PricingPage = () => {
                 </Container>
 
             </Box>
-            <Box sx={{background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)",}}>
-                <Container maxWidth={'md'} sx={{border: '2px solid red', pb: 50}}>
+            <Box sx={{background: '#7f00ff'}}>
+                <Container maxWidth={'lg'} sx={{border: '2px solid red', pb: 10}}>
                     <Box sx={{
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Typography variant={'h2'} color={'text.content'}>
+                        <Typography variant={'h1'} color={'text.content'} sx={{textAlign: 'center'}}>
                             Features Timeline
                         </Typography>
                         <FeaturesTimeline/>
 
-                        <Typography variant={'h2'} color={'text.content'} sx={{mt: 5}}>
-                            4/15 - 6/1
+                        <Typography variant={'h2'} color={'text.content'} sx={{}}>
+                            4/15/22 - 6/1/22
                         </Typography>
+                        <Typography variant={'h5'} color={'text.content'}
+                                    sx={{mt: 2, mx: 1, textAlign: 'center', lineHeight: 1.5}}>
+                            In Phase Two, we will implement the basic functionality of the Partner Dashboard.
+                            This will allow a Partner to search, filter, and export customer records. This is
+                            a core functionality of Waivez, and must be complete before Partners can join.
+                        </Typography>
+
+                        <Typography variant={'h2'} color={'text.content'} sx={{mt: 10}}>
+                            6/1/22 - 10/1/22
+                        </Typography>
+
+                        <Typography variant={'h5'} color={'text.content'}
+                                    sx={{mt: 2, mx: 1, textAlign: 'center', lineHeight: 1.5}}>
+                            Phase Three will focus on extending the capabilities of the Partner Dashboard and bringing
+                            the Partner Dashboard natively to iOS and Android — available on the
+                            iOS App Store and Google Play Store respectively. This phase may also include
+                            integration with the popular reservation system, FareHarbor.
+                        </Typography>
+
+                        <Typography variant={'h2'} color={'text.content'} sx={{mt: 10}}>
+                            10/1/22 - 1/1/23
+                        </Typography>
+
+                        <Typography variant={'h5'} color={'text.content'}
+                                    sx={{mt: 2, textAlign: 'center', lineHeight: 1.5}}>
+                            Our final two months before Deployment will allow us to perform rigorous testing, and 
+                        </Typography>
+
 
                     </Box>
 

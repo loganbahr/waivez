@@ -10,7 +10,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 const FeaturesTimeline = () => {
 
     return (
-        <Timeline position="alternate" sx={{}}>
+        <Timeline position="alternate" sx={{my: 5}}>
             <TimelineItem>
                 <TimelineOppositeContent color="text.content">
                     4/15/22
@@ -23,7 +23,7 @@ const FeaturesTimeline = () => {
             </TimelineItem>
             <TimelineItem>
                 <TimelineOppositeContent color='text.content'>
-                    Phase 2 Complete
+                    Phase Two
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot/>
@@ -33,17 +33,17 @@ const FeaturesTimeline = () => {
             </TimelineItem>
             <TimelineItem>
                 <TimelineOppositeContent color='text.content'>
-                    8/1/22
+                    10/1/22
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot/>
                     <TimelineConnector/>
                 </TimelineSeparator>
-                <TimelineContent color='text.content'>Phase 3 Complete</TimelineContent>
+                <TimelineContent color='text.content'>Phase Three</TimelineContent>
             </TimelineItem>
             <TimelineItem>
                 <TimelineOppositeContent color='text.content'>
-                    Full Deployment
+                    Deployment
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot/>
