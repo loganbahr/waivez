@@ -2,58 +2,88 @@
   "name": "General Liability Waiver",
   "revisison": 1,
   "imagePath": "HoffmannGeneralLiabilityWaiver.png",
-  "signatureLocations": [
+  "overlays": [
     {
       "x": 2128,
-      "y": 2700
+      "y": 2700,
+      "type": "signature"
     },
     {
       "x": 2128,
-      "y": 3000
+      "y": 3000,
+      "type": "signature"
+    },
+    {
+      "x": 1130,
+      "y": 2700,
+      "type": "initials"
+    },
+    {
+      "x": 405,
+      "y": 2700,
+      "type": "printName"
+    },
+    {
+      "x": 405,
+      "y": 2770,
+      "type": "printName"
+    },
+    {
+      "x": 405,
+      "y": 2840,
+      "type": "printName"
+    },
+    {
+      "x": 405,
+      "y": 2910,
+      "type": "printName"
+    },
+    {
+      "x": 405,
+      "y": 2980,
+      "type": "printName"
+    },
+    {
+      "x": 850,
+      "y": 2700,
+      "type": "currentDate"
+    },
+    {
+      "x": 850,
+      "y": 2770,
+      "type": "currentDate"
+    },
+    {
+      "x": 850,
+      "y": 2840,
+      "type": "currentDate"
+    },
+    {
+      "x": 850,
+      "y": 2910,
+      "type": "currentDate"
+    },
+    {
+      "x": 850,
+      "y": 2980,
+      "type": "currentDate"
     }
   ],
-  "printNameLocations": [
+  "minorOverlays": [
     {
-      "x": 405,
-      "y": 2700
+      "x": 720,
+      "y": 2330,
+      "type": "minorName"
     },
     {
-      "x": 405,
-      "y": 2770
+      "x": 650,
+      "y": 2375,
+      "type": "minorName"
     },
     {
-      "x": 405,
-      "y": 2840
-    },
-    {
-      "x": 405,
-      "y": 2910
-    },
-    {
-      "x": 405,
-      "y": 2980
-    }
-  ],
-  "currentDateLocations": [
-    {
-      "x": 850,
-      "y": 2700
-    },
-    {
-      "x": 850,
-      "y": 2770
-    },
-    {
-      "x": 850,
-      "y": 2840
-    },
-    {
-      "x": 850,
-      "y": 2910
-    },
-    {
-      "x": 850,
-      "y": 2980
+      "x": 740,
+      "y": 2500,
+      "type": "signature"
     }
   ]
 }

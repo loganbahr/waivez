@@ -2,14 +2,12 @@
   "name": "Crystal Shores Release Form",
   "revisison": 1,
   "imagePath": "CrystalShoresReleaseForm.png",
-  "signatureLocations": [
+  "overlays": [
     {
       "x": 350,
-      "y": 2200
-    }
-  ],
-  "printNameLocations": [{ "x": 360, "y": 2000 }],
-  "currentDateLocations": [
+      "y": 2200,
+      "type": "signature"
+    },
     {
       "day": {
         "x": 210,
@@ -24,12 +22,17 @@
         "y": 1950,
         "special": ["lastTwo"]
       }
-    }
-  ],
-  "dateOfBirthLocations": [
+    },
+    {
+      "x": 360,
+      "y": 2000,
+      "type": "printName"
+    },
     {
       "x": 350,
-      "y": 2090
+      "y": 2090,
+      "type": "dateOfBirth"
     }
-  ]
+  ],
+  "minorOverlays": []
 }

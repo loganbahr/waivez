@@ -23,6 +23,7 @@ import TitleText from "../../components/Text/TitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
+import WaiverMinorForm from "../../components/Waivers/WaiverMinorForm";
 import WaiverSelection from "../../components/Waivers/WaiverSelection";
 import WaiverTabRenderer from "../../components/Waivers/WaiverTabRenderer";
 
@@ -33,12 +34,21 @@ import WaiverTabRenderer from "../../components/Waivers/WaiverTabRenderer";
  * @since 3/23/2022
  **/
 
-const steps = [
-  "Select waiver(s) to sign",
-  "Read the waiver(s)",
-  "Enter your information",
-  "Electronically Sign",
-  "Review your waiver(s)",
+const WAIVER_SELECTION = "Select waiver(s) to sign";
+const VIEW_WAIVERS = "Read the waiver(s)";
+const ENTER_FORM = "Enter your information";
+const MINOR_FORM = "Enter any minor's information";
+const INITIALS = "Electronically Initial";
+const SIGNATURE = "Electronically Sign";
+const REVIEW = "Review your waiver(s)";
+
+const stepsBase = [
+  WAIVER_SELECTION,
+  VIEW_WAIVERS,
+  ENTER_FORM,
+  MINOR_FORM,
+  SIGNATURE,
+  REVIEW,
 ];
 
 const PartnerPage = (props) => {
@@ -47,37 +57,44 @@ const PartnerPage = (props) => {
 
   const [step, setStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
-    firstName: "Devin",
-    lastName: "Arena",
+    firstName: "John",
+    lastName: "Smith",
     dateOfBirth: "",
-    email: "d3v1n302418@gmail.com",
-    addressLine: "1120 19th st sw",
+    email: "john.smith@gmail.com",
+    addressLine: "123 example street",
     addressCity: "Naples",
     addressState: "Florida",
-    addressPostal: "34117",
-    phoneNumber: "2397761457",
+    addressPostal: "34156",
+    phoneNumber: "2394445555",
+  });
+  const [minorInfo, setMinorInfo] = useState({
+    numberOfMinors: 0,
+    minors: [],
   });
   const [formValid, setFormValid] = useState(false);
   const [signature, setSignature] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [signedWaivers, setSignedWaivers] = useState([]);
   const [selectedWaivers, setSelectedWaivers] = useState([]);
+  const [initials, setInitials] = useState("");
+  const [steps, setSteps] = useState(stepsBase);
 
   //TODO: connect <WaiverRenderer> to the state of 'selectedWaivers' and render the appropriate waivers
 
-  const WAIVER_SELECTION = 0;
-  const VIEW_WAIVERS = 1;
-  const ENTER_FORM = 2;
-  const SIGNATURE = 3;
-  const REVIEW = 4;
-
-  useEffect(() => console.log(props), []);
+  useEffect(() => {
+    setSelectedWaivers(
+      Object.keys(props.waivers).map((waiver) => {
+        return waiver;
+      })
+    );
+    console.log(props);
+  }, []);
 
   /**
    * Grabs the step based on the active step.
    */
   const getStep = () => {
-    switch (step) {
+    switch (steps[step]) {
       case WAIVER_SELECTION:
         return (
           <WaiverSelection
@@ -106,8 +123,20 @@ const PartnerPage = (props) => {
             setFormValid={setFormValid}
           />
         );
+      case MINOR_FORM:
+        return (
+          <WaiverMinorForm
+            minorInfo={minorInfo}
+            setMinorInfo={setMinorInfo}
+            setFormValid={setFormValid}
+          />
+        );
       case SIGNATURE:
-        return <SignatureEntry setSignature={setSignature} />;
+        return <SignatureEntry title="Sign Here" setSignature={setSignature} />;
+      case INITIALS:
+        return (
+          <SignatureEntry title="Initials Here" setSignature={setInitials} />
+        );
       case REVIEW:
         if (signedWaivers.length === 0)
           return <Skeleton variant="rectangular" sx={{ height: 400 }} />;
@@ -116,6 +145,7 @@ const PartnerPage = (props) => {
             waivers={selectedWaivers}
             waiverData={props.waivers}
             signedWaivers={signedWaivers}
+            minorInfo={minorInfo}
           />
         );
       default:
@@ -124,14 +154,32 @@ const PartnerPage = (props) => {
   };
 
   const handleNext = () => {
-    if (step === ENTER_FORM) {
+    if (steps[step] === ENTER_FORM) {
       if (!formValid) return;
     }
-    if (step === SIGNATURE) {
+    if (steps[step] === SIGNATURE) {
       if (!signature) return;
       setDialogOpen(true);
       return;
     }
+    if (steps[step] === WAIVER_SELECTION) {
+      for (const waiverId in props.waivers) {
+        console.log(props.waivers[waiverId].metadata.requiresInitials);
+        if (
+          selectedWaivers.includes(waiverId) &&
+          props.waivers[waiverId].metadata["requiresInitials"]
+        ) {
+          setSteps((steps) => [
+            ...steps.slice(0, steps.length - 2),
+            INITIALS,
+            SIGNATURE,
+            REVIEW,
+          ]);
+          break;
+        }
+      }
+    }
+    if (steps[step] === MINOR_FORM) console.log(minorInfo);
     setStep((step) => step + 1);
   };
 
@@ -143,8 +191,10 @@ const PartnerPage = (props) => {
     Axios.post("http://localhost:5000/signWaivers", {
       partnerId: partnerId,
       signature: signature.split(",")[1],
+      initials: initials.includes(",") ? initials.split(",")[1] : undefined,
       userInfo: userInfo,
       waivers: selectedWaivers,
+      minorInfo: minorInfo,
     }).then((resp) => {
       console.log(resp);
       setSignedWaivers(resp.data.signedWaivers);
@@ -199,7 +249,7 @@ const PartnerPage = (props) => {
                         mt: 1,
                       }}
                     >
-                      {step < REVIEW && step > WAIVER_SELECTION && (
+                      {step < steps.length - 1 && step > 0 && (
                         <Button
                           variant="outlined"
                           sx={{ mr: 2 }}
@@ -208,21 +258,24 @@ const PartnerPage = (props) => {
                           Previous
                         </Button>
                       )}
-                      {step < SIGNATURE && (
+                      {step < steps.length - 2 && (
                         <Button
                           variant="contained"
                           sx={{ ml: 2 }}
                           onClick={handleNext}
                           disabled={
-                            (step === ENTER_FORM && !formValid) ||
-                            (step === WAIVER_SELECTION &&
+                            (steps[step] === ENTER_FORM && !formValid) ||
+                            (steps[step] === MINOR_FORM &&
+                              !formValid &&
+                              minorInfo.numberOfMinors > 0) ||
+                            (steps[step] === WAIVER_SELECTION &&
                               selectedWaivers.length === 0)
                           }
                         >
                           Continue
                         </Button>
                       )}
-                      {step === SIGNATURE && (
+                      {steps[step] === SIGNATURE && (
                         <Button
                           variant="contained"
                           sx={{ ml: 2 }}
@@ -240,7 +293,7 @@ const PartnerPage = (props) => {
           </Stepper>
           <Backdrop
             sx={{ color: "#fff", zIndex: 999 }}
-            open={signedWaivers.length === 0 && step === REVIEW}
+            open={signedWaivers.length === 0 && steps[step] === REVIEW}
           >
             <CircularProgress color="primary" />
           </Backdrop>

@@ -42,6 +42,23 @@ const WaiverTabRenderer = (props) => {
             <Tab key={idx} label={props.waiverData[value].metadata.name} />
           );
         })}
+        {props.minorInfo &&
+          props.minorInfo.minors.map((minor, i) => {
+            return props.waivers.map((value, j) => {
+              if (props.waiverData[value].metadata.minorOverlays.length === 0) return;
+              return (
+                <Tab
+                  key={props.waivers.length + i + j}
+                  label={
+                    props.waiverData[value].metadata.name +
+                    " (" +
+                    minor.firstName +
+                    ")"
+                  }
+                />
+              );
+            });
+          })}
       </Tabs>
       {props.signedWaivers ? (
         <WaiverRenderer image={props.signedWaivers[tab]} />

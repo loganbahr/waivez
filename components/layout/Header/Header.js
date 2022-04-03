@@ -15,7 +15,7 @@ export default function Header() {
           display: "flex",
           justifyContent: "center",
           backgroundColor: "primary",
-          minHeight: "10vh",
+          height: { xs: "70px", sm: "85px", md: "90px", xl: "120px" },
         }}
       >
         <Toolbar
