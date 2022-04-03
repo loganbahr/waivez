@@ -5,7 +5,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 const TimelineStepper = () => {
@@ -41,27 +40,14 @@ const TimelineStepper = () => {
         {
             label: 'Deployment',
             description: `At the start of 2023 we intend to deploy our software into Hoffmann Watersports, which
-            is encompasses Marco Island Watersports and Naples Beach Watersports. Hoffmann Watersports is one of the
-            largest watersports operations in the country, and would use tens of thousands of our waivers annually. 
+            encompasses Marco Island Watersports and Naples Beach Watersports. Hoffmann Watersports is one of the
+            largest watersports operations in the country, and would potentially use tens of thousands of our waivers annually. 
            
             `,
         },
     ];
 
     const [activeStep, setActiveStep] = React.useState(0);
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
 
     return (
         <Box sx={{
@@ -90,21 +76,38 @@ const TimelineStepper = () => {
                             <Typography variant={'h6'}>{step.description}</Typography>
                             <Box sx={{mb: 2, display: 'flex', justifyContent: 'center',}}>
                                 <div>
-                                    <Button
-                                        variant="contained"
-                                        onClick={handleNext}
-                                        sx={{mt: 1, mr: 1}}
+                                    {activeStep < 4 &&
+                                        <Button
+                                            variant={'contained'}
+                                            onClick={() => {
+                                                setActiveStep(activeStep + 1)
+                                            }}
+                                            disabled={activeStep === 4}
+                                            sx={{m: 1}}
+                                        >
+                                            continue
+                                        </Button>}
+
+                                    {activeStep === 4 && <Button
+                                        variant={'contained'}
+                                        onClick={() => {
+                                            setActiveStep(0)
+                                        }}
+                                        sx={{m: 1}}
                                     >
-                                        {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                                    </Button>
-                                    <Button
-                                        disabled={index === 0}
-                                        onClick={handleBack}
-                                        sx={{mt: 1, mr: 1}}
-                                        variant={'outlined'}
-                                    >
-                                        Back
-                                    </Button>
+                                        restart
+                                    </Button>}
+
+                                    {activeStep > 0 &&
+                                        <Button
+                                            variant={'outlined'}
+                                            onClick={() => {
+                                                setActiveStep(activeStep - 1)
+                                            }}
+                                            sx={{m: 1}}
+                                        >
+                                            Back
+                                        </Button>}
                                 </div>
                             </Box>
                         </StepContent>
