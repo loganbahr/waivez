@@ -55,7 +55,7 @@ const PartnerPage = (props) => {
   const router = useRouter();
   const { partnerId } = router.query;
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(3);
   const [userInfo, setUserInfo] = useState({
     firstName: "John",
     lastName: "Smith",
@@ -164,7 +164,6 @@ const PartnerPage = (props) => {
     }
     if (steps[step] === WAIVER_SELECTION) {
       for (const waiverId in props.waivers) {
-        console.log(props.waivers[waiverId].metadata.requiresInitials);
         if (
           selectedWaivers.includes(waiverId) &&
           props.waivers[waiverId].metadata["requiresInitials"]
@@ -179,7 +178,6 @@ const PartnerPage = (props) => {
         }
       }
     }
-    if (steps[step] === MINOR_FORM) console.log(minorInfo);
     setStep((step) => step + 1);
   };
 
