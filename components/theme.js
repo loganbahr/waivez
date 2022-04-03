@@ -60,7 +60,7 @@ let theme = createTheme({
             subtitle1: {
                 fontWeight: 400,
             },
-        }
+        },
     }
 );
 theme = responsiveFontSizes(theme);

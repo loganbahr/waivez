@@ -211,6 +211,7 @@ const PartnerPage = (props) => {
           flexDirection: "column",
           alignItems: "center",
           pb: 10,
+          mt: 15,
         }}
       >
         <Head>
@@ -310,7 +311,7 @@ const PartnerPage = (props) => {
 
 PartnerPage.getInitialProps = async ({ req, query }) => {
   const partnerId = query.partnerId;
-  const res = await Axios.get("http://192.168.0.24:5000/company", {
+  const res = await Axios.get("http://localhost:5000/company", {
     params: {
       company: partnerId,
     },
