@@ -9,6 +9,8 @@ import HalfPageCenter from "../../components/Section/HalfPageCenter";
 import ProductTimeline from "../../components/AboutPage/ProductTimeline";
 import TimelineStepper from "../../components/AboutPage/TimelineStepper";
 import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
+import Card from "@mui/material/Card";
+import DeveloperAccordion from "../../components/AboutPage/DeveloperAccordion";
 
 const AboutPage = () => {
     return (
@@ -39,6 +41,10 @@ const AboutPage = () => {
                 </Typography>
                 <PhaseTimelineGraphic/>
                 <TimelineStepper/>
+                <Typography variant={'h2'} textAlign="center">
+                    the developers of waivez
+                </Typography>
+                <DeveloperAccordion/>
             </Container>
         </Box>
     );
