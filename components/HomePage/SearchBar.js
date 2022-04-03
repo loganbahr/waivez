@@ -1,10 +1,11 @@
 import TextField from "@mui/material/TextField";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { findParentElementFromClassName } from "@mui/x-data-grid/internals";
 
-export default function SearchBar() {
+const SearchBar = (props) => {
   const [value, setValue] = useState("");
   const router = useRouter();
 
@@ -34,7 +35,12 @@ export default function SearchBar() {
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        options={partners}
+        options={Object.keys(props.partners).map((partner) => {
+          return {
+            title: props.partners[partner].title,
+            url: "/partners/" + partner,
+          };
+        })}
         value={value}
         freeSolo
         onChange={(_e, nv) => setValue(nv)}
@@ -81,16 +87,6 @@ export default function SearchBar() {
       />
     </Box>
   );
-}
+};
 
-// TODO: need to make a new file that contains all of the partners, then that list is populated into the search bar.
-const partners = [
-  {
-    title: "Marco Island Watersports",
-    url: "/partners/marcoislandwatersports",
-  },
-  {
-    title: "Naples Beach Watersports",
-    url: "/partners/naplesbeachwatersports",
-  },
-];
+export default SearchBar;

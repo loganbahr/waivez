@@ -1,7 +1,14 @@
 {
   "title": "Naples Beach Water Sports",
+  "logo": "/waivers/companies/hoffmannwatersports/naplesbeach2016logo.png",
   "subtitle": "This is some DIFFERENT filler text for Naples Beach Water Sports",
   "paragraph": "Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text. Naples Beach Water sports paragraph filler text.",
   "city": "Naples",
-  "state": "Florida"
+  "state": "Florida",
+  "waivers": {
+    "1": {
+      "json": "/companies/hoffmannwatersports/general_liability.json",
+      "imagePath": "/waivers/companies/hoffmannwatersports/HoffmannGeneralLiability.png"
+    }
+  }
 }

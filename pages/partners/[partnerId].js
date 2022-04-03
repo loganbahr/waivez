@@ -164,7 +164,6 @@ const PartnerPage = (props) => {
     }
     if (steps[step] === WAIVER_SELECTION) {
       for (const waiverId in props.waivers) {
-        console.log(props.waivers[waiverId].metadata.requiresInitials);
         if (
           selectedWaivers.includes(waiverId) &&
           props.waivers[waiverId].metadata["requiresInitials"]
@@ -179,7 +178,6 @@ const PartnerPage = (props) => {
         }
       }
     }
-    if (steps[step] === MINOR_FORM) console.log(minorInfo);
     setStep((step) => step + 1);
   };
 
@@ -211,6 +209,7 @@ const PartnerPage = (props) => {
           flexDirection: "column",
           alignItems: "center",
           pb: 10,
+          mt: 15,
         }}
       >
         <Head>
@@ -218,6 +217,18 @@ const PartnerPage = (props) => {
           <meta />
         </Head>
         <Typography variant={"h2"}>{props.title}</Typography>
+        {props.logo && (
+          <Box
+            component="img"
+            src={props.logo}
+            sx={{
+              border: "3px solid",
+              borderColor: "primary",
+              borderRadius: 5,
+              maxWidth: "50%"
+            }}
+          />
+        )}
         <Typography variant={"h4"} sx={{ textAlign: "center", my: 5 }}>
           Please select the waivers below and enter your information to sign.
         </Typography>
@@ -310,7 +321,7 @@ const PartnerPage = (props) => {
 
 PartnerPage.getInitialProps = async ({ req, query }) => {
   const partnerId = query.partnerId;
-  const res = await Axios.get("http://192.168.0.24:5000/company", {
+  const res = await Axios.get("http://localhost:5000/company", {
     params: {
       company: partnerId,
     },

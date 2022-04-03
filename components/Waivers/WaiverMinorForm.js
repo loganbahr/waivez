@@ -79,7 +79,7 @@ const WaiverMinorForm = (props) => {
         minors: props.minorInfo.minors.concat(newMinors),
       });
       formik.setValues({
-        ...props.minorInfo,
+        ...formik.values,
         minors: props.minorInfo.minors.concat(newMinors),
       });
       const mtouched = formik.touched.minors || [];
@@ -120,6 +120,12 @@ const WaiverMinorForm = (props) => {
 
     const handleBlur = (e) => {
       const minors = formik.touched.minors;
+      console.log(minors);
+      if (minors === undefined) {
+        minors = Object.keys(props.minorInfo.minors).map(() => {
+          return { firstName: false, lastName: false, dateOfBirth: false };
+        });
+      }
       minors[idx][e.target.name] = true;
       formik.setTouched({ ...formik.touched, minors: minors });
     };
@@ -135,13 +141,17 @@ const WaiverMinorForm = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           error={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].firstName &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             Boolean(formik.errors.minors[idx].firstName)
           }
           helperText={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].firstName &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             formik.errors.minors[idx].firstName
           }
           sx={{ my: 1, input: { color: "#000" } }}
@@ -155,13 +165,17 @@ const WaiverMinorForm = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           error={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].lastName &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             Boolean(formik.errors.minors[idx].lastName)
           }
           helperText={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].lastName &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             formik.errors.minors[idx].lastName
           }
           sx={{ my: 1, input: { color: "#000" } }}
@@ -177,13 +191,17 @@ const WaiverMinorForm = (props) => {
           onChange={handleChange}
           onBlur={formik.handleBlur}
           error={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].dateOfBirth &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             Boolean(formik.errors.minors[idx].dateOfBirth)
           }
           helperText={
+            formik.touched.minors !== undefined &&
             formik.touched.minors[idx].dateOfBirth &&
             formik.errors.minors !== undefined &&
+            formik.errors.minors[idx] !== undefined &&
             formik.errors.minors[idx].dateOfBirth
           }
           sx={{ my: 1, input: { color: "#000" } }}
