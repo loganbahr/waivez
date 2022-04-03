@@ -10,21 +10,18 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
-const { Pool } = require("pg");
+const { MongoClient } = require("mongodb");
 const { createSignedWaiver } = require("./imageHandler");
 const fs = require("fs");
 const fsp = require("fs/promises");
 const path = require("path");
 
-const companies = {};
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@waivez-cluster.3cvs8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDB,
-  password: process.env.PGPASS,
-  port: process.env.PGPORT,
-});
+const client = new MongoClient(uri);
+const db = client.db("users");
+
+const companies = {};
 
 // Gonna have to fix cors eventually.
 const app = express();
@@ -34,24 +31,20 @@ app.use(cors());
 /**
  * Test request to ping the server.
  */
-app.get("/user", (req, resp) => {
-  const { id } = req.query;
+app.get("/user", async (req, resp) => {
+  const { firstName, lastName, dateOfBirth } = req.query;
 
-  pool.query("SELECT * FROM users WHERE id=$1", [id], (err, res) => {
-    if (err || res.rowCount < 1) {
-      resp.send("Failed to find a user with that ID.");
-    } else {
-      resp.send({
-        id: id,
-        first_name: res.rows[0].first_name,
-        last_name: res.rows[0].last_name,
-        date_of_birth: res.rows[0].date_of_birth,
-        address: res.rows[0].address,
-        email: res.rows[0].email,
-        phone_number: res.rows[0].phone_number,
-      });
-    }
-  });
+  const res = await db
+    .collection("users")
+    .findOne({ firstName, lastName, dateOfBirth });
+
+  if (!res) {
+    return resp
+      .status(500)
+      .send({ err: "No user by that information exists." });
+  }
+
+  return resp.status(200).send(res);
 });
 
 app.get("/company", (req, resp) => {
@@ -168,3 +161,6 @@ app.post("/signWaivers", signWaivers);
 app.listen(PORT);
 console.log("Server started on port " + PORT);
 loadCompanies(path.join(__dirname, "companies"));
+console.log("Loaded companies from JSON files.");
+client.connect();
+console.log("Mongo client connected successfully.");
