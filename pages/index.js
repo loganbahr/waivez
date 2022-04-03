@@ -8,7 +8,7 @@ import HeroSection from "../components/HomePage/HeroSection";
 import ExampleSection from "../components/HomePage/ExampleSection";
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import FeaturesPricingSection from "../components/HomePage/FeaturesPricingSection";
+import FeaturesPricingSection from "../components/HomePage/PricingSection/FeaturesPricingSection";
 
 const HomePage = () => {
     return (

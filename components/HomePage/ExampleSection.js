@@ -14,7 +14,6 @@ const ExampleSection = () => {
   return (
     <Box
       sx={{
-        // border: '2px solid red',
         height: { xs: 600, sm: 650, md: 600, lg: 650, xl: 700 },
         backgroundColor: "background.secondary",
       }}
@@ -25,7 +24,6 @@ const ExampleSection = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            // border: '2px solid orange'
           }}
         >
           <List
@@ -99,7 +97,7 @@ const ExampleSection = () => {
               <ListItemIcon>
                 <FeedOutlinedIcon fontSize="large" sx={{ color: "white" }} />
               </ListItemIcon>
-              <ListItemText primary="Shooting ranges" />
+              <ListItemText primary="Gun ranges" />
             </ListItem>
 
             <ListItem>
@@ -117,7 +115,7 @@ const ExampleSection = () => {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            pt: { xs: 5, sm: 10, md: 10, lg: 12 },
+            pt: { xs: 10, sm: 12, md: 12, lg: 18 },
             px: 3,
           }}
         >
