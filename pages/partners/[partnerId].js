@@ -219,6 +219,18 @@ const PartnerPage = (props) => {
           <meta />
         </Head>
         <Typography variant={"h2"}>{props.title}</Typography>
+        {props.logo && (
+          <Box
+            component="img"
+            src={props.logo}
+            sx={{
+              border: "3px solid",
+              borderColor: "primary",
+              borderRadius: 5,
+              maxWidth: "50%"
+            }}
+          />
+        )}
         <Typography variant={"h4"} sx={{ textAlign: "center", my: 5 }}>
           Please select the waivers below and enter your information to sign.
         </Typography>
