@@ -84,7 +84,6 @@ const WaiverInfoForm = (props) => {
   return (
     <Box
       as="form"
-      onSubmit={formik.handleSubmit}
       sx={{
         p: 3,
         width: "100%",

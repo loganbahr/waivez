@@ -4,9 +4,9 @@ import { Box } from "@mui/material";
 
 const Layout = (props) => {
   return (
-    <Box minHeight="100vh">
+    <Box>
       <Header />
-      <Box minHeight="80vh">{props.children}</Box>
+      <Box minHeight="100vh">{props.children}</Box>
       <Footer />
     </Box>
   );

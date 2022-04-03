@@ -82,8 +82,10 @@ const getWaiverInformation = async (req, resp) => {
 const signWaivers = async (req, resp) => {
   const partnerId = req.body.partnerId;
   const signature = req.body.signature;
+  const initials = req.body.initials;
   const waivers = req.body.waivers;
   const userInfo = req.body.userInfo;
+  const minorInfo = req.body.minorInfo;
 
   const signedWaivers = [];
 
@@ -91,9 +93,23 @@ const signWaivers = async (req, resp) => {
     const waiver = await createSignedWaiver(
       companies[partnerId]["waivers"][waiverId]["json"],
       signature,
-      userInfo
+      userInfo,
+      initials
     );
     signedWaivers.push(waiver);
+  }
+
+  for (const minor of minorInfo.minors) {
+    for (const waiverId of waivers) {
+      const waiver = await createSignedWaiver(
+        companies[partnerId]["waivers"][waiverId]["json"],
+        signature,
+        userInfo,
+        initials,
+        minor
+      );
+      if (waiver) signedWaivers.push(waiver);
+    }
   }
 
   return resp.send({ signedWaivers });
@@ -122,6 +138,14 @@ const loadCompanies = async (root) => {
                 if (err) console.log(err);
                 companies[company].waivers[waiverId].metadata =
                   JSON.parse(data);
+                for (const overlay of companies[company].waivers[waiverId]
+                  .metadata.overlays) {
+                  if (overlay.type === "initials") {
+                    companies[company].waivers[waiverId].metadata[
+                      "requiresInitials"
+                    ] = true;
+                  }
+                }
               }
             );
           }
