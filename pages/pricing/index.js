@@ -55,9 +55,26 @@ const PricingPage = () => {
                     <AdvancedPricingCard/>
                     <ProPricingCard/>
                 </Container>
-
             </Box>
 
+            <Box sx={{
+                background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)",
+                height: 1500
+            }}>
+                <Container maxWidth={'lg'} disableGutters={true} sx={{border: '2px solid red'}}>
+                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+
+
+                        <Typography variant={'h2'} color={'text.content'} sx={{mx: 5, textAlign: 'center',}}>
+                            Everything you need. <br/> <br/>
+                            All in one place.
+                        </Typography>
+
+
+                    </Box>
+                </Container>
+
+            </Box>
 
 
         </Box>

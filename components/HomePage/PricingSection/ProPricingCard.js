@@ -24,7 +24,7 @@ const ProPricingCard = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <Typography variant={'h3'} color={'text.content'}>
+                <Typography variant={'h3'} color={'text.content'} sx={{textShadow: '0px 0px 10px #FFF'}}>
                     Pro
                 </Typography>
             </Box>

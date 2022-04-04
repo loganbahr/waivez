@@ -17,14 +17,14 @@ const StandardPricingCard = () => {
         }}>
             <Box sx={{
                 height: '10%',
-                // border: '2px solid red',
+                // border: '2px solid white',
                 background: '#7f00ff',
                 borderRadius: 3,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <Typography variant={'h3'} color={'text.content'}>
+                <Typography variant={'h3'} color={'text.content'} sx={{textShadow: '0px 0px 10px #FFF'}}>
                     Standard
                 </Typography>
             </Box>

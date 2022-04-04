@@ -51,7 +51,7 @@ const TimelineStepper = () => {
 
     return (
         <Box sx={{
-            mb: 20,
+            mb: 10,
             // border: '2px solid red',
             display: 'flex',
             justifyContent: 'center',

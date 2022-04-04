@@ -38,7 +38,7 @@ const WaiverSelection = (props) => {
   // });
 
   return (
-    <Box sx={{ mb: 2 }}>
+    <Box sx={{ mb: 2, backgroundColor: '#f9f9f9' }}>
       <DataGrid
         rows={Object.keys(props.waivers).map((waiverId, _idx) => {
           return {
