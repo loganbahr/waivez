@@ -36,7 +36,7 @@ export default function Header() {
                     </Box>
                     <PageLinkButton link="/about" text="About"/>
                     <PageLinkButton link="/contact" text="Contact"/>
-                    <PageLinkButton link="/signin" text="Sign In"/>
+                    <PageLinkButton link="/lookup" text="Lookup"/>
                 </Toolbar>
             </AppBar>
         </Box>
