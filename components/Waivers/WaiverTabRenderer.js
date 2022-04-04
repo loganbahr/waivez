@@ -12,6 +12,12 @@ import WaiverRenderer from "./WaiverRenderer";
 const WaiverTabRenderer = (props) => {
   const [tab, setTab] = useState(0);
 
+  useEffect(() => {
+    console.log(props.signedWaivers);
+    console.log(props.waiverData);
+    console.log(props.waivers);
+  }, []);
+
   // one waiver -> no need for tabs
   if (props.waivers.length === 1) {
     if (props.signedWaivers) {
@@ -45,7 +51,8 @@ const WaiverTabRenderer = (props) => {
         {props.minorInfo &&
           props.minorInfo.minors.map((minor, i) => {
             return props.waivers.map((value, j) => {
-              if (props.waiverData[value].metadata.minorOverlays.length === 0) return;
+              if (props.waiverData[value].metadata.minorOverlays.length === 0)
+                return;
               return (
                 <Tab
                   key={props.waivers.length + i + j}
