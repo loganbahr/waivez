@@ -230,6 +230,7 @@ const WaiverMinorForm = (props) => {
                 border: "3px solid",
                 borderColor: "primary.main",
                 borderRadius: 10,
+                backgroundColor: '#f9f9f9'
             }}
         >
             <Typography component="h1" variant="h4">

@@ -36,8 +36,8 @@ const AboutPage = () => {
                 </Typography>
                 <Typography variant={'h5'} sx={{my: 5, lineHeight: 1.4, textAlign: 'center',}}>
                     Waivez started out as a college project for an old family business. We wanted to develop an online
-                    waiver system that operated as a centralized service — a hub where waivers of all kinds could be
-                    signed, documented, and analyzed — all in one place. Now, we have a
+                    waiver system that operated as a centralized service — a hub where waivers could be
+                    signed, documented, and analyzed — all in one place.
                 </Typography>
                 <PhaseTimelineGraphic/>
                 <TimelineStepper/>

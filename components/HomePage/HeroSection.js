@@ -46,23 +46,17 @@ const HeroSection = () => {
                     </Typography>
                 </Box>
 
-                <Box
+
+                <Typography
+                    variant={"h2"}
+                    color={"text.content"}
                     sx={{
-                        height: {xs: 250, md: 250, lg: 300},
-                        display: "flex",
-                        alignItems: "flex-end",
-                        mt: {xs: 12, sm: 22, md: 10, lg: 10, xl: 12},
+                        textAlign: "center",
+                        mt: 20
                     }}
                 >
-                    <Typography
-                        variant={"h3"}
-                        color={"text.content"}
-                        sx={{textAlign: "center", lineHeight: 1.3}}
-                    >
-                        Whether your business is on the water, in the air, or somewhere in
-                        between...Waivez has you covered!
-                    </Typography>
-                </Box>
+                    On the water, in the air, and anywhere between — Waivez has it covered.
+                </Typography>
             </Container>
         </Box>
     );
