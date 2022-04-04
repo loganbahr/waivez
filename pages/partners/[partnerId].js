@@ -204,6 +204,7 @@ const PartnerPage = (props) => {
     return (
         <Box sx={{
             backgroundImage: background2,
+            minHeight: '100vh',
         }}>
             <Container
                 maxWidth="lg"
