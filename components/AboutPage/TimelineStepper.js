@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {motion} from 'framer-motion';
 
 const TimelineStepper = () => {
 
@@ -50,71 +51,69 @@ const TimelineStepper = () => {
     const [activeStep, setActiveStep] = React.useState(0);
 
     return (
-        <Box sx={{
-            mb: 10,
-            // border: '2px solid red',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: {xs: 350, sm: 600, md: 750},
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1.5, delay: 0.5}}>
+            <Box sx={{
+                mb: 10,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: {xs: 350, sm: 600, md: 750},
 
-        }}>
-            <Stepper activeStep={activeStep} orientation="vertical"
-                     sx={{
-                         width: {xs: 350, sm: 500},
-                         // border: '2px solid green',
+            }}>
+                <Stepper activeStep={activeStep} orientation="vertical"
+                         sx={{
+                             width: {xs: 350, sm: 500}}}>
+                    {steps.map((step, index) => (
+                        <Step key={step.label}>
+                            <StepLabel>
+                                <Typography variant={'h3'}>
+                                    {step.label}
+                                </Typography>
+                            </StepLabel>
+                            <StepContent>
+                                <Typography variant={'h6'}>{step.description}</Typography>
+                                <Box sx={{mb: 2, display: 'flex', justifyContent: 'center',}}>
+                                    <div>
+                                        {activeStep < 4 &&
+                                            <Button
+                                                variant={'contained'}
+                                                onClick={() => {
+                                                    setActiveStep(activeStep + 1)
+                                                }}
+                                                disabled={activeStep === 4}
+                                                sx={{m: 1}}
+                                            >
+                                                next phase
+                                            </Button>}
 
-                     }}>
-                {steps.map((step, index) => (
-                    <Step key={step.label}>
-                        <StepLabel>
-                            <Typography variant={'h3'}>
-                                {step.label}
-                            </Typography>
-                        </StepLabel>
-                        <StepContent>
-                            <Typography variant={'h6'}>{step.description}</Typography>
-                            <Box sx={{mb: 2, display: 'flex', justifyContent: 'center',}}>
-                                <div>
-                                    {activeStep < 4 &&
-                                        <Button
+                                        {activeStep === 4 && <Button
                                             variant={'contained'}
                                             onClick={() => {
-                                                setActiveStep(activeStep + 1)
-                                            }}
-                                            disabled={activeStep === 4}
-                                            sx={{m: 1}}
-                                        >
-                                            continue
-                                        </Button>}
-
-                                    {activeStep === 4 && <Button
-                                        variant={'contained'}
-                                        onClick={() => {
-                                            setActiveStep(0)
-                                        }}
-                                        sx={{m: 1}}
-                                    >
-                                        restart
-                                    </Button>}
-
-                                    {activeStep > 0 &&
-                                        <Button
-                                            variant={'outlined'}
-                                            onClick={() => {
-                                                setActiveStep(activeStep - 1)
+                                                setActiveStep(0)
                                             }}
                                             sx={{m: 1}}
                                         >
-                                            Back
+                                            restart
                                         </Button>}
-                                </div>
-                            </Box>
-                        </StepContent>
-                    </Step>
-                ))}
-            </Stepper>
-        </Box>
+
+                                        {activeStep > 0 &&
+                                            <Button
+                                                variant={'outlined'}
+                                                onClick={() => {
+                                                    setActiveStep(activeStep - 1)
+                                                }}
+                                                sx={{m: 1}}
+                                            >
+                                                Back
+                                            </Button>}
+                                    </div>
+                                </Box>
+                            </StepContent>
+                        </Step>
+                    ))}
+                </Stepper>
+            </Box>
+        </motion.div>
     );
 };
 

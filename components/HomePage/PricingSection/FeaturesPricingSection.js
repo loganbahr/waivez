@@ -95,7 +95,6 @@ const FeaturesPricingSection = () => {
                     <AdvancedPricingCard/>
                     <ProPricingCard/>
                 </Container>
-
         </Box>
     );
 };
