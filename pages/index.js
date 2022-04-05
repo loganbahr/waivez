@@ -12,7 +12,7 @@ import {Container, Typography} from "@mui/material";
 import SearchBar from "../components/HomePage/SearchBar";
 import HeroSection from "../components/HomePage/HeroSection";
 import ExampleSection from "../components/HomePage/ExampleSection";
-import FeaturesPricingSection from "../components/HomePage/PricingSection/FeaturesPricingSection";
+import FeaturesPricingSection from "../components/HomePage/FeaturesPricingSection";
 import Axios from "axios";
 import {motion} from 'framer-motion';
 import Logo from "../components/Graphics/Logo";

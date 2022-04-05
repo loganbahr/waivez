@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import StandardPricingCard from "./StandardPricingCard";
-import AdvancedPricingCard from "./AdvancedPricingCard";
-import ProPricingCard from "./ProPricingCard";
+import StandardPricingCard from "../Cards/StandardPricingCard";
+import AdvancedPricingCard from "../Cards/AdvancedPricingCard";
+import ProPricingCard from "../Cards/ProPricingCard";
 import {motion} from 'framer-motion';
 
 const FeaturesPricingSection = () => {
