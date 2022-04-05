@@ -2,12 +2,13 @@ import React from 'react';
 import Link from "next/link";
 import IconButton from "@mui/material/IconButton";
 import ArticleIcon from "@mui/icons-material/Article";
+import Logo from "../../Graphics/Logo";
 
 const LogoButton = () => {
     return (
         <Link href='/'>
             <IconButton sx={{color: 'white'}}>
-                <ArticleIcon/>
+                <Logo width={50} height={50} color={'#f9f9f9'} />
             </IconButton>
         </Link>
     );

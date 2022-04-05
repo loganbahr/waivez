@@ -3,11 +3,12 @@ import React from 'react';
 import Head from "next/head";
 import {Container, List, ListItem, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
-import StandardPricingCard from "../../components/HomePage/PricingSection/StandardPricingCard";
-import AdvancedPricingCard from "../../components/HomePage/PricingSection/AdvancedPricingCard";
-import ProPricingCard from "../../components/HomePage/PricingSection/ProPricingCard";
+import StandardPricingCard from "../../components/Cards/StandardPricingCard";
+import AdvancedPricingCard from "../../components/Cards/AdvancedPricingCard";
+import ProPricingCard from "../../components/Cards/ProPricingCard";
 import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
 import ProductTimeline from "../../components/AboutPage/ProductTimeline";
+import Logo from "../../components/Graphics/Logo";
 
 const PricingPage = () => {
     // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
@@ -61,22 +62,15 @@ const PricingPage = () => {
                 background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)",
                 height: 1500
             }}>
-                <Container maxWidth={'lg'} disableGutters={true} sx={{border: '2px solid red'}}>
+                <Container maxWidth={'lg'} disableGutters={true}>
                     <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-
-
                         <Typography variant={'h2'} color={'text.content'} sx={{mx: 5, textAlign: 'center',}}>
                             Everything you need. <br/> <br/>
                             All in one place.
                         </Typography>
-
-
                     </Box>
                 </Container>
-
             </Box>
-
-
         </Box>
     );
 };

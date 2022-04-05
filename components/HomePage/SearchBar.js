@@ -28,7 +28,7 @@ const SearchBar = (props) => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        my: 10,
+          mt: 10
       }}
     >
       <Autocomplete
@@ -54,7 +54,7 @@ const SearchBar = (props) => {
           width: "85%",
           border: "3px solid",
           borderColor: "primary",
-          borderRadius: "25px 25px 25px 25px",
+          borderRadius: 5,
           "& .MuiAutocomplete-inputRoot": {
             fontSize: { xs: "19px", sm: "26px" },
             "& .MuiOutlinedInput-notchedOutline": {

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Box from "@mui/material/Box";
-import {Button, Container, Typography} from "@mui/material";
+import {Button, Container, duration, Typography} from "@mui/material";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import {motion} from "framer-motion";
 
 const HeroSection = () => {
+
     return (
         <Box
             sx={{
@@ -22,13 +24,18 @@ const HeroSection = () => {
                         justifyContent: "space-evenly",
                         alignItems: "center",
                         textAlign: "center",
-                    }}
-                >
-                    <Typography variant={"h2"} sx={{}}>
-                        Any waiver.
-                    </Typography>
+                    }}>
+                    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}}
+                                transition={{duration: 1, delay: 0.5}}>
+                        <Typography variant={"h2"}>
+                            Any waiver.
+                        </Typography>
+                    </motion.div>
 
-                    <Typography variant={"h2"}>All in one place.</Typography>
+                    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}}
+                                transition={{duration: 1, delay: 1}}>
+                        <Typography variant={"h2"}>All in one place.</Typography>
+                    </motion.div>
 
                     <Button
                         onClick={() => window.scrollTo(0, document.body.scrollHeight)}
@@ -37,26 +44,34 @@ const HeroSection = () => {
                         <KeyboardArrowDownOutlinedIcon/>
                     </Button>
 
-                    <Typography variant={"h2"} sx={{}}>
-                        Any business.
-                    </Typography>
 
-                    <Typography variant={"h2"} color={"text.content"} sx={{mt: 0}}>
-                        Anywhere.
-                    </Typography>
+                    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}}
+                                transition={{duration: 1, delay: 0.5}}>
+                        <Typography variant={"h2"} sx={{}}>
+                            Any business.
+                        </Typography>
+                    </motion.div>
+
+
+                    <motion.div whileHover={{scale: 1.4}} initial={{opacity: 0}} whileInView={{opacity: 1}}
+                                transition={{opacity: {duration: 1, delay: 0.5}, scale: {duration: 0.2}}}>
+                        <Typography variant={"h2"} color={"text.content"} sx={{mt: 0}}>
+                            Anywhere.
+                        </Typography>
+                    </motion.div>
                 </Box>
 
-
-                <Typography
-                    variant={"h2"}
-                    color={"text.content"}
-                    sx={{
-                        textAlign: "center",
-                        mt: 20
-                    }}
-                >
-                    On the water, in the air, and anywhere between — Waivez has it covered.
-                </Typography>
+                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1, delay: 0.5}}>
+                    <Typography
+                        variant={"h2"}
+                        color={"text.content"}
+                        sx={{
+                            textAlign: "center",
+                            mt: 20
+                        }}>
+                        On the water, in the air, and anywhere between — Waivez has it covered.
+                    </Typography>
+                </motion.div>
             </Container>
         </Box>
     );
