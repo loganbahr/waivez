@@ -63,12 +63,28 @@ const PricingPage = () => {
                 height: 1500
             }}>
                 <Container maxWidth={'lg'} disableGutters={true}>
-                    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Typography variant={'h2'} color={'text.content'} sx={{mx: 5, textAlign: 'center',}}>
-                            Everything you need. <br/> <br/>
-                            All in one place.
-                        </Typography>
+                    <Box sx={{minWidth: '100%', display: 'flex', justifyContent: 'center'}}>
+                        <Box sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'column',
+                            // border: '2px solid red',
+                            // width: {xs: 200},
+                            // height: {xs: 200},
+                        }}>
+                            <Typography variant={'h2'} color={'text.content'} sx={{textAlign: 'center', mb: 2}}>
+                                Simple when <br/> you need it.
+                            </Typography>
+
+                            <Logo height={'50%'} width={'50%'} color={'#f9f9f9'}/>
+
+                            <Typography variant={'h2'} color={'text.content'} sx={{textAlign: 'center', mt: 2}}>
+                                Sophisticated <br/> when you want it.
+                            </Typography>
+                        </Box>
                     </Box>
+
                 </Container>
             </Box>
         </Box>

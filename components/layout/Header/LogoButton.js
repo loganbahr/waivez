@@ -8,7 +8,7 @@ const LogoButton = () => {
     return (
         <Link href='/'>
             <IconButton sx={{color: 'white'}}>
-                <Logo width={50} height={50} color={'#f9f9f9'} />
+                <Logo width={'100%'} height={'100%'} color={'#f9f9f9'} />
             </IconButton>
         </Link>
     );
