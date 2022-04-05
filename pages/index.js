@@ -15,8 +15,8 @@ import ExampleSection from "../components/HomePage/ExampleSection";
 import FeaturesPricingSection from "../components/HomePage/PricingSection/FeaturesPricingSection";
 import Axios from "axios";
 import {motion} from 'framer-motion';
-import Logo from "../components/Logo";
-import WaivezLandingLogo from "../components/HomePage/WaivezLandingLogo";
+import Logo from "../components/Graphics/Logo";
+import WaivezLandingLogo from "../components/Graphics/WaivezLandingLogo";
 
 
 const HomePage = (props) => {

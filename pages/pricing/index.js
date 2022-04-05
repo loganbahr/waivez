@@ -8,7 +8,7 @@ import AdvancedPricingCard from "../../components/HomePage/PricingSection/Advanc
 import ProPricingCard from "../../components/HomePage/PricingSection/ProPricingCard";
 import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
 import ProductTimeline from "../../components/AboutPage/ProductTimeline";
-import Logo from "../../components/Logo";
+import Logo from "../../components/Graphics/Logo";
 
 const PricingPage = () => {
     // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
@@ -69,8 +69,6 @@ const PricingPage = () => {
                             All in one place.
                         </Typography>
                     </Box>
-
-                    <Logo width={500} height={500} color={'#FFF'} />
 
                 </Container>
             </Box>

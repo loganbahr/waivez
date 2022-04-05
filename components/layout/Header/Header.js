@@ -6,7 +6,7 @@ import PageLinkButton from "./PageLinkButton";
 import LogoButton from "./LogoButton";
 import PageMenuButton from "./PageMenuButton";
 import { Container } from "@mui/material";
-import Logo from "../../Logo";
+import Logo from "../../Graphics/Logo";
 
 export default function Header() {
   return (
@@ -36,7 +36,6 @@ export default function Header() {
             <PageLinkButton link="/partners" text="Partners" />
             <PageLinkButton link="/pricing" text="Pricing" />
             <Box sx={{
-
             }}>
               <LogoButton/>
             </Box>
