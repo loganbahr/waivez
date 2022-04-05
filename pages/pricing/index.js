@@ -8,6 +8,7 @@ import AdvancedPricingCard from "../../components/HomePage/PricingSection/Advanc
 import ProPricingCard from "../../components/HomePage/PricingSection/ProPricingCard";
 import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
 import ProductTimeline from "../../components/AboutPage/ProductTimeline";
+import Logo from "../../components/Logo";
 
 const PricingPage = () => {
     // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
@@ -63,17 +64,15 @@ const PricingPage = () => {
             }}>
                 <Container maxWidth={'lg'} disableGutters={true} sx={{border: '2px solid red'}}>
                     <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-
-
                         <Typography variant={'h2'} color={'text.content'} sx={{mx: 5, textAlign: 'center',}}>
                             Everything you need. <br/> <br/>
                             All in one place.
                         </Typography>
-
-
                     </Box>
-                </Container>
 
+                    <Logo width={500} height={500} color={'#FFF'} />
+
+                </Container>
             </Box>
 
 
