@@ -115,12 +115,14 @@ const signWaivers = async (req, resp) => {
   const userInfo = req.body.userInfo;
   const minorInfo = req.body.minorInfo;
 
-  const waiverInfo = Object.keys(waivers).map((id) => {
+  const waiverInfo = waivers.map((id) => {
     return {
-      partner: partnerId,
+      partnerId: partnerId,
       partnerWaiverId: id,
     };
   });
+
+  console.log(waivers);
 
   const signedWaivers = await getSignedWaivers(
     signature,
