@@ -240,7 +240,7 @@ const WaiverMinorForm = (props) => {
                 select
                 id="numberOfMinors"
                 name="numberOfMinors"
-                value={formik.values.numberOfMinors}
+                value={props.minorInfo.numberOfMinors}
                 label="Number of Minors"
                 onChange={handleDropdown}
                 onBlur={formik.handleBlur}
