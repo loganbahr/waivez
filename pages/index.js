@@ -1,23 +1,20 @@
+/**
+ * @file /pages/index.js
+ * @author Logan Bahr, Devin Arena
+ * @description Front page of Waivez.
+ * @since 2/2/22
+ */
 // www.waivez.com
 import React from "react";
 import Head from "next/head";
 import Box from "@mui/material/Box";
-import {
-    Container,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import SearchBar from "../components/HomePage/SearchBar";
 import HeroSection from "../components/HomePage/HeroSection";
 import ExampleSection from "../components/HomePage/ExampleSection";
-
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FeaturesPricingSection from "../components/HomePage/PricingSection/FeaturesPricingSection";
 import Axios from "axios";
-import {AnimatedDiv} from "../components/AnimatedDiv";
+
 
 const HomePage = (props) => {
     return (

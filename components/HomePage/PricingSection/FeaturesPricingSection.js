@@ -9,14 +9,10 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import LooksOneIcon from "@mui/icons-material/LooksOne";
-import LooksTwoIcon from "@mui/icons-material/LooksTwo";
-import Looks3Icon from "@mui/icons-material/Looks3";
-import Looks4Icon from "@mui/icons-material/Looks4";
-import Looks5Icon from "@mui/icons-material/Looks5";
 import StandardPricingCard from "./StandardPricingCard";
 import AdvancedPricingCard from "./AdvancedPricingCard";
 import ProPricingCard from "./ProPricingCard";
+import {motion} from 'framer-motion';
 
 const FeaturesPricingSection = () => {
     return (
@@ -28,43 +24,44 @@ const FeaturesPricingSection = () => {
             }}
         >
             <Container maxWidth={"md"}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        textAlign: "center",
-                    }}
-                >
-                    <Typography variant={"h2"} color={"text.content"}>
-                        The most advanced waiver technology in the industry.
-                    </Typography>
+                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textAlign: "center",
+                        }}
+                    >
+                        <Typography variant={"h2"} color={"text.content"}>
+                            The most advanced waiver technology in the industry.
+                        </Typography>
 
-                    <Box sx={{display: "flex", flexDirection: "row", mt: 5}}>
-                        <List sx={{color: "white"}}>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
-                                </ListItemIcon>
-                                <ListItemText primary={"Return Probability Index (RPI)®"}/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
-                                </ListItemIcon>
-                                <ListItemText primary={"Customer Heat Maps"}/>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemIcon>
-                                    <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
-                                </ListItemIcon>
-                                <ListItemText primary={"Machine Learning & AI Analytics"}/>
-                            </ListItem>
-                        </List>
+                        <Box sx={{display: "flex", flexDirection: "row", mt: 5}}>
+                            <List sx={{color: "white"}}>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Return Probability Index (RPI)®"}/>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Customer Heat Maps"}/>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <CheckCircleIcon fontSize="large" sx={{color: "white"}}/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={"Machine Learning & AI Analytics"}/>
+                                </ListItem>
+                            </List>
+                        </Box>
                     </Box>
-                </Box>
-
+                </motion.div>
                 <Typography
                     color={"text.content"}
                     variant="h2"
@@ -80,21 +77,20 @@ const FeaturesPricingSection = () => {
                     Choose the plan that meets your companies needs.
                 </Typography>
             </Container>
-                <Container
-                    maxWidth={'lg'}
-                    disableGutters={true}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: {xs: 'column', md: 'row'},
-                        // border: '2px solid red',
-                    }}>
-
-                    <StandardPricingCard/>
-                    <AdvancedPricingCard/>
-                    <ProPricingCard/>
-                </Container>
+            <Container
+                maxWidth={'lg'}
+                disableGutters={true}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: {xs: 'column', md: 'row'},
+                    // border: '2px solid red',
+                }}>
+                <StandardPricingCard/>
+                <AdvancedPricingCard/>
+                <ProPricingCard/>
+            </Container>
         </Box>
     );
 };

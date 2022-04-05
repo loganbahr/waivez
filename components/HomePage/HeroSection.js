@@ -61,8 +61,7 @@ const HeroSection = () => {
                     </motion.div>
                 </Box>
 
-                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} viewport={{once: true}}
-                            transition={{duration: 2}}>
+                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1, delay: 0.5}}>
                     <Typography
                         variant={"h2"}
                         color={"text.content"}

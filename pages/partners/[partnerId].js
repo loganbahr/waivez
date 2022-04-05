@@ -18,17 +18,16 @@ import Axios from "axios";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import React, {useEffect, useRef, useState} from "react";
-import SubtitleText from "../../components/Text/SubtitleText";
-import TitleText from "../../components/Text/TitleText";
 import SignatureEntry from "../../components/Waivers/SignatureEntry";
 import SubmitModal from "../../components/Waivers/SubmitModal";
 import WaiverInfoForm from "../../components/Waivers/WaiverInfoForm";
 import WaiverMinorForm from "../../components/Waivers/WaiverMinorForm";
 import WaiverSelection from "../../components/Waivers/WaiverSelection";
 import WaiverTabRenderer from "../../components/Waivers/WaiverTabRenderer";
+import {partnerId_background} from "../../components/theme"
 
 /**
- * @file [partnerId].js
+ * @file /pages/partners/[partnerId].js
  * @author Devin Arena, Logan Bahr
  * @description Pages for each individual partner. TODO: are we pulling from a database here?
  * @since 3/23/2022
@@ -80,7 +79,6 @@ const PartnerPage = (props) => {
     const [steps, setSteps] = useState(stepsBase);
 
     //TODO: connect <WaiverRenderer> to the state of 'selectedWaivers' and render the appropriate waivers
-    const background2 = 'url("data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%237f00ff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")';
 
     useEffect(() => {
         setSelectedWaivers(
@@ -203,7 +201,7 @@ const PartnerPage = (props) => {
 
     return (
         <Box sx={{
-            backgroundImage: background2,
+            backgroundImage: partnerId_background,
             minHeight: '100vh',
         }}>
             <Container
@@ -218,18 +216,6 @@ const PartnerPage = (props) => {
                     <meta/>
                 </Head>
                 <Typography variant={"h2"} sx={{mt: 15}}>{props.title}</Typography>
-                {props.logo && (
-                    <Box
-                        component="img"
-                        src={props.logo}
-                        sx={{
-                            border: "3px solid",
-                            borderColor: "primary",
-                            borderRadius: 5,
-                            maxWidth: "50%"
-                        }}
-                    />
-                )}
                 <Typography variant={"h4"} sx={{textAlign: "center", my: 5}}>
                     Please select the waivers below and enter your information to sign.
                 </Typography>

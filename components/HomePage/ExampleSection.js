@@ -20,19 +20,18 @@ const ExampleSection = () => {
             }}
         >
             <Container disableGutters={true} maxWidth={"md"} sx={{}}>
-                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} viewport={{once: true}} transition={{duration: 1, delay: 1}}>
+                <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1, delay: 1}}>
                     <Box
                         sx={{
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                        }}
-                    >
-                        <List
+                        }}>
+                        <List disablePadding={true}
                             sx={{
                                 color: "white",
-                            }}
-                        >
+                                pt: {xs: 2},
+                            }}>
                             <ListItem>
                                 <ListItemIcon>
                                     <FeedOutlinedIcon fontSize="large" sx={{color: "white"}}/>
@@ -69,11 +68,11 @@ const ExampleSection = () => {
                             </ListItem>
                         </List>
 
-                        <List
+                        <List disablePadding={true}
                             sx={{
                                 color: "white",
-                            }}
-                        >
+                                pt: {xs: 2},
+                            }}>
                             <ListItem>
                                 <ListItemIcon>
                                     <FeedOutlinedIcon fontSize="large" sx={{color: "white"}}/>
@@ -111,24 +110,26 @@ const ExampleSection = () => {
                         </List>
 
                     </Box>
+                </motion.div>
 
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            textAlign: "center",
-                            pt: {xs: 10, sm: 12, md: 12, lg: 18},
-                            px: 3,
-                        }}
-                    >
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+                        pt: {xs: 10, sm: 12, md: 12, lg: 18},
+                        px: 3,
+                    }}>
+                    <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}}>
                         <Typography variant={"h4"} color={"text.content"}>
                             Get to know your customers, understand your demographic —
                             {/* eslint-disable-next-line react/no-unescaped-entities */}
                             where they come from, and when they'll be back.
                         </Typography>
-                    </Box>
-                </motion.div>
+
+                    </motion.div>
+                </Box>
             </Container>
         </Box>
     );

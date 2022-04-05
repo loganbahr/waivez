@@ -1,3 +1,9 @@
+/**
+ * @file /components/AboutPage/TimelineStepper.js
+ * @author Logan Bahr
+ * @description MUI Stepper component to describe phases of Waivez development.
+ * @since 4/2/22
+ */
 import React from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -62,7 +68,8 @@ const TimelineStepper = () => {
             }}>
                 <Stepper activeStep={activeStep} orientation="vertical"
                          sx={{
-                             width: {xs: 350, sm: 500}}}>
+                             width: {xs: 350, sm: 500}
+                         }}>
                     {steps.map((step, index) => (
                         <Step key={step.label}>
                             <StepLabel>

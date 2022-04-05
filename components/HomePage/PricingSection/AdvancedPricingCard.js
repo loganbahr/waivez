@@ -6,11 +6,12 @@ import {motion} from "framer-motion";
 
 const AdvancedPricingCard = () => {
     return (
+        <motion.div whileHover={{scale: 1.1}}>
             <Box sx={{
-                mx: 2,
+                mx: {xs: 0, md: 2},
                 mt: {xs: 5, md: 0},
                 height: 700,
-                width: 350,
+                width: 310,
                 borderRadius: 2,
                 // border: '2px solid red',
                 display: 'flex',
@@ -74,8 +75,7 @@ const AdvancedPricingCard = () => {
                             </Button>
                         </motion.div>
 
-                        <List sx={{mx: 5}}>
-
+                        <List sx={{mx: 3}}>
                             <ListItem disablePadding={true}>
                                 <ListItemIcon>
                                     <CheckCircleIcon sx={{color: 'primary.main'}}/>
@@ -107,6 +107,7 @@ const AdvancedPricingCard = () => {
                     </Box>
                 </Box>
             </Box>
+        </motion.div>
     );
 };
 
