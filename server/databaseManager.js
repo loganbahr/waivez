@@ -33,7 +33,6 @@ const searchUser = async (firstName, lastName, dateOfBirth) => {
 };
 
 const searchWaiversByUserId = async (userId) => {
-  console.log(userId);
 
   const res = await db.collection("waivers").find({ userId }).toArray();
 
