@@ -128,10 +128,10 @@ const signWaivers = async (req, resp) => {
       await databaseManager.searchWaiversByUserId(user._id.toString())
     ).filter((waiver) => waiver.partner === partnerId);
     if (signed) {
-      for (const waiver in signed) {
+      for (const waiver of signed) {
         if (waivers.includes(waiver.companyWaiverId)) {
           alreadySigned.push(
-            companies[partnerId]["waivers"][waiver.companyWaiverId]["metata"][
+            companies[partnerId]["waivers"][waiver.companyWaiverId]["metadata"][
               "name"
             ]
           );
@@ -139,8 +139,6 @@ const signWaivers = async (req, resp) => {
       }
     }
   }
-
-  console.log(alreadySigned);
 
   if (alreadySigned.length > 0) {
     return resp.send({ alreadySigned });
