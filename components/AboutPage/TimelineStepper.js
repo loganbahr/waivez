@@ -81,6 +81,16 @@ const TimelineStepper = () => {
                                 <Typography variant={'h6'}>{step.description}</Typography>
                                 <Box sx={{mb: 2, display: 'flex', justifyContent: 'center',}}>
                                     <div>
+                                        {activeStep > 0 &&
+                                            <Button
+                                                variant={'outlined'}
+                                                onClick={() => {
+                                                    setActiveStep(activeStep - 1)
+                                                }}
+                                                sx={{m: 1}}
+                                            >
+                                                Back
+                                            </Button>}
                                         {activeStep < 4 &&
                                             <Button
                                                 variant={'contained'}
@@ -103,16 +113,6 @@ const TimelineStepper = () => {
                                             restart
                                         </Button>}
 
-                                        {activeStep > 0 &&
-                                            <Button
-                                                variant={'outlined'}
-                                                onClick={() => {
-                                                    setActiveStep(activeStep - 1)
-                                                }}
-                                                sx={{m: 1}}
-                                            >
-                                                Back
-                                            </Button>}
                                     </div>
                                 </Box>
                             </StepContent>

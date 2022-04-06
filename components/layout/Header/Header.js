@@ -34,7 +34,7 @@ export default function Header() {
                         <PageLinkButton link="/" text="Home"/>
                         <PageLinkButton link="/partners" text="Partners"/>
                         <PageLinkButton link="/pricing" text="Pricing"/>
-                        <Box sx={{ width: 75, height: 75}}>
+                        <Box sx={{ width: {xs: 50, md: 75}, height: {xs: 50, md: 75}}}>
                             <LogoButton/>
                         </Box>
                         <PageLinkButton link="/about" text="About"/>

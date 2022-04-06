@@ -6,8 +6,6 @@ import Box from "@mui/material/Box";
 import StandardPricingCard from "../../components/Cards/StandardPricingCard";
 import AdvancedPricingCard from "../../components/Cards/AdvancedPricingCard";
 import ProPricingCard from "../../components/Cards/ProPricingCard";
-import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
-import ProductTimeline from "../../components/AboutPage/ProductTimeline";
 import Logo from "../../components/Graphics/Logo";
 
 const PricingPage = () => {

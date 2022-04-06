@@ -14,9 +14,9 @@ import HeroSection from "../components/HomePage/HeroSection";
 import ExampleSection from "../components/HomePage/ExampleSection";
 import FeaturesPricingSection from "../components/HomePage/FeaturesPricingSection";
 import Axios from "axios";
-import {motion} from 'framer-motion';
-import Logo from "../components/Graphics/Logo";
 import WaivezLandingLogo from "../components/Graphics/WaivezLandingLogo";
+import WaivezLogo from "../components/Graphics/WaivezLogo";
+import {motion} from 'framer-motion';
 
 
 const HomePage = (props) => {
@@ -33,18 +33,18 @@ const HomePage = (props) => {
             >
                 <Head>
                     <title>waivez</title>
+                    <link rel='icon' href="/public/favicon.ico" />
                     <meta name="description" content="Any waiver, all in one place."/>
                 </Head>
 
-                {/*<motion.div whileTap={{scale: 1.2}}>*/}
-                {/*    <Typography variant={"h1"}>waivez</Typography>*/}
-                {/*</motion.div>*/}
+                <motion.div whileTap={{scale: 1.2}}>
                 <Box sx={{
-                    width: {xs: 300, sm: 400, md: 500},
-                    height: {xs: 150, sm: 200, md: 250}
+                    width: {xs: 350, sm: 400, md: 600},
+                    height: {xs: 200, sm: 250, md: 350},
                 }}>
-                    <WaivezLandingLogo width={'100%'} height={'100%'} color={'#7f00ff'}/>
+                    <WaivezLogo width={'100%'} height={'100%'} color={'#7f00ff'}/>
                 </Box>
+                </motion.div>
 
                 <SearchBar partners={props}/>
             </Container>

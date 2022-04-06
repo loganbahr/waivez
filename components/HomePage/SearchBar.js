@@ -28,7 +28,6 @@ const SearchBar = (props) => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-          mt: 10
       }}
     >
       <Autocomplete
