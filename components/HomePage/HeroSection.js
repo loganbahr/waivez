@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import {Button, Container, duration, Typography} from "@mui/material";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import {motion} from "framer-motion";
+import Logo from "../Graphics/Logo";
 
 const HeroSection = () => {
 
@@ -37,12 +38,13 @@ const HeroSection = () => {
                         <Typography variant={"h2"}>All in one place.</Typography>
                     </motion.div>
 
-                    <Button
-                        onClick={() => window.scrollTo(0, document.body.scrollHeight)}
-                        sx={{my: 5}}
-                    >
-                        <KeyboardArrowDownOutlinedIcon/>
-                    </Button>
+                    <Box sx={{
+                        width: {xs: 250, lg: 350},
+                        height: {xs: 250, lg: 350},
+                        my: 2
+                    }}>
+                        <Logo width={'100%'} height={'100%'} color={'#7f00ff'} />
+                    </Box>
 
 
                     <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}}
