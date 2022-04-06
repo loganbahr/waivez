@@ -115,14 +115,43 @@ const signWaivers = async (req, resp) => {
   const userInfo = req.body.userInfo;
   const minorInfo = req.body.minorInfo;
 
+  const alreadySigned = [];
+
+  // Make sure users don't try and sign twice
+  const user = await databaseManager.searchUser(
+    userInfo.firstName,
+    userInfo.lastName,
+    userInfo.dateOfBirth
+  );
+  if (user) {
+    const signed = (
+      await databaseManager.searchWaiversByUserId(user._id.toString())
+    ).filter((waiver) => waiver.partner === partnerId);
+    if (signed) {
+      for (const waiver in signed) {
+        if (waivers.includes(waiver.companyWaiverId)) {
+          alreadySigned.push(
+            companies[partnerId]["waivers"][waiver.companyWaiverId]["metata"][
+              "name"
+            ]
+          );
+        }
+      }
+    }
+  }
+
+  console.log(alreadySigned);
+
+  if (alreadySigned.length > 0) {
+    return resp.send({ alreadySigned });
+  }
+
   const waiverInfo = waivers.map((id) => {
     return {
       partnerId: partnerId,
       partnerWaiverId: id,
     };
   });
-
-  console.log(waivers);
 
   const signedWaivers = await getSignedWaivers(
     signature,
