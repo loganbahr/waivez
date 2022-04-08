@@ -69,8 +69,6 @@ const loadCompanies = async (root) => {
 };
 
 const getSignedWaivers = async (
-  signature,
-  initials,
   waiverInfo,
   userInfo,
   minorInfo = undefined
@@ -80,10 +78,11 @@ const getSignedWaivers = async (
   for (const waiver of waiverInfo) {
     const signed = await createSignedWaiver(
       companies[waiver.partnerId]["waivers"][waiver.partnerWaiverId]["json"],
-      signature,
+      waiver.signature,
       userInfo,
-      initials
+      waiver.initials
     );
+
     signedWaivers.push(signed);
   }
 
@@ -94,9 +93,9 @@ const getSignedWaivers = async (
           companies[waiver.partnerId]["waivers"][waiver.partnerWaiverId][
             "json"
           ],
-          signature,
+          waiver.signature,
           userInfo,
-          initials,
+          waiver.initials,
           minor
         );
         if (signed) signedWaivers.push(signed);
@@ -116,6 +115,7 @@ const signWaivers = async (req, resp) => {
   const minorInfo = req.body.minorInfo;
 
   const alreadySigned = [];
+  let userId = "";
 
   // Make sure users don't try and sign twice
   const user = await databaseManager.searchUser(
@@ -123,15 +123,17 @@ const signWaivers = async (req, resp) => {
     userInfo.lastName,
     userInfo.dateOfBirth
   );
+
   if (user) {
-    const signed = (
-      await databaseManager.searchWaiversByUserId(user._id.toString())
-    ).filter((waiver) => waiver.partner === partnerId);
-    if (signed) {
-      for (const waiver in signed) {
-        if (waivers.includes(waiver.companyWaiverId)) {
+    userId = user._id.toString();
+    const signed = await databaseManager.searchWaiversByUserId(userId);
+    if (signed && signed.length > 0) {
+      const filtered = signed.filter((waiver) => waiver.partnerId === partnerId);
+      console.log(filtered);
+      for (const waiver of filtered) {
+        if (waivers.includes(waiver.partnerWaiverId)) {
           alreadySigned.push(
-            companies[partnerId]["waivers"][waiver.companyWaiverId]["metata"][
+            companies[partnerId]["waivers"][waiver.partnerWaiverId]["metadata"][
               "name"
             ]
           );
@@ -140,26 +142,33 @@ const signWaivers = async (req, resp) => {
     }
   }
 
-  console.log(alreadySigned);
+  if (alreadySigned.length > 0) return resp.status(200).send({ alreadySigned });
 
-  if (alreadySigned.length > 0) {
-    return resp.send({ alreadySigned });
-  }
+  if (!user)
+    userId = (await databaseManager.insertUserInformation(userInfo)).toString();
 
   const waiverInfo = waivers.map((id) => {
+    if (
+      !initials ||
+      !companies[partnerId]["waivers"][id]["metadata"]["requiresInitials"]
+    ) {
+      return {
+        partnerId: partnerId,
+        partnerWaiverId: id,
+        signature: signature,
+      };
+    }
     return {
       partnerId: partnerId,
       partnerWaiverId: id,
+      signature: signature,
+      initials: initials,
     };
   });
 
-  const signedWaivers = await getSignedWaivers(
-    signature,
-    initials,
-    waiverInfo,
-    userInfo,
-    minorInfo
-  );
+  await databaseManager.insertWaivers(userId, waiverInfo);
+
+  const signedWaivers = await getSignedWaivers(waiverInfo, userInfo, minorInfo);
 
   return resp.send({ signedWaivers });
 };
@@ -182,15 +191,19 @@ const lookupWaivers = async (req, resp) => {
     user._id.toString()
   );
 
-  if (!waiverRows)
+  console.log(waiverRows);
+
+  if (!waiverRows || waiverRows.length == 0)
     return resp
       .status(500)
       .send({ err: "That person has not signed a waiver with us." });
 
   const waivers = waiverRows.map((waiver) => {
     return {
-      partnerId: waiver.partner,
-      partnerWaiverId: waiver.companyWaiverId,
+      partnerId: waiver.partnerId,
+      partnerWaiverId: waiver.partnerWaiverId,
+      signature: waiver.signature,
+      initials: waiver.initials,
     };
   });
 
@@ -206,12 +219,7 @@ const lookupWaivers = async (req, resp) => {
     phoneNumber: user.phoneNumber,
   };
 
-  const signed = await getSignedWaivers(
-    user.signature,
-    user.initials,
-    waivers,
-    userInfo
-  );
+  const signed = await getSignedWaivers(waivers, userInfo);
 
   const signedWaivers = {};
 

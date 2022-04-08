@@ -52,8 +52,11 @@ const createSignedWaiver = async (
     const font = await jimp.loadFont(jimp.FONT_SANS_32_BLACK);
     const buffer = Buffer.from(signatureData, "base64");
     const signature = await loadImage(buffer);
-    const initialsBuffer = Buffer.from(initialsData, "base64");
-    const initials = await loadImage(initialsBuffer);
+    let initialsBuffer, initials;
+    if (initialsData) {
+      initialsBuffer = Buffer.from(initialsData, "base64");
+      initials = await loadImage(initialsBuffer);
+    }
     const overlays =
       minorInfo !== undefined ? json["minorOverlays"] : json["overlays"];
     for (const overlay of overlays) {

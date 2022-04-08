@@ -52,6 +52,7 @@ const LookupPage = (props) => {
         if (resp.data.err) {
           console.log(resp.data.err);
         }
+        console.log(resp);
         setWaiverData(resp.data.signedWaivers);
       });
     },
