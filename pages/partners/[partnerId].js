@@ -88,8 +88,7 @@ const PartnerPage = (props) => {
         return waiver;
       })
     );
-    console.log(props);
-  }, []);
+  }, [props.waivers]);
 
   /**
    * Grabs the step based on the active step.
