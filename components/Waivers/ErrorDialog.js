@@ -35,7 +35,9 @@ const ErrorDialog = (props) => {
         <Typography variant="h5" component="h1">
           The following error has occurred.
         </Typography>
-        <Typography sx={{ mt: 2, whiteSpace: "pre-line" }}>{props.error}</Typography>
+        <Typography sx={{ mt: 2, whiteSpace: "pre-line" }}>
+          {props.error}
+        </Typography>
         <Box sx={{ mt: 4, display: "flex" }}>
           <Button variant="outlined" sx={{ mr: 2 }} onClick={handleClose}>
             Cancel

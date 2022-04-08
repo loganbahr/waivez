@@ -33,10 +33,38 @@ const searchUser = async (firstName, lastName, dateOfBirth) => {
 };
 
 const searchWaiversByUserId = async (userId) => {
-
   const res = await db.collection("waivers").find({ userId }).toArray();
 
   return res;
+};
+
+const insertUserInformation = async (userInfo) => {
+  const document = await db.collection("users").insertOne({
+    firstName: userInfo.firstName,
+    lastName: userInfo.lastName,
+    dateOfBirth: userInfo.dateOfBirth,
+    email: userInfo.email,
+    address: {
+      line: userInfo.addressLine,
+      city: userInfo.addressCity,
+      state: userInfo.addressState,
+      postal: userInfo.addressPostal,
+    },
+    phoneNumber: userInfo.phoneNumber,
+  });
+
+  return document.insertedId;
+};
+
+const insertWaivers = async (userId, waivers) => {
+  db.collection("waivers").insertMany(
+    waivers.map((waiver) => {
+      return {
+        userId,
+        ...waiver,
+      };
+    })
+  );
 };
 
 module.exports = {
@@ -44,4 +72,6 @@ module.exports = {
   getUser,
   searchUser,
   searchWaiversByUserId,
+  insertUserInformation,
+  insertWaivers
 };
