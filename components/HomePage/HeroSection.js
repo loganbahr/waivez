@@ -4,6 +4,7 @@ import {Button, Container, duration, Typography} from "@mui/material";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import {motion} from "framer-motion";
 import Logo from "../Graphics/Logo";
+import PhoneGraphic from "../Graphics/PhoneGraphic";
 
 const HeroSection = () => {
 
@@ -39,11 +40,12 @@ const HeroSection = () => {
                     </motion.div>
 
                     <Box sx={{
-                        width: {xs: 250, lg: 350},
-                        height: {xs: 250, lg: 350},
-                        my: 2
+                        width: {xs: 250, sm: 300, md: 350},
+                        height: {xs: 250, sm: 300, md: 350},
+                        my: 3,
+                        mr: 8
                     }}>
-                        <Logo width={'100%'} height={'100%'} color={'#7f00ff'} />
+                        <PhoneGraphic width={'100%'} height={'100%'} color={'#7f00ff'} />
                     </Box>
 
 
