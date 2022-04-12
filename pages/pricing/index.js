@@ -66,9 +66,6 @@ const PricingPage = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'column',
-                            // border: '2px solid red',
-                            // width: {xs: 200},
-                            // height: {xs: 200},
                         }}>
                             <Typography variant={'h2'} color={'text.content'} sx={{textAlign: 'center', mb: 2}}>
                                 Simple when <br/> you need it.
