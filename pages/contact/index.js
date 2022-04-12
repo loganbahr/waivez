@@ -1,10 +1,13 @@
-// www.waivez.com/contact
+/**
+ * @file /pages/contact/index.js
+ * @author Logan Bahr
+ * @description The contact page. (www.waivez.com/contact)
+ * @since 3/1/2022
+ */
 import React from 'react';
 import Head from "next/head";
 import {Box, Container, Typography} from "@mui/material";
-import TitleText from "../../components/Text/TitleText";
 import FormikForm from "../../components/Contact_Page/FormikForm";
-import SubtitleText from "../../components/Text/SubtitleText";
 
 
 const ContactPage = () => {
