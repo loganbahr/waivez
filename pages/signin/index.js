@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
 import TitleText from "../../components/Text/TitleText";
 import SubtitleText from "../../components/Text/SubtitleText";
-import FormikForm from "../../components/SignIn Page/FormikForm";
+import FormikForm from "../../components/SignIn_Page/FormikForm";
 
 
 const SignInPage = () => {

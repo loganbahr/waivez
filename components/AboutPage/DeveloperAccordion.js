@@ -1,5 +1,5 @@
 /**
- * @file DeveloperAccordion.js
+ * @file /components/AboutPage/DeveloperAccordion.js
  * @author Logan Bahr
  * @description Short bio of the developers.
  * @since 4/2/22

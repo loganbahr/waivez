@@ -2,7 +2,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { Container, Typography } from "@mui/material";
 import Head from "next/head";
-import TitleText from "../../components/Text/TitleText";
 
 const TermsOfService = () => {
   return (

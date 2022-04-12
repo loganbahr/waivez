@@ -3,7 +3,7 @@ import React from 'react';
 import Head from "next/head";
 import {Box, Container, Typography} from "@mui/material";
 import TitleText from "../../components/Text/TitleText";
-import FormikForm from "../../components/Contact Page/FormikForm";
+import FormikForm from "../../components/Contact_Page/FormikForm";
 import SubtitleText from "../../components/Text/SubtitleText";
 
 
