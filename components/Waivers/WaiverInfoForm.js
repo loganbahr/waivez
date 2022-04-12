@@ -91,85 +91,152 @@ const WaiverInfoForm = (props) => {
                 flexDirection: "column",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                border: "3px solid",
+                border: "2px solid",
                 borderColor: "primary.main",
                 borderRadius: 5,
                 backgroundColor: '#f9f9f9'
             }}>
-            <Typography component="h1" variant="h4">
-                Enter your information
-            </Typography>
-            <TextField
-                fullWidth
-                id="firstName"
-                name="firstName"
-                label="First Name"
-                value={formik.values.firstName || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                helperText={formik.touched.firstName && formik.errors.firstName}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
-            <TextField
-                fullWidth
-                id="lastName"
-                name="lastName"
-                label="Last Name"
-                value={formik.values.lastName || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                helperText={formik.touched.lastName && formik.errors.lastName}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
-            <TextField
-                fullWidth
-                id="dateOfBirth"
-                name="dateOfBirth"
-                label="Date of Birth (MM/DD/YYYY)"
-                type="date"
-                InputLabelProps={{shrink: true}}
-                value={formik.values.dateOfBirth || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)}
-                helperText={formik.touched.dateOfBirth && formik.errors.dateOfBirth}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
-            <TextField
-                fullWidth
-                id="email"
-                name="email"
-                label="Email Address"
-                value={formik.values.email || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
-            <TextField
-                fullWidth
-                id="addressLine"
-                name="addressLine"
-                label="Address Line"
-                value={formik.values.addressLine || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.addressLine && Boolean(formik.errors.addressLine)}
-                helperText={formik.touched.addressLine && formik.errors.addressLine}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
-            <Box
-                sx={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: {xs: "column", sm: "row"},
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    my: 2,
-                }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: {xs: 'column', md: 'row'},
+                width: '100%',
+            }}>
+                <TextField
+                    fullWidth
+                    id="firstName"
+                    name="firstName"
+                    label="First Name"
+                    value={formik.values.firstName || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                    helperText={formik.touched.firstName && formik.errors.firstName}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+                    }}
+                />
+                <TextField
+                    fullWidth
+                    id="lastName"
+                    name="lastName"
+                    label="Last Name"
+                    value={formik.values.lastName || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                    helperText={formik.touched.lastName && formik.errors.lastName}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+
+                    }}
+                />
+                <TextField
+                    fullWidth
+                    id="dateOfBirth"
+                    name="dateOfBirth"
+                    label="Date of Birth (MM/DD/YYYY)"
+                    type="date"
+                    InputLabelProps={{shrink: true}}
+                    value={formik.values.dateOfBirth || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)}
+                    helperText={formik.touched.dateOfBirth && formik.errors.dateOfBirth}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+                    }}
+                />
+            </Box>
+
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: {xs: 'column', md: 'row'},
+                width: '100%',
+            }}>
+                <TextField
+                    fullWidth
+                    id="email"
+                    name="email"
+                    label="Email Address"
+                    value={formik.values.email || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+
+                    }}
+                />
+
+                <TextField
+                    fullWidth
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    label="Phone Number XXX-XXX-XXXX"
+                    value={formik.values.phoneNumber || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+                    }}
+                />
+            </Box>
+
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: {xs: 'column', md: 'row'},
+                width: '100%',
+            }}>
+                <TextField
+                    fullWidth
+                    id="addressLine"
+                    name="addressLine"
+                    label="Address Line"
+                    value={formik.values.addressLine || ""}
+                    onChange={handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.addressLine && Boolean(formik.errors.addressLine)}
+                    helperText={formik.touched.addressLine && formik.errors.addressLine}
+                    sx={{
+                        input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
+                    }}
+                />
+            </Box>
+
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: {xs: 'column', md: 'row'},
+                width: '100%',
+            }}>
                 <TextField
                     fullWidth
                     id="addressCity"
@@ -183,9 +250,10 @@ const WaiverInfoForm = (props) => {
                     }
                     helperText={formik.touched.addressCity && formik.errors.addressCity}
                     sx={{
-                        mr: {xs: 0, sm: 1},
-                        my: {xs: 2, sm: 0},
                         input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
                     }}
                 />
                 <TextField
@@ -198,8 +266,10 @@ const WaiverInfoForm = (props) => {
                     onChange={handleChange}
                     onBlur={formik.handleBlur}
                     sx={{
-                        my: {xs: 2, sm: 0},
                         "& .MuiSelect-select": {color: "#000000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
                     }}
                 >
                     {states.map((state, idx) => {
@@ -225,24 +295,14 @@ const WaiverInfoForm = (props) => {
                         formik.touched.addressPostal && formik.errors.addressPostal
                     }
                     sx={{
-                        ml: {xs: 0, sm: 1},
-                        my: {xs: 2, sm: 0},
                         input: {color: "#000"},
+                        flex: 1,
+                        mx: 1,
+                        my: 2,
                     }}
                 />
             </Box>
-            <TextField
-                fullWidth
-                id="phoneNumber"
-                name="phoneNumber"
-                label="Phone Number XXX-XXX-XXXX"
-                value={formik.values.phoneNumber || ""}
-                onChange={handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                sx={{my: 2, input: {color: "#000"}}}
-            />
+
         </Box>
     );
 };

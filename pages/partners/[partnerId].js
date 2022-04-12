@@ -35,9 +35,9 @@ import ErrorDialog from "../../components/Waivers/ErrorDialog";
  **/
 
 const WAIVER_SELECTION = "Select waiver(s) to sign";
-const VIEW_WAIVERS = "Read the waiver(s)";
+const VIEW_WAIVERS = "Read your waiver(s)";
 const ENTER_FORM = "Enter your information";
-const MINOR_FORM = "Enter any minor's information";
+const MINOR_FORM = "Enter minor information";
 const INITIALS = "Electronically Initial";
 const SIGNATURE = "Electronically Sign";
 const REVIEW = "Review your waiver(s)";
