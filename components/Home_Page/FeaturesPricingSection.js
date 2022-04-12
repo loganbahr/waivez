@@ -18,9 +18,11 @@ const FeaturesPricingSection = () => {
     return (
         <Box
             sx={{
-                height: {xs: 3000, sm: 3000, md: 1600, lg: 1600, xl: 1700},
+                // height: {xs: 3000, sm: 3000, md: 1600, lg: 1600, xl: 1700},
                 background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)",
                 // border: '2px solid red'
+                pt: 5,
+                pb: 15,
             }}
         >
             <Container maxWidth={"md"}>

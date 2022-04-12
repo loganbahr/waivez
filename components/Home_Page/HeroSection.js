@@ -9,16 +9,17 @@ const HeroSection = () => {
     return (
         <Box
             sx={{
-                height: {xs: 800, sm: 900, md: 1000, lg: 1100},
+                // height: {xs: 800, sm: 900, md: 1000, lg: 1100},
                 background: "linear-gradient(180deg, #f9f9f9, #bc9bde, #7f00ff)",
                 justifyContent: "center",
+                pt: 10,
             }}
         >
             <Container maxWidth={"md"}>
                 <Box
                     sx={{
                         mt: 15,
-                        height: {xs: 400, sm: 400, md: 600},
+                        // height: {xs: 400, sm: 400, md: 600},
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
@@ -49,7 +50,7 @@ const HeroSection = () => {
 
                     <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}}
                                 transition={{duration: 1, delay: 0.5}}>
-                        <Typography variant={"h2"} sx={{}}>
+                        <Typography variant={"h2"} color={'text.content'} sx={{}}>
                             Any business.
                         </Typography>
                     </motion.div>
