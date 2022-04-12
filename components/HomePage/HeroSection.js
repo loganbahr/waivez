@@ -1,10 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Box from "@mui/material/Box";
-import {Button, Container, duration, Typography} from "@mui/material";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { Container,Typography} from "@mui/material";
 import {motion} from "framer-motion";
-import Logo from "../Graphics/Logo";
-import PhoneGraphic from "../Graphics/PhoneGraphic";
+import PhonePaperFlow from "../Graphics/PhonePaperFlow";
 
 const HeroSection = () => {
 
@@ -43,9 +41,9 @@ const HeroSection = () => {
                         width: {xs: 250, sm: 300, md: 350},
                         height: {xs: 250, sm: 300, md: 350},
                         my: 3,
-                        mr: 8
+                        mr: 8,
                     }}>
-                        <PhoneGraphic width={'100%'} height={'100%'} color={'#7f00ff'} />
+                        <PhonePaperFlow width={'100%'} height={'100%'} color={'#7f00ff'} />
                     </Box>
 
 

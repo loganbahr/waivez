@@ -9,7 +9,6 @@ import ProPricingCard from "../../components/Cards/ProPricingCard";
 import Logo from "../../components/Graphics/Logo";
 
 const PricingPage = () => {
-    // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
     return (
         <Box sx={{}}>
             <Container maxWidth='lg'
@@ -81,6 +80,9 @@ const PricingPage = () => {
                                 Sophisticated <br/> when you want it.
                             </Typography>
                         </Box>
+                    </Box>
+                    <Box>
+
                     </Box>
 
                 </Container>
