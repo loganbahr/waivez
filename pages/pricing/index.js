@@ -9,7 +9,6 @@ import ProPricingCard from "../../components/Cards/ProPricingCard";
 import Logo from "../../components/Graphics/Logo";
 
 const PricingPage = () => {
-    // background: "linear-gradient(0deg, #f9f9f9, #bc9bde, #7f00ff)"
     return (
         <Box sx={{}}>
             <Container maxWidth='lg'
@@ -67,9 +66,6 @@ const PricingPage = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'column',
-                            // border: '2px solid red',
-                            // width: {xs: 200},
-                            // height: {xs: 200},
                         }}>
                             <Typography variant={'h2'} color={'text.content'} sx={{textAlign: 'center', mb: 2}}>
                                 Simple when <br/> you need it.
@@ -81,6 +77,9 @@ const PricingPage = () => {
                                 Sophisticated <br/> when you want it.
                             </Typography>
                         </Box>
+                    </Box>
+                    <Box>
+
                     </Box>
 
                 </Container>

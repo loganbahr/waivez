@@ -51,6 +51,7 @@ const AboutPage = () => {
                     <Typography variant={"h2"} textAlign="center">
                         the developers of waivez
                     </Typography>
+
                     <DeveloperAccordion/>
                 </Container>
             </motion.div>
