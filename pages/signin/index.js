@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import Head from "next/head";
-import axios from 'axios';
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
-import TitleText from "../../components/Text/TitleText";
-import SubtitleText from "../../components/Text/SubtitleText";
 import FormikForm from "../../components/SignIn_Page/FormikForm";
 
 
