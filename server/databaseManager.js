@@ -1,6 +1,26 @@
 const { MongoClient } = require("mongodb");
+const fs = require("fs");
+const path = require("path");
 
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@waivez-cluster.3cvs8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+let user = process.env.MONGO_USER;
+let pass = process.env.MONGO_PASS;
+
+if (process.env.NODE_ENV === "production") {
+  console.log("A")
+  fs.readFile(
+    path.join(__dirname, "tmp", "databaseConfig.json"),
+    (err, data) => {
+      if (err) console.error(err);
+      else {
+        const config = JSON.parse(data);
+        user = config.username;
+        pass = config.password;
+      }
+    }
+  );
+}
+
+const uri = `mongodb+srv://${user}:${pass}@waivez-cluster.3cvs8.mongodb.net`;
 
 const client = new MongoClient(uri);
 const db = client.db("waivez");
