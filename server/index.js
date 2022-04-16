@@ -275,6 +275,8 @@ const getWaiverInformation = async (req, resp) => {
   return resp.status(200).send(companies[partnerId][waivers][waiverId]);
 };
 
+app.get("/", (req, res) => res.sendStatus(200));
+
 app.get("/api/user", databaseManager.getUser);
 app.get("/api/companies", getCompanies);
 app.get("/api/waiver", getWaiverInformation);
