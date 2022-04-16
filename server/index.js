@@ -25,16 +25,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Likely fix for CORS issues
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 /**
  * Crawl the company folder for all subdirectories (should be all companies).
  */
