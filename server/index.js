@@ -4,11 +4,12 @@
  * @description Main file for the backend server of waivez
  * @since 3/10/2022
  */
-const PORT = 5000; // still kinda undecided, consult with Logan
+require("dotenv").config();
+
+const PORT = process.env.PORT || 5000; // still kinda undecided, consult with Logan
 
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
 const cors = require("cors");
 const { createSignedWaiver } = require("./imageHandler");
 const databaseManager = require("./databaseManager");
