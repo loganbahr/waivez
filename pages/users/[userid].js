@@ -43,7 +43,7 @@ const UserPage = (props) => {
 UserPage.getInitialProps = async ({ req, query }) => {
   const id = query.id;
 
-  const res = await Axios.get("http://localhost:5000/user", {
+  const res = await Axios.get(`${process.env.API_URL}/api/user`, {
     params: {
       id: 1,
     },

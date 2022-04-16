@@ -49,7 +49,7 @@ const PartnersPage = (props) => {
 };
 
 PartnersPage.getInitialProps = async () => {
-    const res = await Axios.get("http://localhost:5000/companies");
+    const res = await Axios.get(`${process.env.API_URL}/api/companies`);
 
     if (res.data) {
         return res.data;

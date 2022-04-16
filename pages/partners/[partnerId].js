@@ -186,7 +186,7 @@ const PartnerPage = (props) => {
   };
 
   const submit = () => {
-    Axios.post("http://localhost:5000/signWaivers", {
+    Axios.post(`${process.env.API_URL}/api/signWaivers`, {
       partnerId: partnerId,
       signature: signature.split(",")[1],
       initials: initials.includes(",") ? initials.split(",")[1] : undefined,
@@ -325,7 +325,7 @@ const PartnerPage = (props) => {
 
 PartnerPage.getInitialProps = async ({ req, query }) => {
   const partnerId = query.partnerId;
-  const res = await Axios.get("http://localhost:5000/company", {
+  const res = await Axios.get(`${process.env.API_URL}/api/company`, {
     params: {
       company: partnerId,
     },
