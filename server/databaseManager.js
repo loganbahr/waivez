@@ -20,6 +20,8 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
+setInterval(() => console.log(new Date()), 1000);
+
 const uri = `mongodb+srv://${user}:${pass}@waivez-cluster.3cvs8.mongodb.net`;
 
 const client = new MongoClient(uri);
