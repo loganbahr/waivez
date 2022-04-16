@@ -6,7 +6,7 @@ let user = process.env.MONGO_USER;
 let pass = process.env.MONGO_PASS;
 
 if (process.env.NODE_ENV === "production") {
-  console.log("A")
+  console.log("IN PRODUCTION MODE");
   fs.readFile(
     path.join(__dirname, "tmp", "databaseConfig.json"),
     (err, data) => {
