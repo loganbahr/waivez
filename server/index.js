@@ -24,6 +24,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Likely fix for CORS issues
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 /**
  * Crawl the company folder for all subdirectories (should be all companies).
  */
@@ -128,7 +138,9 @@ const signWaivers = async (req, resp) => {
     userId = user._id.toString();
     const signed = await databaseManager.searchWaiversByUserId(userId);
     if (signed && signed.length > 0) {
-      const filtered = signed.filter((waiver) => waiver.partnerId === partnerId);
+      const filtered = signed.filter(
+        (waiver) => waiver.partnerId === partnerId
+      );
       console.log(filtered);
       for (const waiver of filtered) {
         if (waivers.includes(waiver.partnerWaiverId)) {
@@ -238,7 +250,7 @@ const lookupWaivers = async (req, resp) => {
   return resp.status(200).send({ signedWaivers });
 };
 
-app.get("/company", (req, resp) => {
+app.get("/api/company", (req, resp) => {
   const { company } = req.query;
 
   if (!company) {
@@ -262,11 +274,11 @@ const getWaiverInformation = async (req, resp) => {
   return resp.status(200).send(companies[partnerId][waivers][waiverId]);
 };
 
-app.get("/user", databaseManager.getUser);
-app.get("/companies", getCompanies);
-app.get("/waiver", getWaiverInformation);
-app.get("/lookupWaivers", lookupWaivers);
-app.post("/signWaivers", signWaivers);
+app.get("/api/user", databaseManager.getUser);
+app.get("/api/companies", getCompanies);
+app.get("/api/waiver", getWaiverInformation);
+app.get("/api/lookupWaivers", lookupWaivers);
+app.post("/api/signWaivers", signWaivers);
 
 app.listen(PORT);
 console.log("Server started on port " + PORT);

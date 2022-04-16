@@ -73,5 +73,5 @@ module.exports = {
   searchUser,
   searchWaiversByUserId,
   insertUserInformation,
-  insertWaivers
+  insertWaivers,
 };
