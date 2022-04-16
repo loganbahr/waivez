@@ -22,6 +22,8 @@ if (process.env.NODE_ENV === "production") {
 
 const uri = `mongodb+srv://${user}:${pass}@waivez-cluster.3cvs8.mongodb.net`;
 
+console.log(uri);
+
 const client = new MongoClient(uri);
 const db = client.db("waivez");
 
