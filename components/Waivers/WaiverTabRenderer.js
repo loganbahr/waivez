@@ -11,13 +11,7 @@ import WaiverRenderer from "./WaiverRenderer";
 
 const WaiverTabRenderer = (props) => {
   const [tab, setTab] = useState(0);
-
-  useEffect(() => {
-    console.log(props.signedWaivers);
-    console.log(props.waiverData);
-    console.log(props.waivers);
-  }, []);
-
+  
   // one waiver -> no need for tabs
   if (props.waivers.length === 1) {
     if (props.signedWaivers) {

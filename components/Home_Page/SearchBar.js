@@ -17,7 +17,7 @@ const SearchBar = (props) => {
     if (value) {
       router.push(value.url);
     }
-  }, [value]);
+  }, [router, value]);
 
   // Ask logan, where should we store companies.
 

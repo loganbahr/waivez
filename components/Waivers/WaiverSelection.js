@@ -31,7 +31,7 @@ const WaiverSelection = (props) => {
   useEffect(() => {
     props.setSelectedWaivers([true, true]);
 
-  }, []);
+  }, [props]);
 
   // const [selectionModel, setSelectionModel] = useState(() => {
   //     return props.selectedWaivers.map((r) => r.id);

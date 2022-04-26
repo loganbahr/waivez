@@ -44,7 +44,7 @@ const WaiverMinorForm = (props) => {
 
     useEffect(() => {
         props.setFormValid(validationSchema.isValidSync(props.minorInfo));
-    }, [props.minorInfo]);
+    }, [validationSchema, props]);
 
     const formik = useFormik({
         initialValues: props.minorInfo,
