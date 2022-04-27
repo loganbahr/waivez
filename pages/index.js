@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 
 const HomePage = (props) => {
   useEffect(() => {
-    console.log(process.env.API_URL);
+    console.log(process.env.NEXT_PUBLIC_API_URL);
   }, []);
 
   return (
@@ -60,14 +60,16 @@ const HomePage = (props) => {
   );
 };
 
-HomePage.getInitialProps = async () => {
-  const res = await Axios.get(`${process.env.API_URL}/api/companies`);
+export async function getServerSideProps({ req, query }) {
+  const res = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/companies`);
 
   if (res.data) {
-    return res.data;
+    return {
+      props: res.data,
+    };
   }
 
-  return { err: "no company" };
-};
+  return { props: { err: "no company" } };
+}
 
 export default HomePage;

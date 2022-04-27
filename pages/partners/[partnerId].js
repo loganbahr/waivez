@@ -186,7 +186,7 @@ const PartnerPage = (props) => {
   };
 
   const submit = () => {
-    Axios.post(`${process.env.API_URL}/api/signWaivers`, {
+    Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/signWaivers`, {
       partnerId: partnerId,
       signature: signature.split(",")[1],
       initials: initials.includes(",") ? initials.split(",")[1] : undefined,
@@ -283,7 +283,8 @@ const PartnerPage = (props) => {
                               !formValid &&
                               minorInfo.numberOfMinors > 0) ||
                             (steps[step] === WAIVER_SELECTION &&
-                              selectedWaivers.length === 0)
+                              selectedWaivers.length === 0) ||
+                            (steps[step] === INITIALS && !initials)
                           }
                         >
                           Continue
@@ -323,19 +324,24 @@ const PartnerPage = (props) => {
   );
 };
 
-PartnerPage.getInitialProps = async ({ req, query }) => {
+export async function getServerSideProps({ req, query }) {
   const partnerId = query.partnerId;
-  const res = await Axios.get(`${process.env.API_URL}/api/company`, {
-    params: {
-      company: partnerId,
-    },
-  });
+  const res = await Axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/company`,
+    {
+      params: {
+        company: partnerId,
+      },
+    }
+  );
 
   if (res.data) {
-    return res.data;
+    return {
+      props: res.data,
+    };
   }
 
   return {};
-};
+}
 
 export default PartnerPage;
