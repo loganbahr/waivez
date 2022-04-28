@@ -40,10 +40,10 @@ const UserPage = (props) => {
   );
 };
 
-UserPage.getInitialProps = async ({ req, query }) => {
+export async function getServerSideProps({ req, query }) {
   const id = query.id;
 
-  const res = await Axios.get("http://localhost:5000/user", {
+  const res = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
     params: {
       id: 1,
     },
@@ -51,11 +51,13 @@ UserPage.getInitialProps = async ({ req, query }) => {
 
   if (res.data) {
     return {
-      user: res.data,
+      props: {
+        user: res.data,
+      },
     };
   }
 
   return {};
-};
+}
 
 export default UserPage;

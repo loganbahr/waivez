@@ -28,17 +28,17 @@ const WaiverSelection = (props) => {
     },
   ];
 
-  useEffect(() => {
-    props.setSelectedWaivers([true, true]);
-
-  }, []);
+  // useEffect(() => {
+  //   console.log("Setting selected waivers");
+  //   props.setSelectedWaivers([true, true]);
+  // }, [props.selectedWaivers]);
 
   // const [selectionModel, setSelectionModel] = useState(() => {
   //     return props.selectedWaivers.map((r) => r.id);
   // });
 
   return (
-    <Box sx={{ mb: 2, backgroundColor: '#f9f9f9' }}>
+    <Box sx={{ mb: 2, backgroundColor: "#f9f9f9" }}>
       <DataGrid
         rows={Object.keys(props.waivers).map((waiverId, _idx) => {
           return {

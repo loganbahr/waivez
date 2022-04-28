@@ -4,11 +4,12 @@
  * @description Main file for the backend server of waivez
  * @since 3/10/2022
  */
-const PORT = 5000; // still kinda undecided, consult with Logan
+require("dotenv").config();
+
+const PORT = process.env.PORT || 5000; // still kinda undecided, consult with Logan
 
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
 const cors = require("cors");
 const { createSignedWaiver } = require("./imageHandler");
 const databaseManager = require("./databaseManager");
@@ -23,6 +24,18 @@ const companies = {};
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+
+// Likely fix for CORS issues
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 /**
  * Crawl the company folder for all subdirectories (should be all companies).
@@ -128,7 +141,9 @@ const signWaivers = async (req, resp) => {
     userId = user._id.toString();
     const signed = await databaseManager.searchWaiversByUserId(userId);
     if (signed && signed.length > 0) {
-      const filtered = signed.filter((waiver) => waiver.partnerId === partnerId);
+      const filtered = signed.filter(
+        (waiver) => waiver.partnerId === partnerId
+      );
       console.log(filtered);
       for (const waiver of filtered) {
         if (waivers.includes(waiver.partnerWaiverId)) {
@@ -238,7 +253,7 @@ const lookupWaivers = async (req, resp) => {
   return resp.status(200).send({ signedWaivers });
 };
 
-app.get("/company", (req, resp) => {
+app.get("/api/company", (req, resp) => {
   const { company } = req.query;
 
   if (!company) {
@@ -262,11 +277,13 @@ const getWaiverInformation = async (req, resp) => {
   return resp.status(200).send(companies[partnerId][waivers][waiverId]);
 };
 
-app.get("/user", databaseManager.getUser);
-app.get("/companies", getCompanies);
-app.get("/waiver", getWaiverInformation);
-app.get("/lookupWaivers", lookupWaivers);
-app.post("/signWaivers", signWaivers);
+app.get("/", (req, res) => res.sendStatus(200));
+
+app.get("/api/user", databaseManager.getUser);
+app.get("/api/companies", getCompanies);
+app.get("/api/waiver", getWaiverInformation);
+app.get("/api/lookupWaivers", lookupWaivers);
+app.post("/api/signWaivers", signWaivers);
 
 app.listen(PORT);
 console.log("Server started on port " + PORT);

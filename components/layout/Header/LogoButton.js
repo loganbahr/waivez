@@ -6,7 +6,7 @@ import Logo from "../../Graphics/Logo";
 
 const LogoButton = () => {
     return (
-        <Link href='/'>
+        <Link href='/' passHref>
             <IconButton sx={{color: 'white'}}>
                 <Logo width={'100%'} height={'100%'} color={'#f9f9f9'} />
             </IconButton>

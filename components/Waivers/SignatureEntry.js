@@ -36,7 +36,7 @@ const SignatureEntry = (props) => {
         updateCanvasSize();
         window.addEventListener("resize", updateCanvasSize);
         return () => window.removeEventListener("resize", updateCanvasSize);
-    }, []);
+    }, [props.setSignature]);
 
     return (
         <Box
