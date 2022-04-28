@@ -43,7 +43,7 @@ const UserPage = (props) => {
 export async function getServerSideProps({ req, query }) {
   const id = query.id;
 
-  const res = await Axios.get(`${process.env.API_URL}/api/user`, {
+  const res = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
     params: {
       id: 1,
     },

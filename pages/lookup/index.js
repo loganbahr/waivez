@@ -42,7 +42,7 @@ const LookupPage = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      Axios.get(`${process.env.API_URL}/api/lookupWaivers`, {
+      Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/lookupWaivers`, {
         params: {
           firstName: values.firstName,
           lastName: values.lastName,
