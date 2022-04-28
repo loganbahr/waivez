@@ -56,7 +56,7 @@ const PartnersPage = (props) => {
 };
 
 export async function getServerSideProps({ req, query }) {
-  const res = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/companies`);
+  const res = await Axios.get(`${process.env.API_URL}/api/companies`);
 
   if (res.data) {
     return {
