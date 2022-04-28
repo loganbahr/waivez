@@ -15,6 +15,7 @@ const AboutPage = () => {
             sx={{
                 backgroundColor: "#f9f9f9",
                 backgroundImage: about_background,
+                minHeight: '100vh',
             }}
         >
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
@@ -51,6 +52,7 @@ const AboutPage = () => {
                     <Typography variant={"h2"} textAlign="center">
                         the developers of waivez
                     </Typography>
+
 
                     <DeveloperAccordion/>
                 </Container>
