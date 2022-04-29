@@ -28,8 +28,8 @@ const pages = [
         link: "/contact",
     },
     {
-        name: "Sign In",
-        link: "/signin",
+        name: "Lookup",
+        link: "/lookup",
     },
 ];
 

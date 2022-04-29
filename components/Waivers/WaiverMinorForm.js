@@ -120,7 +120,6 @@ const WaiverMinorForm = (props) => {
 
         const handleBlur = (e) => {
             const minors = formik.touched.minors;
-            console.log(minors);
             if (minors === undefined) {
                 minors = Object.keys(props.minorInfo.minors).map(() => {
                     return {firstName: false, lastName: false, dateOfBirth: false};
@@ -238,6 +237,7 @@ const WaiverMinorForm = (props) => {
             </Typography>
             <TextField
                 select
+                disabled
                 id="numberOfMinors"
                 name="numberOfMinors"
                 value={props.minorInfo.numberOfMinors}

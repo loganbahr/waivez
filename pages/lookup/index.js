@@ -5,16 +5,27 @@
  * @since 4/3/2022
  **/
 
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Skeleton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { differenceInYears } from "date-fns";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
 import { useState } from "react";
 import WaiverTabRenderer from "../../components/Waivers/WaiverTabRenderer";
+import Head from "next/head";
 
 const LookupPage = (props) => {
   const [waiverData, setWaiverData] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const validationSchema = yup.object({
     firstName: yup
@@ -36,12 +47,13 @@ const LookupPage = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "John",
-      lastName: "Smith",
-      dateOfBirth: "2000-06-26",
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      setSubmitted(true);
       Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/lookupWaivers`, {
         params: {
           firstName: values.firstName,
@@ -52,8 +64,8 @@ const LookupPage = (props) => {
         if (resp.data.err) {
           console.log(resp.data.err);
         }
-        console.log(resp);
         setWaiverData(resp.data.signedWaivers);
+        setSubmitted(false);
       });
     },
   });
@@ -65,6 +77,10 @@ const LookupPage = (props) => {
 
   return (
     <Box pt={10}>
+      <Head>
+        <title>Lookup User</title>
+        <meta />
+      </Head>
       <Container
         maxWidth="md"
         sx={{
@@ -134,11 +150,26 @@ const LookupPage = (props) => {
             Search Waivers
           </Button>
         </Box>
-        {Object.keys(waiverData).length > 0 &&
+        <Backdrop sx={{ color: "#fff", zIndex: 999 }} open={submitted}>
+          <CircularProgress color="primary" />
+        </Backdrop>
+        {submitted && (
+          <Skeleton
+            variant="rectangular"
+            sx={{ width: "100%", height: 800, my: 4 }}
+          />
+        )}
+        {!submitted &&
+          Object.keys(waiverData).length > 0 &&
           Object.keys(waiverData).map((partner) => {
             return (
               <Box key={partner} sx={{ my: 10 }}>
-                <Typography variant="h2">{partner}</Typography>
+                <Typography
+                  variant="h2"
+                  sx={{ fontSize: { xs: 24, sm: 32, md: 48 } }}
+                >
+                  {partner}
+                </Typography>
                 <WaiverTabRenderer
                   waivers={waiverData[partner].map((waiver) => {
                     return waiver.partnerWaiverId;

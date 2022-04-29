@@ -6,18 +6,14 @@ let user = process.env.MONGO_USER;
 let pass = process.env.MONGO_PASS;
 
 if (process.env.NODE_ENV === "production") {
-  console.log("IN PRODUCTION MODE");
-  fs.readFile(
-    path.join("/", "tmp", "databaseConfig.json"),
-    (err, data) => {
-      if (err) console.error(err);
-      else {
-        const config = JSON.parse(data);
-        user = config.username;
-        pass = config.password;
-      }
+  fs.readFile(path.join("/", "tmp", "databaseConfig.json"), (err, data) => {
+    if (err) console.error(err);
+    else {
+      const config = JSON.parse(data);
+      user = config.username;
+      pass = config.password;
     }
-  );
+  });
 }
 
 const uri = `mongodb+srv://${user}:${pass}@waivez-cluster.3cvs8.mongodb.net/test?retryWrites=true&w=majority`;

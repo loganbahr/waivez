@@ -57,15 +57,15 @@ const PartnerPage = (props) => {
 
   const [step, setStep] = useState(0);
   const [userInfo, setUserInfo] = useState({
-    firstName: "John",
-    lastName: "Smith",
-    dateOfBirth: "2000-06-26",
-    email: "john.smith@gmail.com",
-    addressLine: "123 example street",
-    addressCity: "Naples",
-    addressState: "Florida",
-    addressPostal: "34156",
-    phoneNumber: "2394445555",
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    email: "",
+    addressLine: "",
+    addressCity: "",
+    addressState: "",
+    addressPostal: "",
+    phoneNumber: "",
   });
   const [minorInfo, setMinorInfo] = useState({
     numberOfMinors: 0,
@@ -110,11 +110,6 @@ const PartnerPage = (props) => {
             waiverData={props.waivers}
           />
         );
-      // selectedWaivers.map((val, idx) => {
-      //   return (
-      //     <WaiverRenderer key={idx} image={props.waivers[val].imagePath} />
-      //   );
-      // });
       case ENTER_FORM:
         return (
           <WaiverInfoForm
@@ -139,7 +134,7 @@ const PartnerPage = (props) => {
         );
       case REVIEW:
         if (signedWaivers.length === 0)
-          return <Skeleton variant="rectangular" sx={{ height: 400 }} />;
+          return <Skeleton variant="rectangular" sx={{ height: 800 }} />;
         return (
           <WaiverTabRenderer
             waivers={selectedWaivers}
@@ -194,7 +189,6 @@ const PartnerPage = (props) => {
       waivers: selectedWaivers,
       minorInfo: minorInfo,
     }).then((resp) => {
-      console.log(resp);
       if (resp.data.alreadySigned) {
         let message = "You have already signed the following waivers:\n";
         for (const waiver of resp.data.alreadySigned) message += waiver + "\n";

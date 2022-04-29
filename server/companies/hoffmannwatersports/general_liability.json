@@ -9,11 +9,6 @@
       "type": "signature"
     },
     {
-      "x": 2128,
-      "y": 3000,
-      "type": "signature"
-    },
-    {
       "x": 1130,
       "y": 2700,
       "type": "initials"
@@ -24,48 +19,8 @@
       "type": "printName"
     },
     {
-      "x": 405,
-      "y": 2770,
-      "type": "printName"
-    },
-    {
-      "x": 405,
-      "y": 2840,
-      "type": "printName"
-    },
-    {
-      "x": 405,
-      "y": 2910,
-      "type": "printName"
-    },
-    {
-      "x": 405,
-      "y": 2980,
-      "type": "printName"
-    },
-    {
       "x": 850,
       "y": 2700,
-      "type": "currentDate"
-    },
-    {
-      "x": 850,
-      "y": 2770,
-      "type": "currentDate"
-    },
-    {
-      "x": 850,
-      "y": 2840,
-      "type": "currentDate"
-    },
-    {
-      "x": 850,
-      "y": 2910,
-      "type": "currentDate"
-    },
-    {
-      "x": 850,
-      "y": 2980,
       "type": "currentDate"
     }
   ],
