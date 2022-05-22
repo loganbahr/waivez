@@ -1,11 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
-import FormikForm from "../../components/SignIn_Page/FormikForm";
+import ExistingUser from "../../components/supabase/ExistingUser";
+import {supabase} from '../../lib/supabaseClient';
 
 
-const SignInPage = () => {
+const SignIn = () => {
+
+    const [session, setSession] = useState(null);
+
+    useEffect(() => {
+        setSession(supabase.auth.session())
+
+        supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session)
+        })
+    }, []);
+
     return (
         <Box>
             <Container maxWidth='lg'
@@ -42,12 +54,15 @@ const SignInPage = () => {
                            opacity: '1',
                            backgroundColor: 'clear'
                        }}>
-                <FormikForm/>
-            </Container>
 
+                <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                    <div className="container" style={{padding: '50px 0 100px 0'}}>
+                        {!session ? <ExistingUser/> : <h1>You&apos;re already signed in!</h1>}
+                    </div>
+                </Box>
+            </Container>
         </Box>
     );
 };
 
-
-export default SignInPage;
+export default SignIn;

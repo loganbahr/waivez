@@ -6,8 +6,20 @@ import PageLinkButton from "./PageLinkButton";
 import LogoButton from "./LogoButton";
 import PageMenuButton from "./PageMenuButton";
 import {Container} from "@mui/material";
+import {supabase} from "../../../lib/supabaseClient";
+import {useEffect, useState} from "react";
 
 export default function Header() {
+
+    const [session, setSession] = useState(null);
+    useEffect(() => {
+        setSession(supabase.auth.session())
+
+        supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session)
+        })
+    }, []);
+
     return (
         <Box sx={{flexGrow: 1, backgroundColor: ""}}>
             <Container maxWidth={"xl"} sx={{}}>
@@ -34,12 +46,16 @@ export default function Header() {
                         <PageLinkButton link="/" text="Home"/>
                         <PageLinkButton link="/partners" text="Partners"/>
                         <PageLinkButton link="/pricing" text="Pricing"/>
-                        <Box sx={{ width: {xs: 50, md: 75}, height: {xs: 50, md: 75}}}>
+                        <Box sx={{width: {xs: 50, md: 75}, height: {xs: 50, md: 75}}}>
                             <LogoButton/>
                         </Box>
                         <PageLinkButton link="/about" text="About"/>
                         <PageLinkButton link="/contact" text="Contact"/>
-                        <PageLinkButton link="/lookup" text="Lookup"/>
+                        {session ?
+                            (<PageLinkButton link="/partner" text="Dashboard"/>) :
+                            (<PageLinkButton link="/signin" text="Sign In"/>)
+                        }
+
                     </Toolbar>
                 </AppBar>
             </Container>

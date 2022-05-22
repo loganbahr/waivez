@@ -4,11 +4,11 @@
  * @description The contact page. (www.waivez.com/contact)
  * @since 3/1/2022
  */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import {Box, Container, Typography} from "@mui/material";
 import FormikForm from "../../components/Contact_Page/FormikForm";
-
+import {supabase} from "../../lib/supabaseClient";
 
 const ContactPage = () => {
     return (
@@ -52,7 +52,6 @@ const ContactPage = () => {
                        }}>
                 <FormikForm/>
             </Container>
-
         </Box>
     );
 };
