@@ -5,20 +5,14 @@ import Toolbar from "@mui/material/Toolbar";
 import PageLinkButton from "./PageLinkButton";
 import LogoButton from "./LogoButton";
 import PageMenuButton from "./PageMenuButton";
-import {Container} from "@mui/material";
-import {supabase} from "../../../lib/supabaseClient";
+import {Button, Container} from "@mui/material";
 import {useEffect, useState} from "react";
+import {signOut, useSession} from "next-auth/react";
+import Image from "next/image";
 
 export default function Header() {
 
-    const [session, setSession] = useState(null);
-    useEffect(() => {
-        setSession(supabase.auth.session())
-
-        supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session)
-        })
-    }, []);
+    const {data: session} = useSession();
 
     return (
         <Box sx={{flexGrow: 1, backgroundColor: ""}}>
@@ -51,11 +45,8 @@ export default function Header() {
                         </Box>
                         <PageLinkButton link="/about" text="About"/>
                         <PageLinkButton link="/contact" text="Contact"/>
-                        {session ?
-                            (<PageLinkButton link="/partner" text="Dashboard"/>) :
-                            (<PageLinkButton link="/signin" text="Sign In"/>)
-                        }
-
+                        {session ? (<PageLinkButton link="/partner" text="Dashboard"/>) : (
+                            <PageLinkButton link="/auth/signin" text="Sign In"/>)}
                     </Toolbar>
                 </AppBar>
             </Container>

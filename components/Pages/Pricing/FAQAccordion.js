@@ -1,5 +1,5 @@
 /**
- * @file Pricing_Page/FAQAccordion.js
+ * @file Pricing/FAQAccordion.js
  * @author Logan Bahr
  * @description This file contains the FAQ Accordion component.
  * @since 4/12/2022

@@ -8,10 +8,9 @@ const ExistingUser = () => {
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [userNotFound, setUserNotFound] = useState(false);
-
     const [session, setSession] = useState(null);
+
     useEffect(() => {
         setSession(supabase.auth.session())
 

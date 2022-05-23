@@ -8,7 +8,7 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Container, Typography } from "@mui/material";
-import PartnerDirectory from "../../components/Partner_Page/PartnerDirectory";
+import PartnerDirectory from "../../components/Pages/Partners/PartnerDirectory";
 import Axios from "axios";
 import { partners_background } from "../../components/theme";
 

@@ -3,9 +3,9 @@ import Head from "next/head";
 import React from "react";
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
-import TimelineStepper from "../../components/AboutPage/TimelineStepper";
-import PhaseTimelineGraphic from "../../components/AboutPage/PhaseTimelineGraphic";
-import DeveloperAccordion from "../../components/AboutPage/DeveloperAccordion";
+import TimelineStepper from "../../components/Pages/About/TimelineStepper";
+import PhaseTimelineGraphic from "../../components/Pages/About/PhaseTimelineGraphic";
+import DeveloperAccordion from "../../components/Pages/About/DeveloperAccordion";
 import {motion} from 'framer-motion';
 import {about_background} from '../../components/theme'
 

@@ -7,7 +7,7 @@
 import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import {Box, Container, Typography} from "@mui/material";
-import FormikForm from "../../components/Contact_Page/FormikForm";
+import FormikForm from "../../components/Pages/Contact/FormikForm";
 import {supabase} from "../../lib/supabaseClient";
 
 const ContactPage = () => {

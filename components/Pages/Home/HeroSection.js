@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { Container,Typography} from "@mui/material";
 import {motion} from "framer-motion";
-import PhonePaperFlow from "../Graphics/PhonePaperFlow";
+import PhonePaperFlow from "../../Graphics/PhonePaperFlow";
 
 const HeroSection = () => {
 

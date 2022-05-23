@@ -1,5 +1,5 @@
 /**
- * @file /components/AboutPage/TimelineStepper.js
+ * @file /components/About/TimelineStepper.js
  * @author Logan Bahr
  * @description MUI Stepper component to describe phases of Waivez development.
  * @since 4/2/22

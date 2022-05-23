@@ -3,20 +3,11 @@ import Head from "next/head";
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
 import ExistingUser from "../../components/supabase/ExistingUser";
-import {supabase} from '../../lib/supabaseClient';
 
 
 const SignIn = () => {
 
     const [session, setSession] = useState(null);
-
-    useEffect(() => {
-        setSession(supabase.auth.session())
-
-        supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session)
-        })
-    }, []);
 
     return (
         <Box>
@@ -57,7 +48,7 @@ const SignIn = () => {
 
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>
                     <div className="container" style={{padding: '50px 0 100px 0'}}>
-                        {!session ? <ExistingUser/> : <h1>You&apos;re already signed in!</h1>}
+                        {/*{!session ? <ExistingUser/> : <h1>You&apos;re already signed in!</h1>}*/}
                     </div>
                 </Box>
             </Container>
@@ -66,3 +57,4 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
