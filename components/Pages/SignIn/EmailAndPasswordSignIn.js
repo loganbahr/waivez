@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 import Box from "@mui/material/Box";
 import {Button, TextField, Typography} from "@mui/material";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
@@ -24,7 +24,6 @@ const EmailAndPasswordSignIn = ({providers}) => {
         //     console.log(errorCode, errorMessage);
         // });
 
-
         const response = await signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
             const user = userCredentials.user;
             console.log(response, user);
@@ -33,6 +32,7 @@ const EmailAndPasswordSignIn = ({providers}) => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
         });
+
     }
 
     return (

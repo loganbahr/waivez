@@ -89,7 +89,6 @@ const FormikForm = () => {
                     rows={8}
                     fullWidth
                     size='400px'
-                    maxRows={8}
                     id="message"
                     name="message"
                     label="Message"
