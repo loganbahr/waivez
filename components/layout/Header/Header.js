@@ -7,7 +7,7 @@ import LogoButton from "./LogoButton";
 import PageMenuButton from "./PageMenuButton";
 import {Button, Container} from "@mui/material";
 import {useEffect, useState} from "react";
-import {signOut, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 import Image from "next/image";
 
 export default function Header() {
@@ -45,8 +45,9 @@ export default function Header() {
                         </Box>
                         <PageLinkButton link="/about" text="About"/>
                         <PageLinkButton link="/contact" text="Contact"/>
-                        {session ? (<PageLinkButton link="/partner" text="Dashboard"/>) : (
-                            <PageLinkButton link="/auth/signin" text="Sign In"/>)}
+                        {session ?
+                            (<PageLinkButton link="/partner" text={session.user.email}/>)
+                            : (<PageLinkButton link="/auth/signin" text="Sign In"/>)}
                     </Toolbar>
                 </AppBar>
             </Container>

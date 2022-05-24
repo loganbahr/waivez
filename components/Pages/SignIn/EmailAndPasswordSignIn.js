@@ -11,8 +11,6 @@ const EmailAndPasswordSignIn = ({providers}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const {data: session} = useSession();
-
     const handleLogin = async () => {
 
         // await createUserWithEmailAndPassword(auth, email, password).then((userCredentials) => {

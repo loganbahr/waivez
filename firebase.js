@@ -1,4 +1,9 @@
-// Import the functions you need from the SDKs you need
+/**
+ * @file firebase.js
+ * @author Logan Bahr
+ * @description Firebase configuration for Next.js
+ * @since 5/22/22
+ */
 import {initializeApp, getApp, getApps} from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 import {getStorage} from "firebase/storage";
@@ -20,7 +25,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+// this was causing a problem with Oauth2...I think because I was signed
+// in with google account and email/password account at the same time? Not sure.
+// const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const storage = getStorage();
 const auth = getAuth();
