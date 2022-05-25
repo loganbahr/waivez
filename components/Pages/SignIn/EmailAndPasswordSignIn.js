@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {getSession, useSession} from "next-auth/react";
+import {getSession, signIn, useSession} from "next-auth/react";
 import Box from "@mui/material/Box";
 import {Button, TextField, Typography} from "@mui/material";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
@@ -22,14 +22,14 @@ const EmailAndPasswordSignIn = ({providers}) => {
         //     console.log(errorCode, errorMessage);
         // });
 
-        const response = await signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
-            const user = userCredentials.user;
-            console.log(response, user);
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        });
+        // const response = await signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
+        //     const user = userCredentials.user;
+        //     console.log(response, user);
+        // }).catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        //     console.log(errorCode, errorMessage);
+        // });
 
     }
 
@@ -38,8 +38,7 @@ const EmailAndPasswordSignIn = ({providers}) => {
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <form onSubmit={(event) => {
                     event.preventDefault();
-                    handleLogin(email, password).then(r => {
-                    });
+                    signIn('credentials', {email, password}).then(r => console.log(r.error));
                 }}>
                     <TextField
                         fullWidth

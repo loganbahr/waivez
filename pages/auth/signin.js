@@ -19,13 +19,16 @@ import EmailAndPasswordSignIn from "../../components/Pages/SignIn/EmailAndPasswo
 const SignIn = ({providers}) => {
 
     const {data: session} = useSession();
-    // console.log(providers);
+    console.log(session);
 
     return (
         <Box>
             <Button onClick={() => signIn("google")}>Sign in with Google</Button>
             {/*<AdminGoogleSignIn providers={providers}/>*/}
             {/*<EmailAndPasswordSignIn providers={providers}/>*/}
+
+
+            <EmailAndPasswordSignIn/>
 
             <Button variant={'contained'} onClick={() => signOut()}>Sign Out</Button>
         </Box>
