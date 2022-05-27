@@ -5,7 +5,7 @@ import {Button, TextField, Typography} from "@mui/material";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from '../../../firebase'
 
-const EmailAndPasswordSignIn = ({providers}) => {
+const EmailAndPasswordSignIn = () => {
 
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
@@ -13,32 +13,15 @@ const EmailAndPasswordSignIn = ({providers}) => {
 
     const handleLogin = async () => {
 
-        // await createUserWithEmailAndPassword(auth, email, password).then((userCredentials) => {
-        //     const user = userCredentials.user;
-        //     console.log(user);
-        // }).catch((error) => {
-        //     const errorCode = error.code;
-        //     const errorMessage = error.message;
-        //     console.log(errorCode, errorMessage);
-        // });
-
-        // const response = await signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
-        //     const user = userCredentials.user;
-        //     console.log(response, user);
-        // }).catch((error) => {
-        //     const errorCode = error.code;
-        //     const errorMessage = error.message;
-        //     console.log(errorCode, errorMessage);
-        // });
 
     }
 
     return (
         <Box>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <form onSubmit={(event) => {
-                    event.preventDefault();
-                    signIn('credentials', {email, password}).then(r => console.log(r.error));
+                <form onSubmit={async (event) => {
+                    // event.preventDefault();
+                    await signIn('credentials', {email: email, password: password});
                 }}>
                     <TextField
                         fullWidth

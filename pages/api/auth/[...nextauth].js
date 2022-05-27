@@ -8,7 +8,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import {auth} from "/firebase"
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 
 export default NextAuth({
     // Configure one or more authentication providers
@@ -16,31 +16,16 @@ export default NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            // authorization: {
-            //     params: {
-            //         prompt: 'consent',
-            //         access_type: 'offline',
-            //         response_type: 'code',
-            //     }
-            // }
         }),
-        // ...add more providers here
         CredentialsProvider({
-            name: 'credentials',
-            credentials: {
-                email: {label: 'Email', type: 'email'},
-                password: {label: 'Password', type: 'password'},
-            },
+            id: 'credentials',
+            name: 'Credentials',
+            type: 'credentials',
             async authorize(credentials) {
-                try {
-                    await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-                    console.log('authorized');
-                } catch (e) {
-                    console.log(e);
-                    console.log('error')
-                }
-            }
-        }),
+                const user = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
+                return {email: user.email};
+            },
+        })
     ],
     pages: {
         signIn: '/auth/signin',

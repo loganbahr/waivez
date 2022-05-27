@@ -25,12 +25,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// this was causing a problem with Oauth2...I think because I was signed
-// in with google account and email/password account at the same time? Not sure.
 // const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const storage = getStorage();
-const auth = getAuth();
+const auth = getAuth(app);
 
 export {app, db, storage, auth};

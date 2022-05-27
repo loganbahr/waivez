@@ -28,7 +28,7 @@ import { partnerId_background } from "../../components/theme";
 import ErrorDialog from "../../components/Waivers/ErrorDialog";
 
 /**
- * @file /pages/partners/[partnerId].js
+ * @file /pages/partners/[partnerId].[dashboard].js
  * @author Devin Arena, Logan Bahr
  * @description Pages for each individual partner. TODO: are we pulling from a database here?
  * @since 3/23/2022

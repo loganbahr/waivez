@@ -8,30 +8,30 @@
  */
 
 import React, {useState} from 'react';
-import {getProviders, signIn, signIn as SignIntoProvider, signOut, useSession} from "next-auth/react";
-import {Button} from "@mui/material";
-import AdminGoogleSignIn from "../../components/Pages/SignIn/AdminGoogleSignIn";
-import Box from "@mui/material/Box";
-import EmailAndPasswordSignIn from "../../components/Pages/SignIn/EmailAndPasswordSignIn";
+import {getProviders, signIn, signOut, useSession} from "next-auth/react";
+import {Button, Container} from "@mui/material";
+import CredentialsSignIn from "../api/auth/CredentialsSignIn";
 
-// not sure if it's okay to capitalize 'SignIn', turning it into a component, but it's
-// the only way to use hooks.
 const SignIn = ({providers}) => {
 
     const {data: session} = useSession();
     console.log(session);
 
     return (
-        <Box>
-            <Button onClick={() => signIn("google")}>Sign in with Google</Button>
-            {/*<AdminGoogleSignIn providers={providers}/>*/}
-            {/*<EmailAndPasswordSignIn providers={providers}/>*/}
+        <Container
+            sx={{
+                maxWidth: 'md',
+                minHeight: '100vh',
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+            }}>
 
-
-            <EmailAndPasswordSignIn/>
-
-            <Button variant={'contained'} onClick={() => signOut()}>Sign Out</Button>
-        </Box>
+            <CredentialsSignIn/>
+            <Button variant={'contained'} onClick={() => signIn("google")}>Sign in with Google</Button>
+            <Button variant={'contained'} sx={{mt: 3}} onClick={() => signOut()}>Sign Out</Button>
+        </Container>
     );
 };
 
