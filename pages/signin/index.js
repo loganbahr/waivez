@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import Box from "@mui/material/Box";
 import {Container, Typography} from "@mui/material";
-import ExistingUser from "../../components/supabase/ExistingUser";
 
 
 const SignIn = () => {

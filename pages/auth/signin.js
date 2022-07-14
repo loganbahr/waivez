@@ -7,15 +7,15 @@
  * @since 5/22/22
  */
 
-import React, {useState} from 'react';
-import {getProviders, signIn, signOut, useSession} from "next-auth/react";
-import {Button, Container} from "@mui/material";
-import CredentialsSignIn from "../api/auth/CredentialsSignIn";
+import React, {useEffect, useState} from 'react';
+import {useSession} from "next-auth/react";
+import {Button, Container, TextField} from "@mui/material";
+import PartnerPasswordSignIn from "../../components/Pages/Auth/PartnerPasswordSignIn";
 
-const SignIn = ({providers}) => {
+const SignIn = () => {
 
-    const {data: session} = useSession();
-    console.log(session);
+    const {data: session, status} = useSession();
+
 
     return (
         <Container
@@ -28,22 +28,11 @@ const SignIn = ({providers}) => {
                 flexDirection: 'column',
             }}>
 
-            <CredentialsSignIn/>
-            <Button variant={'contained'} onClick={() => signIn("google")}>Sign in with Google</Button>
-            <Button variant={'contained'} sx={{mt: 3}} onClick={() => signOut()}>Sign Out</Button>
+            <PartnerPasswordSignIn/>
+
         </Container>
     );
 };
 
-
-// server side render
-export async function getServerSideProps(context) {
-    const providers = await getProviders();
-    return {
-        props: {
-            providers,
-        }
-    }
-}
 
 export default SignIn;

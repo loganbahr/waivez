@@ -1,4 +1,4 @@
-// dynamic routing for each partner page (www.waivez.com/partners/marcoislandwatersports)
+// dynamic routing for each [partnerName] page (www.waivez.com/partners/marcoislandwatersports)
 // Okay daddy OwO
 
 import {
@@ -28,9 +28,9 @@ import { partnerId_background } from "../../components/theme";
 import ErrorDialog from "../../components/Waivers/ErrorDialog";
 
 /**
- * @file /pages/partners/[partnerId].[dashboard].js
+ * @file /pages/partners/[partnerName].js
  * @author Devin Arena, Logan Bahr
- * @description Pages for each individual partner. TODO: are we pulling from a database here?
+ * @description Pages for each individual [partnerName]. TODO: are we pulling from a database here?
  * @since 3/23/2022
  **/
 

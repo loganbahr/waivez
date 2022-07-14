@@ -6,6 +6,7 @@ import {CssBaseline} from "@mui/material";
 import {SessionProvider} from "next-auth/react";
 
 const MyApp = ({Component, pageProps: {session, ...pageProps}}) => {
+
     return (
         <>
             <SessionProvider session={session}>

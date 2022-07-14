@@ -25,7 +25,6 @@ export default function Header() {
                         backgroundColor: "primary",
                         borderBottomLeftRadius: {xs: 30, md: 20},
                         borderBottomRightRadius: {xs: 30, md: 20},
-                        // height: {xs: "70px", sm: "85px", md: "90px", xl: "120px"},
                         height: {xs: 60, sm: 70},
                     }}
                 >

@@ -5,29 +5,60 @@
  * @since 5/22/22
  */
 import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
-import {auth} from "/firebase"
-import {signInWithEmailAndPassword} from "firebase/auth";
+import {connectToDatabase} from "../../../lib/db";
+import {comparePassword} from "../../../lib/auth";
+import {useSession} from "next-auth/react";
 
 export default NextAuth({
-    // Configure one or more authentication providers
     providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        }),
         CredentialsProvider({
-            id: 'credentials',
-            name: 'Credentials',
-            type: 'credentials',
-            async authorize(credentials) {
-                const user = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-                return {email: user.email};
-            },
-        })
+            async authorize(credentials, req) {
+                try {
+                    const client = await connectToDatabase();
+
+                    const partnersCollection = client?.db("waivez").collection("partner");
+
+                    const partner = await partnersCollection?.findOne({partnerName: credentials.partnerName});
+                    // console.log(partner);
+
+                    const {adminPassword} = partner;
+                    // console.log(adminPassword);
+
+                    const properties = JSON?.parse(JSON.stringify(partner));
+                    // console.log(properties);
+
+                    if (!partner) {
+                        await client.close();
+                        new Error('No user found.');
+                    }
+
+                    let isValid = false;
+
+                    isValid = adminPassword === credentials.password;
+
+                    if (!isValid) {
+                        await client.close();
+                        console.log('Invalid password.');
+                        new Error('Invalid password.');
+                    } else {
+
+                        await client.close();
+
+                        // return {partnerName: partner.partnerName};
+                        return partner;
+                    }
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }),
     ],
     pages: {
         signIn: '/auth/signin',
-    }
+    },
+    secret: process.env.NEXTAUTH_URL,
+    
+
 })
