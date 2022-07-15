@@ -46,7 +46,7 @@ export default function Header() {
                         <PageLinkButton link="/contact" text="Contact"/>
                         {session ?
                             (<PageLinkButton link="/partner"
-                                             text={session.user.email ? session.user.email : "Logged In"}/>)
+                                             text={session.user.name ? session.user.name : "Logged In"}/>)
                             : (<PageLinkButton link="/auth/signin" text="Sign In"/>)}
                     </Toolbar>
                 </AppBar>

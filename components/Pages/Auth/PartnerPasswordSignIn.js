@@ -16,7 +16,7 @@ const PartnerPasswordSignIn = () => {
     const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [partnerName, setPartnerName] = useState([]);
+    const [partnerNamesArray, setPartnerNamesArray] = useState([]);
     const [selectedPartnerName, setSelectedPartnerName] = useState('');
 
     const {data: session, status} = useSession();
@@ -32,16 +32,13 @@ const PartnerPasswordSignIn = () => {
             });
 
             // destructuring the response to get the partner names
-            const {partnerName} = await response.json();
+            const {partnerNames} = await response.json();
 
-            setPartnerName(partnerName);
+            setPartnerNamesArray(partnerNames);
         }
         // call the fetchData function
         fetchData().catch(error => console.log(error));
-    }, [partnerName]);
-
-// TODO: going to have a problem with the callbackURL, need to have a partnerURL in the database
-//       with no spaces/special characters
+    }, [partnerNamesArray]);
 
     const submitHandler = async (event) => {
 
@@ -54,7 +51,7 @@ const PartnerPasswordSignIn = () => {
 
         try {
             const result = await signIn('credentials', {
-                partnerName: selectedPartnerName,
+                name: selectedPartnerName,
                 password: password,
                 callbackUrl: `/partner/${selectedPartnerNameUrl}/dashboard`,
             });
@@ -88,7 +85,7 @@ const PartnerPasswordSignIn = () => {
 
                         <Autocomplete
                             fullWidth
-                            options={partnerName}
+                            options={partnerNamesArray}
                             renderInput={(params) => <TextField {...params} label="Partner Name" variant="outlined"/>}
                             sx={{width: {md: '50%'}}}
                             onSelect={(event) => setSelectedPartnerName(event.target.value)}

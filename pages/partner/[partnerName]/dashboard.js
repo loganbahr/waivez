@@ -7,15 +7,15 @@ const Dashboard = () => {
 
     const {data: session, status} = useSession();
 
+    console.log(session);
+
+
+
     return (
         <Container maxWidth={'md'}>
 
             <Box
                 sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', mt: 50}}>
-
-                <Typography>
-                    {status}
-                </Typography>
 
                 <Typography>
                     {"username: " + session?.user?.name}

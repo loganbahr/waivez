@@ -27,14 +27,14 @@ export default async function handler(req, res) {
         const allPartnerNames = await partnersCollection.find({}).toArray();
 
         // map each element in the array to just the partner name
-        const partnerName = allPartnerNames.map(partner => partner.partnerName);
+        const partnerNames = allPartnerNames.map(partner => partner.partnerName);
 
         // alphabetize the array
-        partnerName.sort();
+        partnerNames.sort();
 
         // return the alphabetized partner names
         res.status(200).json({
-            partnerName
+            partnerNames
         });
         await client.close();
 

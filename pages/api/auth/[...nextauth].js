@@ -11,16 +11,25 @@ import {comparePassword} from "../../../lib/auth";
 import {useSession} from "next-auth/react";
 
 export default NextAuth({
+    session: {
+        jwt: true,
+    },
     providers: [
         CredentialsProvider({
+            name: "credentials",
+            credentials: {
+                username: '',
+                password: '',
+                age: '',
+            },
             async authorize(credentials, req) {
                 try {
                     const client = await connectToDatabase();
 
                     const partnersCollection = client?.db("waivez").collection("partner");
 
-                    const partner = await partnersCollection?.findOne({partnerName: credentials.partnerName});
-                    // console.log(partner);
+                    const partner = await partnersCollection?.findOne({partnerName: credentials.name});
+                    // console.log(user);
 
                     const {adminPassword} = partner;
                     // console.log(adminPassword);
@@ -42,23 +51,25 @@ export default NextAuth({
                         console.log('Invalid password.');
                         new Error('Invalid password.');
                     } else {
-
                         await client.close();
-
-                        // return {partnerName: partner.partnerName};
-                        return partner;
+                        return {...partner, name: partner.partnerName};
                     }
-
                 } catch (error) {
                     console.log(error);
                 }
             }
         }),
     ],
+    callbacks: {
+        // async signIn({user, account, profile, credentials, email}) {
+        //     console.log('credentials:', credentials);
+        //     return true;
+        // }
+    },
     pages: {
         signIn: '/auth/signin',
     },
     secret: process.env.NEXTAUTH_URL,
-    
+
 
 })
