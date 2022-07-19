@@ -70,9 +70,13 @@ const PartnerPasswordSignIn = () => {
 
                 {loading && <Typography variant={'h6'} sx={{textAlign: 'center'}}>Loading...</Typography>}
 
-                <Typography variant={'h6'} sx={{textAlign: 'center'}}>
-                    {status}
-                </Typography>
+                {/*<Typography variant={'h6'} sx={{textAlign: 'center'}}>*/}
+                {/*    {status}*/}
+                {/*</Typography>*/}
+
+                {/*<h2 className={'text-xl text-center pb-4'}>*/}
+                {/*    {status}*/}
+                {/*</h2>*/}
 
                 <form onSubmit={submitHandler}>
 
@@ -82,7 +86,6 @@ const PartnerPasswordSignIn = () => {
                             flexDirection: 'column',
                             alignItems: 'center',
                         }}>
-
                         <Autocomplete
                             fullWidth
                             options={partnerNamesArray}

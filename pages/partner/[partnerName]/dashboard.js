@@ -1,39 +1,37 @@
 import React from 'react';
-import Box from "@mui/material/Box";
-import {getSession, signOut, useSession} from "next-auth/react";
-import {Button, Container, Typography} from "@mui/material";
+import {signOut, useSession} from "next-auth/react";
+import PricingPlans from "../../../components/Cards/PricingPlans";
+import PersonalData from "../../../components/Dashboard/PersonalData";
+import TableSearch from "../../../components/Dashboard/TableSearch";
+import TailwindDashboard from "../../../components/Dashboard/TailwindDashboard";
 
 const Dashboard = () => {
 
     const {data: session, status} = useSession();
 
-    console.log(session);
-
-
-
     return (
-        <Container maxWidth={'md'}>
 
-            <Box
-                sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', mt: 50}}>
+        // <div className={'flex justify-center items-center flex-col h-screen'}>
+        //     {status !== 'authenticated' ? <div>{"You are " + status + ". Please sign in."}</div> : null}
+        //
+        //     <div className={''}>
+        //         <h1 className={'text-2xl'}>{session?.user?.name}</h1>
+        //     </div>
+        //
+        //     {session && <button
+        //         onClick={() => signOut({callbackUrl: '/auth/signin'})}
+        //         type="button"
+        //         className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#7f00ff] focus:shadow-outline-red-600 my-5"
+        //     >
+        //         Sign Out
+        //     </button>}
+        // </div>
+        <div>
+            <TailwindDashboard/>
+        </div>
 
-                <Typography>
-                    {"username: " + session?.user?.name}
-                </Typography>
-
-                {session &&
-                    <Button
-                        variant={'contained'}
-                        onClick={() => signOut({redirect: true, callbackUrl: '/auth/signin'})}>
-                        Sign Out
-                    </Button>
-                }
-
-            </Box>
-        </Container>
 
     );
 };
 
 export default Dashboard;
-

@@ -11,6 +11,7 @@ import React, {useEffect, useState} from 'react';
 import {useSession} from "next-auth/react";
 import {Button, Container, TextField} from "@mui/material";
 import PartnerPasswordSignIn from "../../components/Pages/Auth/PartnerPasswordSignIn";
+import TailwindSignIn from "../../components/Pages/Auth/TailwindSignIn";
 
 const SignIn = () => {
 
@@ -18,19 +19,25 @@ const SignIn = () => {
 
 
     return (
-        <Container
-            sx={{
-                maxWidth: 'md',
-                minHeight: '100vh',
-                alignItems: 'center',
-                justifyContent: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
+        <div className="max-w-6xl mx-auto h-screen flex items-center justify-center">
+            <div className={'flex flex-col items-center flex-auto'}>
 
-            <PartnerPasswordSignIn/>
+                {status === 'unauthenticated' ?
+                    <button type={'button'}
+                            className={'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-500 my-5'}>
+                        {status}
+                    </button> :
+                    <button
+                        type="button"
+                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
+                        {status}
+                    </button>}
 
-        </Container>
+
+                {/*<PartnerPasswordSignIn/>*/}
+                <TailwindSignIn/>
+            </div>
+        </div>
     );
 };
 

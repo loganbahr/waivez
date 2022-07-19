@@ -21,8 +21,3 @@ const MyApp = ({Component, pageProps: {session, ...pageProps}}) => {
     );
 }
 export default MyApp;
-
-
-// NEXT_PUBLIC_SUPABASE_URL=https://vhccbizrxcacyjzpssod.supabase.co
-// NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoY2NiaXpyeGNhY3lqenBzc29kIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTMwNTcwMjIsImV4cCI6MTk2ODYzMzAyMn0.p_8j4fbENcdQvhlFwSgvLWnLuWxArzDISwba1STiOv8
-//

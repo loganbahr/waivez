@@ -8,7 +8,6 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import {connectToDatabase} from "../../../lib/db";
 import {comparePassword} from "../../../lib/auth";
-import {useSession} from "next-auth/react";
 
 export default NextAuth({
     session: {
@@ -17,11 +16,6 @@ export default NextAuth({
     providers: [
         CredentialsProvider({
             name: "credentials",
-            credentials: {
-                username: '',
-                password: '',
-                age: '',
-            },
             async authorize(credentials, req) {
                 try {
                     const client = await connectToDatabase();
@@ -44,7 +38,8 @@ export default NextAuth({
 
                     let isValid = false;
 
-                    isValid = adminPassword === credentials.password;
+                    // compare password return a boolean value. If true, then the password is correct
+                    isValid = await comparePassword(adminPassword, credentials.password);
 
                     if (!isValid) {
                         await client.close();
@@ -52,6 +47,8 @@ export default NextAuth({
                         new Error('Invalid password.');
                     } else {
                         await client.close();
+
+                        // need to explicitly assign the name of the partner to the session
                         return {...partner, name: partner.partnerName};
                     }
                 } catch (error) {
