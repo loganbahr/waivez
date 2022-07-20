@@ -9,7 +9,7 @@ import React, {useEffect} from 'react';
 import {useState} from 'react'
 import {CheckIcon, ExclamationCircleIcon, SelectorIcon, XIcon} from '@heroicons/react/solid'
 import {Combobox} from '@headlessui/react'
-import {signIn} from "next-auth/react";
+import {signIn, signOut, useSession} from "next-auth/react";
 import {hashPassword} from "../../../lib/auth";
 
 function classNames(...classes) {
@@ -25,10 +25,9 @@ const TailwindSignIn = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // console.log('selectedPartnerName: ', selectedPartnerName);
-    // console.log('selectedPartner: ',selectedPartner)
-
     const selectedPartnerName = selectedPartner?.name;
+
+    const {data: session, status} = useSession();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -79,12 +78,13 @@ const TailwindSignIn = () => {
                 password: hashedPassword,
                 callbackUrl: `/partner/${partnerURL}/dashboard`,
             });
-            setError(result.error);
+            setError(result?.error);
         } catch (error) {
             console.log(error);
         }
         setPassword('');
     }
+//TODO: get the error back from the signIn function
 
     return (
         <div className={'flex flex-col w-11/12 md:w-1/2'}>
@@ -94,7 +94,7 @@ const TailwindSignIn = () => {
                     <Combobox.Label className="block text-sm font-medium text-gray-700">Partner Name</Combobox.Label>
                     <div className="relative mt-1">
                         <Combobox.Input
-                            className="text-gray-800 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                            className="text-gray-800 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
                             onChange={(event) => setQuery(event.target.value)}
                             displayValue={(person) => person?.name}
                         />
@@ -114,7 +114,7 @@ const TailwindSignIn = () => {
                                         className={({active}) =>
                                             classNames(
                                                 'relative cursor-default select-none py-2 pl-3 pr-9',
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900'
+                                                active ? 'bg-primary text-white' : 'text-gray-900'
                                             )
                                         }
                                     >
@@ -153,22 +153,29 @@ const TailwindSignIn = () => {
                             type="password"
                             name="password"
                             id="password"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md"
                         />
                     </div>
 
                     <div className={'flex justify-center'}>
                         {/*Button for Sign In*/}
-                        <button
+                        {!session ? <button
                             type="submit"
                             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
                             Sign In
-                        </button>
+                        </button> : <button
+                            type="submit"
+                            onClick={async () => {
+                                await signOut()
+                            }}
+                            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
+                            Sign Out
+                        </button>}
+
                     </div>
                 </div>
-
-
             </form>
+            {error && <h1 className="text-red-500 text-center">{error}</h1>}
         </div>
     );
 };

@@ -15,6 +15,7 @@ module.exports = {
             fontFamily: {},
             colors: {
                 primary: "#7f00ff",
+                primaryHover: "#6600CC",
                 secondary: "#f9f9f9",
             },
         },

@@ -31,7 +31,7 @@ import {
     CogIcon,
     CreditCardIcon,
     DocumentReportIcon,
-    HomeIcon,
+    HomeIcon, LightningBoltIcon,
     MenuAlt1Icon,
     QuestionMarkCircleIcon,
     ScaleIcon,
@@ -49,37 +49,78 @@ import {
 } from '@heroicons/react/solid'
 import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
+import {HorizontalRule} from "@mui/icons-material";
 
-const navigation = [
-    {name: 'Home', href: '#', icon: HomeIcon, current: true},
-    {name: 'History', href: '#', icon: ClockIcon, current: false},
-    {name: 'Balances', href: '#', icon: ScaleIcon, current: false},
-    {name: 'Cards', href: '#', icon: CreditCardIcon, current: false},
-    {name: 'Recipients', href: '#', icon: UserGroupIcon, current: false},
-    {name: 'Reports', href: '#', icon: DocumentReportIcon, current: false},
-]
-const secondaryNavigation = [
-    {name: 'Settings', href: '#', icon: CogIcon},
-    {name: 'Help', href: '#', icon: QuestionMarkCircleIcon},
-    {name: 'Privacy', href: '#', icon: ShieldCheckIcon},
-]
+// const navigation = [
+//     {name: 'Home', href: '#', icon: HomeIcon, current: true},
+//     {name: 'History', href: '#', icon: ClockIcon, current: false},
+//     {name: 'Balances', href: '#', icon: ScaleIcon, current: false},
+//     {name: 'Cards', href: '#', icon: CreditCardIcon, current: false},
+//     {name: 'Recipients', href: '#', icon: UserGroupIcon, current: false},
+//     {name: 'Reports', href: '#', icon: DocumentReportIcon, current: false},
+// ]
+// const secondaryNavigation = [
+//     {name: 'Settings', href: '#', icon: CogIcon},
+//     {name: 'Help', href: '#', icon: QuestionMarkCircleIcon},
+//     {name: 'Privacy', href: '#', icon: ShieldCheckIcon},
+// ]
 const cards = [
-    {name: 'Account balance', href: '#', icon: ScaleIcon, amount: '$30,659.45'},
+    {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
+    {title: 'Average Age', icon: LightningBoltIcon, data: '38'},
+    {title: 'Had Minors', icon: LightningBoltIcon, data: '23%'},
     // More items...
 ]
-const transactions = [
+const people = [
     {
         id: 1,
-        name: 'Payment to Molly Sanders',
-        href: '#',
-        amount: '$20,000',
-        currency: 'USD',
-        status: 'success',
-        date: 'July 11, 2020',
-        datetime: '2020-07-11',
+        firstName: 'Logan',
+        lastName: 'Bahr',
+        dateOfBirth: '12/23/1994',
+        state: 'FL',
+        city: 'Naples',
+        address: '13234 White Violet Drive',
+        email: 'loganbahr94@gmail.com',
+        minors: false,
+        partnerName: '',
     },
-    // More transactions...
+    {
+        id: 2,
+        firstName: 'Logan',
+        lastName: 'Bahr',
+        dateOfBirth: '12/23/1994',
+        state: 'FL',
+        city: 'Naples',
+        address: '13234 White Violet Drive',
+        email: 'loganbahr94@gmail.com',
+        minors: false,
+        partnerName: '',
+    },
+    {
+        id: 3,
+        firstName: 'Logan',
+        lastName: 'Bahr',
+        dateOfBirth: '12/23/1994',
+        state: 'FL',
+        city: 'Naples',
+        address: '13234 White Violet Drive',
+        email: 'loganbahr94@gmail.com',
+        minors: false,
+        partnerName: '',
+    },
+    {
+        id: 4,
+        firstName: 'Logan',
+        lastName: 'Bahr',
+        dateOfBirth: '12/23/1994',
+        state: 'FL',
+        city: 'Naples',
+        address: '13234 White Violet Drive',
+        email: 'loganbahr94@gmail.com',
+        minors: false,
+        partnerName: '',
+    },
 ]
+
 const statusStyles = {
     success: 'bg-green-100 text-green-800',
     processing: 'bg-yellow-100 text-yellow-800',
@@ -90,21 +131,14 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function TailwindDashboard() {
+export default function TailwindDashboard({data}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [dataIsLoading, setDataIsLoading] = useState(true);
 
     const {data: session, status} = useSession();
 
     return (
         <>
-            {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
             <div className="min-h-full">
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
@@ -131,7 +165,7 @@ export default function TailwindDashboard() {
                                 leaveTo="-translate-x-full"
                             >
                                 <Dialog.Panel
-                                    className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-700">
+                                    className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-primary">
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-in-out duration-300"
@@ -152,49 +186,10 @@ export default function TailwindDashboard() {
                                             </button>
                                         </div>
                                     </Transition.Child>
-                                    <div className="flex-shrink-0 flex items-center px-4">
+                                    <div className="flex-shrink-0 flex items-center content-center px-4">
                                         <WaivezLogoCropped color={'white'} height={50} width={150}
                                                            className="h-8 w-auto"/>
                                     </div>
-                                    <nav
-                                        className="mt-5 flex-shrink-0 h-full divide-y divide-cyan-800 overflow-y-auto"
-                                        aria-label="Sidebar"
-                                    >
-                                        <div className="px-2 space-y-1">
-                                            {navigation.map((item) => (
-                                                <a
-                                                    key={item.name}
-                                                    href={item.href}
-                                                    className={classNames(
-                                                        item.current
-                                                            ? 'bg-cyan-800 text-white'
-                                                            : 'text-cyan-100 hover:text-white hover:bg-cyan-600',
-                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                                                    )}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                >
-                                                    <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
-                                                               aria-hidden="true"/>
-                                                    {item.name}
-                                                </a>
-                                            ))}
-                                        </div>
-                                        <div className="mt-6 pt-6">
-                                            <div className="px-2 space-y-1">
-                                                {secondaryNavigation.map((item) => (
-                                                    <a
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600"
-                                                    >
-                                                        <item.icon className="mr-4 h-6 w-6 text-cyan-200"
-                                                                   aria-hidden="true"/>
-                                                        {item.name}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </nav>
                                 </Dialog.Panel>
                             </Transition.Child>
                             <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -207,44 +202,10 @@ export default function TailwindDashboard() {
                 {/* Static sidebar for desktop */}
                 <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
                     {/* Sidebar component, swap this element with another sidebar if you like */}
-                    <div className="flex flex-col flex-grow bg-cyan-700 pt-5 pb-4 overflow-y-auto">
+                    <div className="flex flex-col flex-grow bg-primary pt-5 pb-4 overflow-y-auto">
                         <div className="flex items-center flex-shrink-0 px-4">
-                            <WaivezLogoCropped color={'white'} height={50} width={200}/>
+                            <WaivezLogoCropped color={'#f9f9f9'} height={50} width={200}/>
                         </div>
-                        <nav className="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto"
-                             aria-label="Sidebar">
-                            <div className="px-2 space-y-1">
-                                {navigation.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        href={item.href}
-                                        className={classNames(
-                                            item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600',
-                                            'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md'
-                                        )}
-                                        aria-current={item.current ? 'page' : undefined}
-                                    >
-                                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200"
-                                                   aria-hidden="true"/>
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
-                            <div className="mt-6 pt-6">
-                                <div className="px-2 space-y-1">
-                                    {secondaryNavigation.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600"
-                                        >
-                                            <item.icon className="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
-                                            {item.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        </nav>
                     </div>
                 </div>
 
@@ -281,26 +242,28 @@ export default function TailwindDashboard() {
                                     </div>
                                 </form>
                             </div>
+
+
                             <div className="ml-4 flex items-center md:ml-6">
-                                <button
-                                    type="button"
-                                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                                >
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true"/>
-                                </button>
+                                {/*<button*/}
+                                {/*    type="button"*/}
+                                {/*    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"*/}
+                                {/*>*/}
+                                {/*    <span className="sr-only">View notifications</span>*/}
+                                {/*    <BellIcon className="h-6 w-6" aria-hidden="true"/>*/}
+                                {/*</button>*/}
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
                                         <Menu.Button
-                                            className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+                                            className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
                                             <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
                                                 <span className="sr-only">Open user menu for </span>
                                                 {session?.user?.name}
                                             </span>
                                             <ChevronDownIcon
-                                                className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"
+                                                className="flex-shrink-0 ml-1 h-5 w-5 text-primary lg:block"
                                                 aria-hidden="true"
                                             />
                                         </Menu.Button>
@@ -353,6 +316,8 @@ export default function TailwindDashboard() {
                                     </Transition>
                                 </Menu>
                             </div>
+
+
                         </div>
                     </div>
                     <main className="flex-1 pb-8">
@@ -364,35 +329,16 @@ export default function TailwindDashboard() {
                                     <div className="flex-1 min-w-0">
                                         {/* Profile */}
                                         <div className="flex items-center">
-                                            <img
-                                                className="hidden h-16 w-16 rounded-full sm:block"
-                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80"
-                                                alt=""
-                                            />
                                             <div>
                                                 <div className="flex items-center">
-                                                    <img
-                                                        className="h-16 w-16 rounded-full sm:hidden"
-                                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80"
-                                                        alt=""
-                                                    />
                                                     <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                                                        Good morning, Emilia Birch
+                                                        {session?.user?.name}
                                                     </h1>
                                                 </div>
                                                 <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-                                                    <dt className="sr-only">Company</dt>
-                                                    <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
-                                                        <OfficeBuildingIcon
-                                                            className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                            aria-hidden="true"
-                                                        />
-                                                        Duke street studio
-                                                    </dd>
-                                                    <dt className="sr-only">Account status</dt>
-                                                    <dd className="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                                                    <dd className="-mt-4 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                                                         <CheckCircleIcon
-                                                            className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
+                                                            className="flex-shrink-0 mr-1.5 h-5 w-5 text-primary"
                                                             aria-hidden="true"
                                                         />
                                                         Verified account
@@ -404,15 +350,15 @@ export default function TailwindDashboard() {
                                     <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                                         <button
                                             type="button"
-                                            className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                            className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                                         >
-                                            Add money
+                                            Contact Support
                                         </button>
                                         <button
                                             type="button"
-                                            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                                         >
-                                            Send money
+                                            Documentation
                                         </button>
                                     </div>
                                 </div>
@@ -429,191 +375,121 @@ export default function TailwindDashboard() {
                                             <div className="p-5">
                                                 <div className="flex items-center">
                                                     <div className="flex-shrink-0">
-                                                        <card.icon className="h-6 w-6 text-gray-400"
-                                                                   aria-hidden="true"/>
+                                                        <card.icon className="h-6 w-6 text-primary" aria-hidden="true"/>
                                                     </div>
                                                     <div className="ml-5 w-0 flex-1">
                                                         <dl>
-                                                            <dt className="text-sm font-medium text-gray-500 truncate">{card.name}</dt>
+                                                            <dt className="text-sm font-medium text-gray-500 truncate">{card.title}</dt>
                                                             <dd>
                                                                 <div
-                                                                    className="text-lg font-medium text-gray-900">{card.amount}</div>
+                                                                    className="text-lg font-medium text-gray-900">{card.data}</div>
                                                             </dd>
                                                         </dl>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="bg-gray-50 px-5 py-3">
-                                                <div className="text-sm">
-                                                    <a href={card.href}
-                                                       className="font-medium text-cyan-700 hover:text-cyan-900">
-                                                        View all
-                                                    </a>
-                                                </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="py-8 px-4 sm:px-6 lg:px-8">
+                                <div className="sm:flex sm:items-center">
+                                    <div className="sm:flex-auto">
+                                        <h1 className="text-xl font-semibold text-gray-900">Users</h1>
+                                        <p className="mt-2 text-sm text-gray-700">
+                                            A list of all the users in {session?.user?.name} that matches your search
+                                            criteria.
+                                        </p>
+                                    </div>
+                                    <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                                        <button
+                                            type="button"
+                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                                        >
+                                            Add user
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="mt-8 flex flex-col">
+                                    <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                            <div
+                                                className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                                <table className="min-w-full divide-y divide-gray-300">
+                                                    <thead className="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col"
+                                                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            First Name
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            Last Name
+                                                        </th>
+                                                        <th scope="col"
+                                                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            DOB
+                                                        </th>
+                                                        <th scope="col"
+                                                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            State
+                                                        </th>
+
+                                                        <th scope="col"
+                                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            City
+                                                        </th>
+                                                        <th scope="col"
+                                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Address
+                                                        </th>
+                                                        <th scope="col"
+                                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Email
+                                                        </th>
+                                                        <th scope="col"
+                                                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Minors
+                                                        </th>
+                                                        {/*<th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">*/}
+                                                        {/*    <span className="sr-only">Edit</span>*/}
+                                                        {/*</th>*/}
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody className="bg-white">
+                                                    {data.map((person, personIdx) => (
+                                                        <tr key={person.id}
+                                                            className={personIdx % 2 === 0 ? 'bg-white hover:bg-gray-100' : 'bg-gray-50 hover:bg-gray-100'}>
+                                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                                {person.firstName}
+                                                            </td>
+                                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                                {person.lastName}
+                                                            </td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.dateOfBirth.substring(0, 10)}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.state}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.city}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.minors.toString()}</td>
+                                                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                                <a href="#"
+                                                                   className="text-primary hover:text-primaryHover">
+                                                                    Edit
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <h2 className="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8">
-                                Recent activity
-                            </h2>
-
-                            {/* Activity list (smallest breakpoint only) */}
-                            <div className="shadow sm:hidden">
-                                <ul role="list"
-                                    className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-                                    {transactions.map((transaction) => (
-                                        <li key={transaction.id}>
-                                            <a href={transaction.href}
-                                               className="block px-4 py-4 bg-white hover:bg-gray-50">
-                        <span className="flex items-center space-x-4">
-                          <span className="flex-1 flex space-x-2 truncate">
-                            <CashIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true"/>
-                            <span className="flex flex-col text-gray-500 text-sm truncate">
-                              <span className="truncate">{transaction.name}</span>
-                              <span>
-                                <span className="text-gray-900 font-medium">{transaction.amount}</span>{' '}
-                                  {transaction.currency}
-                              </span>
-                              <time dateTime={transaction.datetime}>{transaction.date}</time>
-                            </span>
-                          </span>
-                          <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true"/>
-                        </span>
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <nav
-                                    className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"
-                                    aria-label="Pagination"
-                                >
-                                    <div className="flex-1 flex justify-between">
-                                        <a
-                                            href="#"
-                                            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                                        >
-                                            Previous
-                                        </a>
-                                        <a
-                                            href="#"
-                                            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                                        >
-                                            Next
-                                        </a>
-                                    </div>
-                                </nav>
-                            </div>
-
-                            {/* Activity table (small breakpoint and up) */}
-                            <div className="hidden sm:block">
-                                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                                    <div className="flex flex-col mt-2">
-                                        <div
-                                            className="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
-                                            <table className="min-w-full divide-y divide-gray-200">
-                                                <thead>
-                                                <tr>
-                                                    <th
-                                                        className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        scope="col"
-                                                    >
-                                                        Transaction
-                                                    </th>
-                                                    <th
-                                                        className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        scope="col"
-                                                    >
-                                                        Amount
-                                                    </th>
-                                                    <th
-                                                        className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block"
-                                                        scope="col"
-                                                    >
-                                                        Status
-                                                    </th>
-                                                    <th
-                                                        className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        scope="col"
-                                                    >
-                                                        Date
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody className="bg-white divide-y divide-gray-200">
-                                                {transactions.map((transaction) => (
-                                                    <tr key={transaction.id} className="bg-white">
-                                                        <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                            <div className="flex">
-                                                                <a href={transaction.href}
-                                                                   className="group inline-flex space-x-2 truncate text-sm">
-                                                                    <CashIcon
-                                                                        className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                                        aria-hidden="true"
-                                                                    />
-                                                                    <p className="text-gray-500 truncate group-hover:text-gray-900">
-                                                                        {transaction.name}
-                                                                    </p>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                            <span
-                                                                className="text-gray-900 font-medium">{transaction.amount} </span>
-                                                            {transaction.currency}
-                                                        </td>
-                                                        <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
-                                <span
-                                    className={classNames(
-                                        statusStyles[transaction.status],
-                                        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
-                                    )}
-                                >
-                                  {transaction.status}
-                                </span>
-                                                        </td>
-                                                        <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                            <time
-                                                                dateTime={transaction.datetime}>{transaction.date}</time>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                                </tbody>
-                                            </table>
-                                            {/* Pagination */}
-                                            <nav
-                                                className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
-                                                aria-label="Pagination"
-                                            >
-                                                <div className="hidden sm:block">
-                                                    <p className="text-sm text-gray-700">
-                                                        Showing <span className="font-medium">1</span> to <span
-                                                        className="font-medium">10</span> of{' '}
-                                                        <span className="font-medium">20</span> results
-                                                    </p>
-                                                </div>
-                                                <div className="flex-1 flex justify-between sm:justify-end">
-                                                    <a
-                                                        href="#"
-                                                        className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                                                    >
-                                                        Previous
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                                                    >
-                                                        Next
-                                                    </a>
-                                                </div>
-                                            </nav>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </main>
                 </div>
