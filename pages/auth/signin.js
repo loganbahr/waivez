@@ -33,8 +33,6 @@ const SignIn = () => {
                         {status}
                     </button>}
 
-
-                {/*<PartnerPasswordSignIn/>*/}
                 <TailwindSignIn/>
             </div>
         </div>

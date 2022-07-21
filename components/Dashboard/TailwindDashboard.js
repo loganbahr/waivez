@@ -49,7 +49,6 @@ import {
 } from '@heroicons/react/solid'
 import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
-import {HorizontalRule} from "@mui/icons-material";
 
 // const navigation = [
 //     {name: 'Home', href: '#', icon: HomeIcon, current: true},
@@ -136,6 +135,7 @@ export default function TailwindDashboard({data}) {
     const [dataIsLoading, setDataIsLoading] = useState(true);
 
     const {data: session, status} = useSession();
+
 
     return (
         <>
@@ -371,7 +371,7 @@ export default function TailwindDashboard({data}) {
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                                     {/* Card */}
                                     {cards.map((card) => (
-                                        <div key={card.name} className="bg-white overflow-hidden shadow rounded-lg">
+                                        <div key={card.title} className="bg-white overflow-hidden shadow rounded-lg">
                                             <div className="p-5">
                                                 <div className="flex items-center">
                                                     <div className="flex-shrink-0">
@@ -451,7 +451,7 @@ export default function TailwindDashboard({data}) {
                                                         </th>
                                                         <th scope="col"
                                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                            Minors
+                                                            Minor(s)
                                                         </th>
                                                         {/*<th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">*/}
                                                         {/*    <span className="sr-only">Edit</span>*/}
@@ -459,8 +459,8 @@ export default function TailwindDashboard({data}) {
                                                     </tr>
                                                     </thead>
                                                     <tbody className="bg-white">
-                                                    {data.map((person, personIdx) => (
-                                                        <tr key={person.id}
+                                                    {data?.map((person, personIdx) => (
+                                                        <tr key={person._id}
                                                             className={personIdx % 2 === 0 ? 'bg-white hover:bg-gray-100' : 'bg-gray-50 hover:bg-gray-100'}>
                                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                                 {person.firstName}
