@@ -49,6 +49,7 @@ import {
 } from '@heroicons/react/solid'
 import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
+import Link from "next/link";
 
 // const navigation = [
 //     {name: 'Home', href: '#', icon: HomeIcon, current: true},
@@ -204,7 +205,11 @@ export default function TailwindDashboard({data}) {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex flex-col flex-grow bg-primary pt-5 pb-4 overflow-y-auto">
                         <div className="flex items-center flex-shrink-0 px-4">
-                            <WaivezLogoCropped color={'#f9f9f9'} height={50} width={200}/>
+                            <Link href={'/'}>
+                                <a className={''}>
+                                    <WaivezLogoCropped color={'#f9f9f9'} height={50} width={200}/>
+                                </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

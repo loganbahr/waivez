@@ -27,9 +27,8 @@ const Dashboard = () => {
 
         return (
             <div>
-                <TailwindDashboard data={data}/>
+                {status === 'unauthenticated' ? undefined : <TailwindDashboard data={data}/>}
             </div>
-
         );
     }
 ;
