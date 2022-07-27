@@ -1,6 +1,7 @@
 import Footer from "./Footer/Footer";
 import {useSession} from "next-auth/react";
 import TailwindHeader from "./Header/TailwindHeader";
+import TailwindFooter from "./Footer/TailwindFooter";
 
 const Layout = (props) => {
 
@@ -13,7 +14,7 @@ const Layout = (props) => {
             {!session && <TailwindHeader/>}
             {/*<Box minHeight="100vh">{props.children}</Box>*/}
             <div className={'min-h-screen'}>{props.children}</div>
-            {status === 'authenticated' && props.children.type.name !== 'Dashboard' ? <Footer/> : undefined}
+            {status === 'authenticated' && props.children.type.name !== 'Dashboard' ? <TailwindFooter/> : undefined}
         </div>
     );
 };
