@@ -15,6 +15,9 @@ function classNames(...classes) {
 }
 
 export default function TailwindPartnerSearchBar({companies}) {
+
+    const router = useRouter();
+
     const [query, setQuery] = useState('');
     const [selectedPerson, setSelectedPerson] = useState();
     const [partnerURL, setPartnerURL] = useState('');
@@ -36,7 +39,7 @@ export default function TailwindPartnerSearchBar({companies}) {
             : companyNamesWithIds.filter((partner) => {
                 return partner.name.toLowerCase().includes(query.toLowerCase())
             })
-    const router = useRouter();
+
 
     const submitHandler = async (event) => {
 
@@ -55,8 +58,8 @@ export default function TailwindPartnerSearchBar({companies}) {
                 <Combobox as="div" value={selectedPerson} onChange={setSelectedPerson}>
                     <div className="relative">
                         <Combobox.Input
-                            placeholder="Search for a partner"
-                            className="text-md w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-800 shadow-md focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                            placeholder="Find a company to waive"
+                            className=" text-md w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-800 shadow-md focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                             onChange={(event) => setQuery(event.target.value)}
                             onSelect={(event) => setPartnerURL(event.target.value.toLowerCase().replace(/\s/g, ''))}
                             displayValue={(person) => person?.name}
@@ -105,7 +108,7 @@ export default function TailwindPartnerSearchBar({companies}) {
                 </Combobox>
                 <button
                     type="submit"
-                    className="flex mx-auto mt-2 bg-primary py-2 px-3 border border-transparent rounded-md text-base font-medium text-secondary hover:bg-primaryHover focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    className="shadow-gray-300 shadow-lg flex mx-auto mt-3 bg-primary py-1 px-2 md:py-2 md:px-3 border border-transparent rounded-md text-base font-medium text-secondary hover:bg-primaryHover focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                     Search
                 </button>
             </form>

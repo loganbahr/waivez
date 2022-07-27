@@ -19,6 +19,7 @@ import WaivezLogo from "../components/Graphics/WaivezLogo";
 import {motion} from "framer-motion";
 import TailwindHero from "../components/Pages/Home/TailwindHero";
 import WaivezLogoCropped from "../components/Graphics/WaivezLogoCropped";
+import TailwindFeaturesSection from "../components/Pages/Home/TailwindFeaturesSection";
 
 const HomePage = (props) => {
 
@@ -34,13 +35,36 @@ const HomePage = (props) => {
                 <meta name="description" content="Any waiver, all in one place."/>
             </Head>
 
-            <div className={''}>
 
+            <TailwindHero companies={props}/>
+            <TailwindFeaturesSection/>
+
+            <div className="bg-primary">
+                <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8 lg:py-20">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl font-extrabold text-secondary sm:text-4xl">A custom dashboard to quickly
+                            find your users</h2>
+                        <p className="mt-3 text-xl text-secondary sm:mt-4">
+                            With interactive graphs and statistical metadata describing your unique customer base.
+                        </p>
+                    </div>
+                    <dl className="mt-10 text-center sm:max-w-3xl sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-8">
+                        <div className="flex flex-col">
+                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-secondary">Users</dt>
+                            <dd className="order-1 text-5xl font-extrabold text-white">Find</dd>
+                        </div>
+                        <div className="flex flex-col mt-10 sm:mt-0">
+                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-secondary">Users</dt>
+                            <dd className="order-1 text-5xl font-extrabold text-white">Reach</dd>
+                        </div>
+                        <div className="flex flex-col mt-10 sm:mt-0">
+                            <dt className="order-2 mt-2 text-lg leading-6 font-medium text-secondary">Users</dt>
+                            <dd className="order-1 text-5xl font-extrabold text-white">Retain</dd>
+                        </div>
+                    </dl>
+                </div>
             </div>
 
-            <div className={''}>
-                <TailwindHero companies={props}/>
-            </div>
 
         </div>
 

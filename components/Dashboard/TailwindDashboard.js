@@ -1,29 +1,10 @@
-/*
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          cyan: colors.cyan,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import {Fragment, useState} from 'react'
+/**
+ * @file
+ * @author
+ * @description
+ * @since
+ */
+import {Fragment, useEffect, useState} from 'react'
 import {Dialog, Menu, Transition} from '@headlessui/react'
 import {
     BellIcon,
@@ -50,93 +31,39 @@ import {
 import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
+import {data} from "autoprefixer";
 
-// const navigation = [
-//     {name: 'Home', href: '#', icon: HomeIcon, current: true},
-//     {name: 'History', href: '#', icon: ClockIcon, current: false},
-//     {name: 'Balances', href: '#', icon: ScaleIcon, current: false},
-//     {name: 'Cards', href: '#', icon: CreditCardIcon, current: false},
-//     {name: 'Recipients', href: '#', icon: UserGroupIcon, current: false},
-//     {name: 'Reports', href: '#', icon: DocumentReportIcon, current: false},
-// ]
-// const secondaryNavigation = [
-//     {name: 'Settings', href: '#', icon: CogIcon},
-//     {name: 'Help', href: '#', icon: QuestionMarkCircleIcon},
-//     {name: 'Privacy', href: '#', icon: ShieldCheckIcon},
-// ]
 const cards = [
     {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
     {title: 'Average Age', icon: LightningBoltIcon, data: '38'},
     {title: 'Had Minors', icon: LightningBoltIcon, data: '23%'},
     // More items...
 ]
-const people = [
-    {
-        id: 1,
-        firstName: 'Logan',
-        lastName: 'Bahr',
-        dateOfBirth: '12/23/1994',
-        state: 'FL',
-        city: 'Naples',
-        address: '13234 White Violet Drive',
-        email: 'loganbahr94@gmail.com',
-        minors: false,
-        partnerName: '',
-    },
-    {
-        id: 2,
-        firstName: 'Logan',
-        lastName: 'Bahr',
-        dateOfBirth: '12/23/1994',
-        state: 'FL',
-        city: 'Naples',
-        address: '13234 White Violet Drive',
-        email: 'loganbahr94@gmail.com',
-        minors: false,
-        partnerName: '',
-    },
-    {
-        id: 3,
-        firstName: 'Logan',
-        lastName: 'Bahr',
-        dateOfBirth: '12/23/1994',
-        state: 'FL',
-        city: 'Naples',
-        address: '13234 White Violet Drive',
-        email: 'loganbahr94@gmail.com',
-        minors: false,
-        partnerName: '',
-    },
-    {
-        id: 4,
-        firstName: 'Logan',
-        lastName: 'Bahr',
-        dateOfBirth: '12/23/1994',
-        state: 'FL',
-        city: 'Naples',
-        address: '13234 White Violet Drive',
-        email: 'loganbahr94@gmail.com',
-        minors: false,
-        partnerName: '',
-    },
-]
-
-const statusStyles = {
-    success: 'bg-green-100 text-green-800',
-    processing: 'bg-yellow-100 text-yellow-800',
-    failed: 'bg-gray-100 text-gray-800',
-}
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+
 export default function TailwindDashboard({data}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
+    const [query, setQuery] = useState('');
 
     const {data: session, status} = useSession();
 
+
+    useEffect(() => {
+        data && setDataIsLoading(false);
+    }, [data]);
+
+    const filteredUsers =
+        query === ''
+            ? data
+            : data.filter((user) => {
+                return user.firstName.toLowerCase().includes(query.toLowerCase().trim()) ||
+                    user.lastName.toLowerCase().includes(query.toLowerCase().trim())
+            })
 
     return (
         <>
@@ -228,7 +155,7 @@ export default function TailwindDashboard({data}) {
                         {/* Search bar */}
                         <div className="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
                             <div className="flex-1 flex">
-                                <form className="w-full flex md:ml-0" action="#" method="GET">
+                                <form onSubmit={e => e.preventDefault()} className="w-full flex md:ml-0">
                                     <label htmlFor="search-field" className="sr-only">
                                         Search
                                     </label>
@@ -243,6 +170,7 @@ export default function TailwindDashboard({data}) {
                                             className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                                             placeholder="Search for a user"
                                             type="search"
+                                            onChange={(e) => setQuery(e.target.value)}
                                         />
                                     </div>
                                 </form>
@@ -410,7 +338,7 @@ export default function TailwindDashboard({data}) {
                                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                                         <button
                                             type="button"
-                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:w-auto"
                                         >
                                             Add user
                                         </button>
@@ -464,7 +392,7 @@ export default function TailwindDashboard({data}) {
                                                     </tr>
                                                     </thead>
                                                     <tbody className="bg-white">
-                                                    {data?.map((person, personIdx) => (
+                                                    {filteredUsers?.map((person, personIdx) => (
                                                         <tr key={person._id}
                                                             className={personIdx % 2 === 0 ? 'bg-white hover:bg-gray-100' : 'bg-gray-50 hover:bg-gray-100'}>
                                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
@@ -488,6 +416,7 @@ export default function TailwindDashboard({data}) {
                                                         </tr>
                                                     ))}
                                                     </tbody>
+
                                                 </table>
                                             </div>
                                         </div>

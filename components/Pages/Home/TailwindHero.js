@@ -2,6 +2,7 @@ import React from "react";
 import TailwindPartnerSearchBar from "./TailwindPartnerSearchBar";
 
 export default function TailwindHero({companies}) {
+
     return (
         <div className="relative bg-secondary overflow-hidden md:mt-12">
             <div className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full" aria-hidden="true">
@@ -69,7 +70,7 @@ export default function TailwindHero({companies}) {
                         <p className="mt-9 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                             <span>On the water, in the air, and anywhere between —</span>
                             <span className={'text-primary font-semibold text-2xl tracking-tight mr-1'}> waivez</span>
-                            <span> has it covered</span>
+                            <span> has it covered.</span>
                         </p>
                     </div>
                 </main>

@@ -13,7 +13,7 @@ const Layout = (props) => {
             {!session && <TailwindHeader/>}
             {/*<Box minHeight="100vh">{props.children}</Box>*/}
             <div className={'min-h-screen'}>{props.children}</div>
-            {!session && <Footer/>}
+            {status === 'authenticated' && props.children.type.name !== 'Dashboard' ? <Footer/> : undefined}
         </div>
     );
 };
