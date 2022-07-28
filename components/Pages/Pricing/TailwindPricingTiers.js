@@ -12,7 +12,7 @@ export default function TailwindPricingTiers() {
                 <div className="text-center">
                     <h2 className="text-lg leading-6 font-semibold text-primary uppercase tracking-wider">Pricing</h2>
                     <p className="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl lg:text-5xl">
-                        The right price for you, whoever you are
+                        Different prices for different businesses
                     </p>
                     <p className="mt-3 max-w-4xl mx-auto text-xl text-slate-600 sm:mt-5 sm:text-2xl">
                         Price points for any business size. Whether you&apos;re a small family business, large franchise

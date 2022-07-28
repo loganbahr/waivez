@@ -13,12 +13,16 @@ import AdvancedPricingCard from "../../components/Cards/PricingCards/AdvancedPri
 import ProPricingCard from "../../components/Cards/PricingCards/ProPricingCard";
 import FAQAccordion from "../../components/Pages/Pricing/FAQAccordion";
 import TailwindPricingTiers from "../../components/Pages/Pricing/TailwindPricingTiers";
+import TailwindPricingFeatures from "../../components/Pages/Pricing/TailwindPricingFeatures";
+import TailwindPricingGraphic from "../../components/Pages/Pricing/TailwindPricingGraphic";
 
 
 const PricingPage = () => {
     return (
-        <div>
+        <div className={''}>
             <TailwindPricingTiers/>
+            <TailwindPricingFeatures/>
+            <TailwindPricingGraphic/>
         </div>
     );
 };
