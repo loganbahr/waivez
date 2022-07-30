@@ -13,7 +13,7 @@ import {MailIcon, MenuIcon, PhoneIcon, XIcon} from '@heroicons/react/outline'
 const ContactPage = () => {
 
     return (
-        <div className="bg-secondary pb-24">
+        <div className="bg-secondary pb-24 relative z-0">
             <main className="overflow-hidden">
                 {/* Header */}
                 <div className="bg-secondary">
