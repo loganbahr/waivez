@@ -35,7 +35,7 @@ import {data} from "autoprefixer";
 
 const cards = [
     {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
-    {title: 'Average Age', icon: LightningBoltIcon, data: '38'},
+    {title: 'Average Age', icon: LightningBoltIcon, data: '25'},
     {title: 'Had Minors', icon: LightningBoltIcon, data: '23%'},
     // More items...
 ]
@@ -45,17 +45,22 @@ function classNames(...classes) {
 }
 
 
-export default function TailwindDashboard({data}) {
+export default function TailwindDashboard({data, avgAge, percentMinors}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
     const [query, setQuery] = useState('');
 
     const {data: session, status} = useSession();
 
-
     useEffect(() => {
         data && setDataIsLoading(false);
     }, [data]);
+
+    const cards = [
+        {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
+        {title: 'Average Age', icon: LightningBoltIcon, data: avgAge},
+        {title: 'Had Minors', icon: LightningBoltIcon, data: percentMinors + '%'},
+    ]
 
     const filteredUsers =
         query === ''
@@ -299,7 +304,7 @@ export default function TailwindDashboard({data}) {
                         </div>
 
                         <div className="mt-8">
-                            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="mx-auto px-4 sm:px-6 lg:px-8">
                                 <h2 className="text-lg leading-6 font-medium text-gray-900">Overview</h2>
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                                     {/* Card */}
@@ -350,7 +355,7 @@ export default function TailwindDashboard({data}) {
                                             <div
                                                 className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                                 <table className="min-w-full divide-y divide-gray-300">
-                                                    <thead className="bg-gray-50">
+                                                    <thead className="bg-gray-200">
                                                     <tr>
                                                         <th scope="col"
                                                             className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -386,9 +391,9 @@ export default function TailwindDashboard({data}) {
                                                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                             Minor(s)
                                                         </th>
-                                                        {/*<th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">*/}
-                                                        {/*    <span className="sr-only">Edit</span>*/}
-                                                        {/*</th>*/}
+                                                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                            <span className="sr-only">Edit</span>
+                                                        </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody className="bg-white">

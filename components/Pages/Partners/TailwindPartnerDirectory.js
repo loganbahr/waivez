@@ -29,7 +29,7 @@ export default function TailwindPartnerDirectory({partners}) {
     }
 // bg-gradient-to-br from-primary to-[#9f40ff]
     return (
-        <div className="sm:px-6 py-4 bg-gradient-to-br from-primary to-[#9f40ff] lg:py-8 rounded-xl border">
+        <div className="sm:px-6 py-4 bg-gradient-to-br from-primary to-[#9f40ff] lg:py-8 rounded-lg">
             <div className="sm:flex sm:items-center">
                 <div className="min-w-full">
                     {/*Search bar for Partners*/}
