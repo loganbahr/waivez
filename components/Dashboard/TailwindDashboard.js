@@ -33,19 +33,13 @@ import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
 import {data} from "autoprefixer";
 
-const cards = [
-    {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
-    {title: 'Average Age', icon: LightningBoltIcon, data: '25'},
-    {title: 'Had Minors', icon: LightningBoltIcon, data: '23%'},
-    // More items...
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 
-export default function TailwindDashboard({data, avgAge, percentMinors}) {
+export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
     const [query, setQuery] = useState('');
@@ -57,7 +51,7 @@ export default function TailwindDashboard({data, avgAge, percentMinors}) {
     }, [data]);
 
     const cards = [
-        {title: 'Most Popular Residency', icon: LightningBoltIcon, data: 'Florida'},
+        {title: 'Most Popular State', icon: LightningBoltIcon, data: mostPopularState},
         {title: 'Average Age', icon: LightningBoltIcon, data: avgAge},
         {title: 'Had Minors', icon: LightningBoltIcon, data: percentMinors + '%'},
     ]
