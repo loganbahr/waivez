@@ -19,6 +19,7 @@ const Dashboard = () => {
         const [mostPopularState, setMostPopularState] = useState();
 
 
+        // grabs all the dashboard data from database
         useEffect(() => {
             const fetchData = async () => {
                 const response = await fetch('/api/users/fetchUsersData', {
