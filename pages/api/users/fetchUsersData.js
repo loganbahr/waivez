@@ -25,11 +25,13 @@ export default async function handler(req, res) {
         // Get the collection of user data
         const usersCollection = db.collection('users');
 
-        // Get the array of all users data
+
+        /***************************ALL TABLE DATA***************************************/
+            // Get the array of all users data from the given partner
         const allUsersData = await usersCollection.find({partnerName: req.body.partnerName}).toArray();
 
         /******************************AVERAGE AGE************************************/
-        // extract the date of birth from each user
+            // extract the date of birth from each user
         const allDates = allUsersData.map(user => user.dateOfBirth);
 
         // convert the date to a string, with the substring of the year only (ex. "2020")
@@ -43,13 +45,12 @@ export default async function handler(req, res) {
         // the second argument, '0' is the initial value of the accumulator
         const avgAge = Math.round(allDatesNumber.reduce((a, b) => a + b, 0) / allDatesNumber.length);
 
-
         // subtract the current year from the average age and take absolute value
         const avgAgeYears = Math.abs(new Date().getFullYear() - avgAge);
 
         /*******************************AGE DEMOGRAPHICS***********************************/
 
-        // find the current age of each user
+            // find the current age of each user
         const currentAge = allDatesNumber.map(date => Math.abs(new Date().getFullYear() - date));
 
         // number of users between each age group
@@ -104,7 +105,92 @@ export default async function handler(req, res) {
             return maxEl;
         }
 
-        const mostPopularState = findMostPopularState(allStates);
+        const mostPopularState = findMostPopularState();
+
+        /******************************REGIONAL DISTRIBUTION***************************/
+
+        const calculateRegion = () => {
+
+                let west = 0;
+                let midwest = 0;
+                let northeast = 0;
+                let south = 0;
+                let pacific = 0;
+
+            allStates.forEach(state => {
+                if (state === 'Arizona' ||
+                    state === 'Colorado' ||
+                    state === 'Idaho' ||
+                    state === 'Montana' ||
+                    state === 'Nevada' ||
+                    state === 'New Mexico' ||
+                    state === 'Utah' ||
+                    state === 'Wyoming') {
+                    west++;
+                } else if (
+                    state === 'Alaska' ||
+                    state === 'Hawaii' ||
+                    state === 'Washington' ||
+                    state === 'Oregon' ||
+                    state === 'California') {
+                    pacific++
+                } else if (
+                    state === 'Delaware' ||
+                    state === 'District of Columbia' ||
+                    state === 'Florida' ||
+                    state === 'Georgia' ||
+                    state === 'Maryland' ||
+                    state === 'North Carolina' ||
+                    state === 'South Carolina' ||
+                    state === 'Virginia' ||
+                    state === 'West Virginia' ||
+                    state === 'Alabama' ||
+                    state === 'Kentucky' ||
+                    state === 'Mississippi' ||
+                    state === 'Tennessee' ||
+                    state === 'Arkansas' ||
+                    state === 'Louisiana' ||
+                    state === 'Oklahoma' ||
+                    state === 'Texas') {
+                    south++;
+                } else if (
+                    state === 'Indiana' ||
+                    state === 'Illinois' ||
+                    state === 'Michigan' ||
+                    state === 'Ohio' ||
+                    state === 'Wisconsin' ||
+                    state === 'Iowa' ||
+                    state === 'Kansas' ||
+                    state === 'Minnesota' ||
+                    state === 'Missouri' ||
+                    state === 'Nebraska' ||
+                    state === 'North Dakota' ||
+                    state === 'South Dakota') {
+                    midwest++;
+                } else if (
+                    state === 'Connecticut' ||
+                    state === 'Maine' ||
+                    state === 'Massachusetts' ||
+                    state === 'New Hampshire' ||
+                    state === 'Rhode Island' ||
+                    state === 'Vermont' ||
+                    state === 'New Jersey' ||
+                    state === 'New York' ||
+                    state === 'Pennsylvania') {
+                    northeast++;
+                }
+            });
+
+            // package the regional distribution into an object
+            return {
+                west,
+                midwest,
+                northeast,
+                south,
+                pacific,
+            };
+        }
+        const regionalDistribution = calculateRegion();
 
         /*******************************RETURN DATA***********************************/
 
@@ -113,7 +199,8 @@ export default async function handler(req, res) {
             avgAgeYears,
             ageDemographics,
             percentMinors,
-            mostPopularState
+            mostPopularState,
+            regionalDistribution
         });
         await client.close();
 

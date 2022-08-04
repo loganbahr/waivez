@@ -13,6 +13,7 @@ import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
 import DemographicsPieChart from "./DemographicsPieChart";
+import RegionalDistributionRadarChart from "./RegionalDistributionRadarChart";
 
 
 function classNames(...classes) {
@@ -20,7 +21,8 @@ function classNames(...classes) {
 }
 
 
-export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState , ageDemographics}) {
+export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState , ageDemographics, regionalDistribution}) {
+
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
     const [query, setQuery] = useState('');
@@ -31,7 +33,6 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
     useEffect(() => {
         data && setDataIsLoading(false);
     }, [data]);
-
 
     const cards = [
         {title: 'Most Popular State', icon: LightningBoltIcon, data: mostPopularState},
@@ -318,6 +319,7 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
                                 {/*****************************CHARTS/GRAPHS*****************************/}
                                 <div className={'p-5 grid grid-cols-1 gap-5 sm:grid-cols-2 max-w-[1500px] mx-auto'}>
                                     <DemographicsPieChart ageDemographics={ageDemographics}/>
+                                    <RegionalDistributionRadarChart regionalDistribution={regionalDistribution}/>
                                 </div>
 
 

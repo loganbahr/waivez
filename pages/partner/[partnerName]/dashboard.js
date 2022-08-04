@@ -18,6 +18,7 @@ const Dashboard = () => {
         const [percentMinors, setPercentMinors] = useState();
         const [mostPopularState, setMostPopularState] = useState();
         const [ageDemos, setAgeDemos] = useState([]);
+        const [regionDemos, setRegionDemos] = useState();
 
 
         // grabs all the dashboard data from database
@@ -30,12 +31,21 @@ const Dashboard = () => {
                     },
                     body: JSON.stringify({partnerName: session?.user?.name}),
                 });
-                const {allUsersData, avgAgeYears, percentMinors, mostPopularState, ageDemographics} = await response.json();
+                const {
+                    allUsersData,
+                    avgAgeYears,
+                    percentMinors,
+                    mostPopularState,
+                    ageDemographics,
+                    regionalDistribution
+                } = await response.json();
+
                 setData(allUsersData);
                 setAverageAge(avgAgeYears);
                 setPercentMinors(percentMinors);
                 setMostPopularState(mostPopularState);
                 setAgeDemos(ageDemographics);
+                setRegionDemos(regionalDistribution);
             }
             fetchData().catch(error => console.log(error));
 
@@ -44,9 +54,12 @@ const Dashboard = () => {
         return (
             <div>
                 {status === 'unauthenticated' ? undefined :
-                    <TailwindDashboard data={data} avgAge={averageAge} percentMinors={percentMinors}
+                    <TailwindDashboard data={data}
+                                       avgAge={averageAge}
+                                       percentMinors={percentMinors}
                                        mostPopularState={mostPopularState}
                                        ageDemographics={ageDemos}
+                                       regionalDistribution={regionDemos}
                     />}
             </div>
         );
