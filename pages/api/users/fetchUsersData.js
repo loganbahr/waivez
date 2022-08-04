@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         const allUsersData = await usersCollection.find({partnerName: req.body.partnerName}).toArray();
 
         /******************************AVERAGE AGE************************************/
-            // extract the date of birth from each user
+        // extract the date of birth from each user
         const allDates = allUsersData.map(user => user.dateOfBirth);
 
         // convert the date to a string, with the substring of the year only (ex. "2020")
@@ -46,12 +46,33 @@ export default async function handler(req, res) {
 
         // subtract the current year from the average age and take absolute value
         const avgAgeYears = Math.abs(new Date().getFullYear() - avgAge);
-        /******************************AVERAGE AGE************************************/
+
+        /*******************************AGE DEMOGRAPHICS***********************************/
+
+        // find the current age of each user
+        const currentAge = allDatesNumber.map(date => Math.abs(new Date().getFullYear() - date));
+
+        // number of users between each age group
+        const age18to24 = currentAge.filter(age => age >= 18 && age <= 24).length;
+        const age25to34 = currentAge.filter(age => age >= 25 && age <= 34).length;
+        const age35to44 = currentAge.filter(age => age >= 35 && age <= 44).length;
+        const age45to54 = currentAge.filter(age => age >= 45 && age <= 54).length;
+        const age55to64 = currentAge.filter(age => age >= 55 && age <= 64).length;
+        const age65plus = currentAge.filter(age => age >= 65).length;
+
+        // package the age demographics into an object
+        const ageDemographics = {
+            age18to24,
+            age25to34,
+            age35to44,
+            age45to54,
+            age55to64,
+            age65plus,
+        }
 
         /******************************PERCENT MINORS*********************************/
         const allMinors = allUsersData.filter(user => user.minors === true);
         const percentMinors = Math.round((allMinors.length / allUsersData.length) * 100);
-        /******************************PERCENT MINORS*********************************/
 
         /******************************MOST POPULAR STATE*****************************/
         const allStates = allUsersData.map(user => user.state);
@@ -85,11 +106,12 @@ export default async function handler(req, res) {
 
         const mostPopularState = findMostPopularState(allStates);
 
-        /******************************MOST POPULAR STATE*****************************/
+        /*******************************RETURN DATA***********************************/
 
         res.status(200).json({
             allUsersData,
             avgAgeYears,
+            ageDemographics,
             percentMinors,
             mostPopularState
         });

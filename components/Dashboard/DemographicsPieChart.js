@@ -5,20 +5,30 @@ import {Pie} from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-const DemoChart = () => {
+const DemographicsPieChart = ({ageDemographics}) => {
+
+    console.log(ageDemographics.age18to24);
+
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['18 - 24', '25 - 34', '35 - 44', '45 - 54', '55 - 64', '65+'],
         datasets: [
             {
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [
+                    ageDemographics.age18to24,
+                    ageDemographics.age25to34,
+                    ageDemographics.age35to44,
+                    ageDemographics.age45to54,
+                    ageDemographics.age55to64,
+                    ageDemographics.age65plus
+                ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(175, 175, 175, 0.2)',
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -26,16 +36,19 @@ const DemoChart = () => {
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
+                    'rgba(175, 175, 175, 1)',
                 ],
-                borderWidth: 1,
+                borderWidth: 2,
             },
         ],
     };
     return (
         <div className={'py-10 md:py-0'}>
+            <h1 className={'text-center text-xl font-semibold text-gray-900 md:py-2'}>
+                Demographics Pie Chart
+            </h1>
             <Pie data={data}/>
         </div>
     );
 }
-export default DemoChart;
+export default DemographicsPieChart;

@@ -12,7 +12,7 @@ import {CheckCircleIcon, ChevronDownIcon, SearchIcon,} from '@heroicons/react/so
 import WaivezLogoCropped from "../Graphics/WaivezLogoCropped";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
-import DemoChart from "./DemoChart";
+import DemographicsPieChart from "./DemographicsPieChart";
 
 
 function classNames(...classes) {
@@ -20,7 +20,7 @@ function classNames(...classes) {
 }
 
 
-export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState}) {
+export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState , ageDemographics}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
     const [query, setQuery] = useState('');
@@ -317,8 +317,7 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
 
                                 {/*****************************CHARTS/GRAPHS*****************************/}
                                 <div className={'p-5 grid grid-cols-1 gap-5 sm:grid-cols-2 max-w-[1500px] mx-auto'}>
-                                    <DemoChart/>
-                                    <DemoChart/>
+                                    <DemographicsPieChart ageDemographics={ageDemographics}/>
                                 </div>
 
 
@@ -329,8 +328,7 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
                                             <h1 className="text-xl font-semibold text-gray-900">Users</h1>
                                             <p className="mt-2 text-sm text-gray-700">
                                                 A list of all the users in {session?.user?.name} that matches your
-                                                search
-                                                criteria.
+                                                search criteria.
                                             </p>
                                         </div>
                                         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
