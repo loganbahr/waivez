@@ -14,14 +14,14 @@ import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
 import DemographicsPieChart from "./DemographicsPieChart";
 import RegionalDistributionRadarChart from "./RegionalDistributionRadarChart";
+import DashboardTable from "./DashboardTable";
 
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-
-export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState , ageDemographics, regionalDistribution}) {
+export default function TailwindDashboard({data, avgAge, percentMinors, mostPopularState, ageDemographics, regionalDistribution}) {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dataIsLoading, setDataIsLoading] = useState(true);
@@ -39,14 +39,6 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
         {title: 'Average Age', icon: LightningBoltIcon, data: avgAge},
         {title: 'Had Minors', icon: LightningBoltIcon, data: percentMinors + '%'},
     ];
-
-    const filteredUsers =
-        query === ''
-            ? data
-            : data.filter((user) => {
-                return user.firstName.toLowerCase().includes(query.toLowerCase().trim()) ||
-                    user.lastName.toLowerCase().includes(query.toLowerCase().trim())
-            })
 
     return (
         <div>
@@ -318,110 +310,14 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
 
                                 {/*****************************CHARTS/GRAPHS*****************************/}
                                 <div className={'p-5 grid grid-cols-1 gap-5 sm:grid-cols-2 max-w-[1500px] mx-auto'}>
-                                    <DemographicsPieChart ageDemographics={ageDemographics}/>
-                                    <RegionalDistributionRadarChart regionalDistribution={regionalDistribution}/>
+                                    {!dataIsLoading && <DemographicsPieChart ageDemographics={ageDemographics}/>}
+                                    {!dataIsLoading &&
+                                        <RegionalDistributionRadarChart regionalDistribution={regionalDistribution}/>}
                                 </div>
 
 
                                 {/*****************************TABLE*****************************/}
-                                <div className="py-8 px-4 sm:px-6 lg:px-8">
-                                    <div className="sm:flex sm:items-center">
-                                        <div className="sm:flex-auto">
-                                            <h1 className="text-xl font-semibold text-gray-900">Users</h1>
-                                            <p className="mt-2 text-sm text-gray-700">
-                                                A list of all the users in {session?.user?.name} that matches your
-                                                search criteria.
-                                            </p>
-                                        </div>
-                                        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                                            <button
-                                                type="button"
-                                                className="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:w-auto"
-                                            >
-                                                Add user
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mt-8 flex flex-col">
-                                        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                                <div
-                                                    className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                                    <table className="min-w-full divide-y divide-gray-300">
-                                                        <thead className="bg-gray-200">
-                                                        <tr>
-                                                            <th scope="col"
-                                                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                First Name
-                                                            </th>
-
-                                                            <th scope="col"
-                                                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                Last Name
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                DOB
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                State
-                                                            </th>
-
-                                                            <th scope="col"
-                                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                City
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                Address
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                Email
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                Minor(s)
-                                                            </th>
-                                                            <th scope="col"
-                                                                className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                                <span className="sr-only">Edit</span>
-                                                            </th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody className="bg-white">
-                                                        {filteredUsers?.map((person, personIdx) => (
-                                                            <tr key={person._id}
-                                                                className={personIdx % 2 === 0 ? 'bg-white hover:bg-gray-100' : 'bg-gray-50 hover:bg-gray-100'}>
-                                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                                    {person.firstName}
-                                                                </td>
-                                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                                    {person.lastName}
-                                                                </td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.dateOfBirth.substring(0, 10)}</td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.state}</td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.city}</td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address}</td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.minors.toString()}</td>
-                                                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                    <a href="#"
-                                                                       className="text-primary hover:text-primaryHover">
-                                                                        Edit
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
-                                                        </tbody>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {!dataIsLoading && <DashboardTable query={query} data={data}/>}
 
                             </div>
                         </main>
