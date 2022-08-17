@@ -4,16 +4,22 @@ import {ArrowNarrowLeftIcon, ArrowNarrowRightIcon} from "@heroicons/react/solid"
 
 const DashboardTable = ({query, data}) => {
 
-    const TABLE_LENGTH = 10;
+    const TABLE_LENGTH = 15;
 
     const {data: session, status} = useSession();
 
     const [numPages, setNumPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
 
+    // only works with no dependencies
     useEffect(() => {
-        setNumPages(Math.trunc(data?.length / 10 + 1));
-    }, [data]);
+        if (filteredUsers?.length > TABLE_LENGTH) {
+            setNumPages(Math.trunc(data?.length / TABLE_LENGTH + 1));
+        }
+        if (filteredUsers?.length < TABLE_LENGTH) {
+            setNumPages(1);
+        }
+    }, []);
 
     const filteredUsers =
         query === ''
@@ -22,6 +28,9 @@ const DashboardTable = ({query, data}) => {
                 return user.firstName.toLowerCase().includes(query.toLowerCase().trim()) ||
                     user.lastName.toLowerCase().includes(query.toLowerCase().trim())
             })
+
+    // reduce filteredUsers to only show 10 users per page
+    const users = filteredUsers.slice((currentPage - 1) * TABLE_LENGTH, currentPage * TABLE_LENGTH);
 
     const nextPage = () => {
         if (currentPage < numPages) {
@@ -100,8 +109,9 @@ const DashboardTable = ({query, data}) => {
                                     </th>
                                 </tr>
                                 </thead>
+
                                 <tbody className="bg-white">
-                                {filteredUsers?.map((person, personIdx) => (
+                                {users?.map((person, personIdx,) => (
                                     <tr key={person._id}
                                         className={personIdx % 2 === 0 ? 'bg-white hover:bg-gray-100' : 'bg-gray-50 hover:bg-gray-100'}>
                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
@@ -126,12 +136,12 @@ const DashboardTable = ({query, data}) => {
                                 ))}
                                 </tbody>
                             </table>
+
                             {/*PAGINATION*/}
                             <nav className="bg-gray-200 p-4 flex items-center justify-between">
-
                                 <div className="w-0 flex-1 flex">
                                     <div
-                                        className="group cursor-pointer pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
+                                        className={filteredUsers.length < TABLE_LENGTH ? 'hidden' : 'group cursor-pointer pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700'}
                                         onClick={() => previousPage()}
                                     >
                                         <ArrowNarrowLeftIcon
@@ -141,52 +151,56 @@ const DashboardTable = ({query, data}) => {
                                     </div>
                                 </div>
 
-                                {numPages > 6 ? (
-                                    <div className="hidden md:-mt-px md:flex">
-                                        {/*generate a number based off numPages*/}
-                                        {Array.from({length: 3}, (_, i) => (
-                                            <div
-                                                className="border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                                                onClick={() => setCurrentPage(i + 1)}
-                                            >
-                                                {i + 1}
-                                            </div>)
-                                        )}
+                                {
+                                    numPages > 6 ? (
+                                        <div className="md:-mt-px md:flex">
+                                            {Array.from({length: 3}, (_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={i + 1 === currentPage ? 'border-transparent cursor-pointer text-primary hover:text-primaryHover hover:border-primary border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium' : 'border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'}
+                                                    //className="border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                                                    onClick={() => setCurrentPage(i + 1)}
+                                                >
+                                                    {i + 1}
+                                                </div>)
+                                            )}
 
-                                        <span
-                                            className="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
-                                        ...
-                                    </span>
+                                            {currentPage > 3 && currentPage < numPages - 2 ?
+                                                (<span className={'text-lg pt-4 px-4'}>
+                                                    {currentPage}
+                                                </span>) :
+                                                (<span
+                                                    className="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">...</span>)}
 
 
-                                        {Array.from({length: 3}, (_, i) => (
-                                            <div
-                                                className="border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                                                onClick={() => setCurrentPage(numPages - 2 + i)}
-                                            >
-                                                {numPages - 2 + i}
-                                            </div>)
-                                        )}
-
-                                    </div>
-                                ) : (
-                                    <div className="hidden md:-mt-px md:flex">
-                                        {Array.from({length: numPages}, (_, i) => (
-                                            <div
-                                                className="border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                                                onClick={() => setCurrentPage(i + 1)}
-                                            >
-                                                {i + 1}
-                                            </div>)
-                                        )}
-                                    </div>
-                                )
+                                            {Array.from({length: 3}, (_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={numPages - 2 + i === currentPage ? 'border-transparent cursor-pointer text-primary hover:text-primaryHover hover:border-primary border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium' : 'border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'}
+                                                    onClick={() => setCurrentPage(numPages - 2 + i)}
+                                                >
+                                                    {numPages - 2 + i}
+                                                </div>)
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <div className="md:-mt-px md:flex">
+                                            {Array.from({length: numPages}, (_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={i + 1 === currentPage ? 'border-transparent cursor-pointer text-primary hover:text-primaryHover hover:border-primary border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium' : 'border-transparent cursor-pointer text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'}
+                                                    onClick={() => setCurrentPage(i + 1)}
+                                                >
+                                                    {i + 1}
+                                                </div>)
+                                            )}
+                                        </div>
+                                    )
                                 }
-
 
                                 <div className="-mt-px w-0 flex-1 flex justify-end">
                                     <div
-                                        className="group cursor-pointer pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
+                                        className={filteredUsers.length < TABLE_LENGTH ? 'hidden' : 'group cursor-pointer pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700'}
                                         onClick={() => nextPage()}
                                     >
                                         Next
@@ -195,7 +209,6 @@ const DashboardTable = ({query, data}) => {
                                             aria-hidden="true"/>
                                     </div>
                                 </div>
-
                             </nav>
                         </div>
                     </div>
