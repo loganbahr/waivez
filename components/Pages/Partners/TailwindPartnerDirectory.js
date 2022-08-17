@@ -1,16 +1,12 @@
-/* This example requires Tailwind CSS v2.0+ */
+/**
+ * @file /components/Pages/Partners/TailwindPartnerDirectory.js
+ * @author Logan Bahr
+ * @description Lists all of the Partners in a searchable, sortable, grid format.
+ * @since 7/15/22
+ */
 import {ChevronDownIcon, ChevronUpIcon, SearchIcon} from '@heroicons/react/solid'
 import {useState} from "react";
-import TailwindPartnerSearchBar from "../Home/TailwindPartnerSearchBar";
-
-const partner =
-    [
-        {name: 'Naples Beach Watersports', city: 'Naples', state: 'Florida'},
-        {name: 'Marco Island Watersports', city: 'Marco Island', state: 'Florida'},
-        {name: 'Everblades', city: 'Estero', state: 'Florida'},
-        {name: 'Hertz Arena', city: 'Estero', state: 'Florida'},
-    ]
-
+import Link from "next/link";
 
 export default function TailwindPartnerDirectory({partners}) {
 
@@ -27,6 +23,17 @@ export default function TailwindPartnerDirectory({partners}) {
     const stateSortHandler = () => {
         setStateSort(!stateSort);
     }
+
+    // iterate through the partners object and create an array of objects
+    const rows = Object.keys(partners).map((id) => {
+        return {
+            id: id,
+            companyName: partners[id].title,
+            city: partners[id].city,
+            state: partners[id].state,
+        }
+    });
+
 // bg-gradient-to-br from-primary to-[#9f40ff]
     return (
         <div className="sm:px-6 py-4 bg-gradient-to-br from-primary to-[#9f40ff] lg:py-8 rounded-lg">
@@ -59,7 +66,7 @@ export default function TailwindPartnerDirectory({partners}) {
                                         <div className="group inline-flex">
                                             Name
                                             <span
-                                                className="cursor-pointer ml-2 flex flex-row rounded text-gray-400 group-hover:visible group-focus:visible hover:bg-gray-300">
+                                                className="cursor-pointer ml-2 flex flex-row rounded text-gray-400 group-hover:visible group-focus:visible hover:bg-gray-200">
                                                 {nameSort ? <ChevronDownIcon onClick={() => {
                                                         nameSortHandler()
                                                     }} className="h-5 w-5" aria-hidden="true"/> :
@@ -101,9 +108,14 @@ export default function TailwindPartnerDirectory({partners}) {
                                 </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                {partner.map((partner) => (
-                                    <tr key={partner.name} className={'hover:bg-gray-100'}>
-                                        <td className="sm:whitespace-nowrap py-4 pl-4 pr-3 text-sm md:text-base font-medium text-gray-900 sm:pl-6">{partner.name}</td>
+                                {rows.map((partner) => (
+                                    <tr key={partner.id} className={'hover:bg-gray-100 cursor-pointer'}>
+                                        <Link
+                                            href={`/partners/${partner.companyName.toLowerCase().replace(/\s/g, '')}`}>
+                                            <a>
+                                                <td className="sm:whitespace-nowrap py-4 pl-4 pr-3 text-sm md:text-base font-medium text-gray-900 sm:pl-6">{partner.companyName}</td>
+                                            </a>
+                                        </Link>
                                         <td className="sm:whitespace-nowrap px-3 py-4 text-sm md:text-base text-gray-500">{partner.city}</td>
                                         <td className="sm:whitespace-nowrap px-3 py-4 text-sm md:text-base text-gray-500">{partner.state}</td>
                                     </tr>

@@ -11,7 +11,6 @@ const DashboardTable = ({query, data}) => {
     const [numPages, setNumPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
 
-    // only works with no dependencies
     useEffect(() => {
         if (filteredUsers?.length > TABLE_LENGTH) {
             setNumPages(Math.trunc(data?.length / TABLE_LENGTH + 1));
@@ -19,7 +18,8 @@ const DashboardTable = ({query, data}) => {
         if (filteredUsers?.length < TABLE_LENGTH) {
             setNumPages(1);
         }
-    }, []);
+    }, [data?.length, filteredUsers?.length]);
+
 
     const filteredUsers =
         query === ''

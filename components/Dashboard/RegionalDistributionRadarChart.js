@@ -36,10 +36,12 @@ const RegionalDistributionRadarChart = ({regionalDistribution}) => {
                 backgroundColor: 'rgba(127, 0, 255, 0.5)',
                 borderColor: 'rgba(127, 0, 255, 1)',
                 borderWidth: 2,
+                font: {
+                    size: 30,
+                }
             },
         ],
     };
-
 
     return (
         <div className={'py-10 md:py-0'}>
