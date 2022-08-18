@@ -75,12 +75,20 @@ const SignatureEntry = (props) => {
                 ></SignatureCanvas>
             </Box>
 
-            <Button
+            <button
+                className={'btn-secondary mt-2 focus:ring-transparent'}
                 onClick={clearedHandler}
-                sx={{border: "2px solid #7F00FF", my: 1}}
+
             >
-                clear
-            </Button>
+                Clear
+            </button>
+
+            {/*<Button*/}
+            {/*    onClick={clearedHandler}*/}
+            {/*    sx={{border: "2px solid #7F00FF", my: 1}}*/}
+            {/*>*/}
+            {/*    clear*/}
+            {/*</Button>*/}
         </Box>
     );
 };

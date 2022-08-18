@@ -110,11 +110,9 @@ export default function TailwindPartnerDirectory({partners}) {
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                 {rows.map((partner) => (
                                     <tr key={partner.id} className={'hover:bg-gray-100 cursor-pointer'}>
-                                        <Link
-                                            href={`/partners/${partner.companyName.toLowerCase().replace(/\s/g, '')}`}>
-                                            <a>
-                                                <td className="sm:whitespace-nowrap py-4 pl-4 pr-3 text-sm md:text-base font-medium text-gray-900 sm:pl-6">{partner.companyName}</td>
-                                            </a>
+                                        <Link passHref={true}
+                                              href={`/partners/${partner.companyName.toLowerCase().replace(/\s/g, '')}`}>
+                                            <td className="sm:whitespace-nowrap py-4 pl-4 pr-3 text-sm md:text-base font-medium text-gray-900 sm:pl-6">{partner.companyName}</td>
                                         </Link>
                                         <td className="sm:whitespace-nowrap px-3 py-4 text-sm md:text-base text-gray-500">{partner.city}</td>
                                         <td className="sm:whitespace-nowrap px-3 py-4 text-sm md:text-base text-gray-500">{partner.state}</td>

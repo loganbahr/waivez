@@ -84,7 +84,6 @@ const TailwindSignIn = () => {
         }
         setPassword('');
     }
-//TODO: get the error back from the signIn function
 
     return (
         <div className={'flex flex-col w-11/12 md:w-1/2'}>
