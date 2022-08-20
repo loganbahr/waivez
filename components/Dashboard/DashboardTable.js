@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useSession} from "next-auth/react";
 import {ArrowNarrowLeftIcon, ArrowNarrowRightIcon} from "@heroicons/react/solid";
+import Axios from "axios";
+import WaiverRenderer from "../Waivers/WaiverRenderer";
+import WaiverTabRenderer from "../Waivers/WaiverTabRenderer";
 
 const DashboardTable = ({query, data}) => {
 
@@ -29,7 +32,7 @@ const DashboardTable = ({query, data}) => {
                     user.lastName.toLowerCase().includes(query.toLowerCase().trim())
             })
 
-    // reduce filteredUsers to only show 10 users per page
+    // reduce filteredUsers to only show TABLE_LENGTH users per page
     const users = filteredUsers.slice((currentPage - 1) * TABLE_LENGTH, currentPage * TABLE_LENGTH);
 
     const nextPage = () => {
@@ -41,6 +44,16 @@ const DashboardTable = ({query, data}) => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
+    }
+
+    const viewWaiver = async (person) => {
+        await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/lookupWaivers`, {
+            params: {
+                firstName: person.firstName,
+                lastName: person.lastName,
+                dateOfBirth: person.dateOfBirth,
+            },
+        });
     }
 
     return (
@@ -71,12 +84,12 @@ const DashboardTable = ({query, data}) => {
                                 <tr>
                                     <th scope="col"
                                         className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                        First Name
+                                        First
                                     </th>
 
                                     <th scope="col"
                                         className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                        Last Name
+                                        Last
                                     </th>
                                     <th scope="col"
                                         className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -101,11 +114,11 @@ const DashboardTable = ({query, data}) => {
                                     </th>
                                     <th scope="col"
                                         className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Minor(s)
+                                        Phone
                                     </th>
                                     <th scope="col"
                                         className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                        <span className="sr-only">Edit</span>
+                                        <span className="sr-only">View</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -125,7 +138,10 @@ const DashboardTable = ({query, data}) => {
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address.city}</td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address.line}</td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                        <td className="relative cursor-pointer whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.phoneNumber}</td>
+                                        <td className="relative cursor-pointer whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
+                                            onClick={() => viewWaiver(person)}
+                                        >
                                             View
                                         </td>
                                     </tr>

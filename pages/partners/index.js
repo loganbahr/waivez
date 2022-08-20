@@ -15,7 +15,6 @@ const PartnersPage = (props) => {
     return (
         <div className={'overflow-hidden'}>
             <DirectoryHero/>
-
             <div className={'max-w-6xl mx-1 lg:mx-auto my-16'}>
                 <TailwindPartnerDirectory partners={props}/>
             </div>
