@@ -187,7 +187,6 @@ export default async function handler(req, res) {
         const regionalDistribution = calculateRegion();
 
         /******************************RETURN DATA TO CLIENT*****************************/
-        console.log(allUsersData);
         res.status(200).json({
             allUsersData,
             avgAgeYears,
