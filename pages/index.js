@@ -38,8 +38,9 @@ const HomePage = (props) => {
 
 
             <TailwindHero companies={props}/>
-            <TailwindFeaturesSection/>
             <TailwindPotentialCompanies/>
+            <TailwindFeaturesSection/>
+
 
 
         </div>
