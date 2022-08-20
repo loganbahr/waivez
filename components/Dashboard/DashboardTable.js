@@ -120,12 +120,11 @@ const DashboardTable = ({query, data}) => {
                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                             {person.lastName}
                                         </td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.dateOfBirth.substring(0, 10)}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.state}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.city}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.dateOfBirth}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address.state}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address.city}</td>
+                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.address.line}</td>
                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.minors.toString()}</td>
                                         <td className="relative cursor-pointer whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             View
                                         </td>

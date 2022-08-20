@@ -37,7 +37,7 @@ export default function TailwindDashboard({data, avgAge, percentMinors, mostPopu
     const cards = [
         {title: 'Most Popular State', icon: LightningBoltIcon, data: mostPopularState},
         {title: 'Average Age', icon: LightningBoltIcon, data: avgAge},
-        {title: 'Had Minors', icon: LightningBoltIcon, data: percentMinors + '%'},
+        {title: 'Had Minors', icon: LightningBoltIcon, data: '50%'},
     ];
 
     return (

@@ -24,7 +24,7 @@ const Dashboard = () => {
         // grabs all the dashboard data from database
         useEffect(() => {
             const fetchData = async () => {
-                const response = await fetch('/api/users/fetchUsersData', {
+                const response = await fetch('/api/users/fetchUsersDataWaivez', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -34,15 +34,13 @@ const Dashboard = () => {
                 const {
                     allUsersData,
                     avgAgeYears,
-                    percentMinors,
-                    mostPopularState,
                     ageDemographics,
+                    mostPopularState,
                     regionalDistribution
                 } = await response.json();
 
                 setData(allUsersData);
                 setAverageAge(avgAgeYears);
-                setPercentMinors(percentMinors);
                 setMostPopularState(mostPopularState);
                 setAgeDemos(ageDemographics);
                 setRegionDemos(regionalDistribution);
@@ -56,7 +54,6 @@ const Dashboard = () => {
                 {status === 'unauthenticated' ? undefined :
                     <TailwindDashboard data={data}
                                        avgAge={averageAge}
-                                       percentMinors={percentMinors}
                                        mostPopularState={mostPopularState}
                                        ageDemographics={ageDemos}
                                        regionalDistribution={regionDemos}

@@ -1,41 +1,38 @@
 /**
- * @file pages/api/users/fetchUsersData.js
+ * @file pages/api/users/fetchUsersDataWaivez.js
  * @author Logan Bahr
- * @description Fetches user data from the personal database and returns it as an array.
- * Called from pages/partner/[partnerName]/dashboard.js
- * @since 7/20/22
+ * @description Fetches all the user data from the official Waivez database and returns it as an array.
+ * @since 8/20/22
  */
 
-import {connectToDatabase} from "../../../lib/db";
+import {connectToWaivezDatabase} from "../../../lib/db";
 
 export default async function handler(req, res) {
 
     try {
-
         if (req.method !== "POST") {
             return;
         }
 
-        // Connect to the database
-        const client = await connectToDatabase();
+        /******************************CONNECTING TO CLIENT**********************************/
 
-        // Get the database collection
+        const client = await connectToWaivezDatabase();
+
         const db = client.db('waivez');
 
-        // Get the collection of user data
         const usersCollection = db.collection('users');
 
-
         /***************************ALL TABLE DATA***************************************/
-            // Get the array of all users data from the given partner
-        const allUsersData = await usersCollection.find({partnerName: req.body.partnerName}).toArray();
+
+        const allUsersData = await usersCollection.find({}).toArray();
 
         /******************************AVERAGE AGE************************************/
+
             // extract the date of birth from each user
         const allDates = allUsersData.map(user => user.dateOfBirth);
 
         // convert the date to a string, with the substring of the year only (ex. "2020")
-        const allDatesString = allDates.map(date => date.toString().substring(11, 15));
+        const allDatesString = allDates.map(date => date.toString().substring(0, 4));
 
         // convert the string to a number (ex. 2020)
         const allDatesNumber = allDatesString.map(date => parseInt(date));
@@ -69,14 +66,11 @@ export default async function handler(req, res) {
             age45to54,
             age55to64,
             age65plus,
-        }
-
-        /******************************PERCENT MINORS*********************************/
-        const allMinors = allUsersData.filter(user => user.minors === true);
-        const percentMinors = Math.round((allMinors.length / allUsersData.length) * 100);
+        };
 
         /******************************MOST POPULAR STATE*****************************/
-        const allStates = allUsersData.map(user => user.state);
+
+        const allStates = allUsersData.map(user => user.address.state);
 
         const findMostPopularState = () => {
 
@@ -111,11 +105,11 @@ export default async function handler(req, res) {
 
         const calculateRegion = () => {
 
-                let west = 0;
-                let midwest = 0;
-                let northeast = 0;
-                let south = 0;
-                let pacific = 0;
+            let west = 0;
+            let midwest = 0;
+            let northeast = 0;
+            let south = 0;
+            let pacific = 0;
 
             allStates.forEach(state => {
                 if (state === 'Arizona' ||
@@ -192,21 +186,18 @@ export default async function handler(req, res) {
         }
         const regionalDistribution = calculateRegion();
 
-        /*******************************RETURN DATA***********************************/
-
+        /******************************RETURN DATA TO CLIENT*****************************/
+        console.log(allUsersData);
         res.status(200).json({
             allUsersData,
             avgAgeYears,
             ageDemographics,
-            percentMinors,
             mostPopularState,
-            regionalDistribution
+            regionalDistribution,
         });
         await client.close();
-
     } catch (error) {
         console.log(error);
         res.status(500).json({message: error.message});
     }
-
 }
