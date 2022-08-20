@@ -22,8 +22,7 @@ const SignIn = () => {
         <div className="max-w-6xl mx-auto h-screen flex items-center justify-center">
             <div className={'flex flex-col items-center flex-auto'}>
                 {status === 'unauthenticated' ?
-                    <button type={'button'}
-                            className={'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-500 my-5'}>
+                    <button className={'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-500 my-5'}>
                         {status}
                     </button> :
                     <button

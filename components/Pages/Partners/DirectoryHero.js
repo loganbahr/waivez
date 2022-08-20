@@ -2,7 +2,7 @@ import React from 'react';
 
 const DirectoryHero = () => {
     return (
-        <div className={'my-16 max-w-7xl mx-auto'}>
+        <div className={'mt-16 max-w-7xl mx-auto'}>
             <div className={'w-3/4 mx-auto md:w-1/2 flex flex-col md:flex-row'}>
                 <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 746 721.34323">
                     <path d="M907.60236,809.95184v-72.34S935.794,788.89781,907.60236,809.95184Z"
@@ -134,7 +134,7 @@ const DirectoryHero = () => {
 
             <div className={'mt-4 md:mt-14'}>
                 <p className={'text-center mx-5 md:mx-auto max-w-2xl text-slate-700 font-medium text-md md:text-xl'}>
-                    When you find the business you&apos;re looking for above, just select it and begin signing waivers!
+                    When you find the business you&apos;re looking for below, just select it and begin signing their waivers!
                 </p>
             </div>
         </div>

@@ -160,14 +160,14 @@ const TailwindSignIn = () => {
                         {/*Button for Sign In*/}
                         {!session ? <button
                             type="submit"
-                            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
+                            className="btn-primary mt-2">
                             Sign In
                         </button> : <button
                             type="submit"
                             onClick={async () => {
                                 await signOut()
                             }}
-                            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
+                            className="btn-secondary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500">
                             Sign Out
                         </button>}
 

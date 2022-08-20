@@ -20,6 +20,7 @@ import {motion} from "framer-motion";
 import TailwindHero from "../components/Pages/Home/TailwindHero";
 import WaivezLogoCropped from "../components/Graphics/WaivezLogoCropped";
 import TailwindFeaturesSection from "../components/Pages/Home/TailwindFeaturesSection";
+import TailwindPotentialCompanies from "../components/Pages/Home/TailwindPotentialCompanies";
 
 const HomePage = (props) => {
 
@@ -38,6 +39,7 @@ const HomePage = (props) => {
 
             <TailwindHero companies={props}/>
             <TailwindFeaturesSection/>
+            <TailwindPotentialCompanies/>
 
 
         </div>

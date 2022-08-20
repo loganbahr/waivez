@@ -12,32 +12,32 @@ import {CheckIcon} from "@heroicons/react/solid";
 const features = [
     {
         name: 'Return Probability Index',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        description: 'An analytics tool that predicts the likelihood of a customer to return, and when they are most likely to return.',
         icon: CheckIcon,
     },
     {
-        name: 'SSL Certificates',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        name: 'Customer Heat Maps',
+        description: 'An interactive map of the United States that depicts where your customers are coming from over a given period of time.',
         icon: CheckIcon,
     },
     {
-        name: 'Simple Queues',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        name: 'Advanced Analytics',
+        description: 'Take advantage of Machine Learning powered algorithms to identify trends and patterns in your data.',
         icon: CheckIcon,
     },
     {
-        name: 'Advanced Security',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        name: 'Interactive Partner Dashboard',
+        description: "Access to your own Partner Dashboard — a place where all of your customer data is stored, managed, and analyzed.",
         icon: CheckIcon,
     },
     {
-        name: 'Powerful API',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        name: 'Customer Support',
+        description: 'Our customer support team is available 24/7 to help you with any questions you may have.',
         icon: CheckIcon,
     },
     {
-        name: 'Database Backups',
-        description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+        name: 'Third Party Integrations',
+        description: "Integrate with third party services to automate your business processes and increase your revenue.",
         icon: CheckIcon,
     },
 ]

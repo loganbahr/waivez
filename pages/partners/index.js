@@ -14,12 +14,11 @@ const PartnersPage = (props) => {
 
     return (
         <div className={'overflow-hidden'}>
-            <div className={'max-w-6xl mx-1 lg:mx-auto mt-16 lg:mt-32'}>
-                <TailwindPartnerDirectory partners={props}/>
-            </div>
-
             <DirectoryHero/>
 
+            <div className={'max-w-6xl mx-1 lg:mx-auto my-16'}>
+                <TailwindPartnerDirectory partners={props}/>
+            </div>
         </div>
     );
 };
