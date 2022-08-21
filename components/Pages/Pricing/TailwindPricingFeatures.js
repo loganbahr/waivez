@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import {GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon} from '@heroicons/react/outline'
 
 const features = [

@@ -7,34 +7,48 @@
  * @since 5/22/22
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {} from 'react';
 import {useSession} from "next-auth/react";
-import {Button, Container, TextField} from "@mui/material";
-import PartnerPasswordSignIn from "../../components/Pages/Auth/PartnerPasswordSignIn";
 import TailwindSignIn from "../../components/Pages/Auth/TailwindSignIn";
+import Logo from "../../components/Graphics/Logo";
+import Link from "next/link";
+import {toast, Toast, Toaster, useToaster} from "react-hot-toast";
 
 const SignIn = () => {
 
     const {data: session, status} = useSession();
 
+    const notify = () => toast('Here is your toast.');
 
     return (
-        <div className="max-w-6xl mx-auto h-screen flex items-center justify-center">
-            <div className={'flex flex-col items-center flex-auto'}>
-                {status === 'unauthenticated' ?
-                    <button className={'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-500 my-5'}>
-                        {status}
-                    </button> :
-                    <button
-                        type="button"
-                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-[#7f00ff] focus:outline-none focus:shadow-outline-red-600 my-5">
-                        {status}
-                    </button>}
-                <TailwindSignIn/>
+
+        <div className={'max-w-7xl pt-40 mx-auto'}>
+
+            <div className={'mx-auto text-center'}>
+                {status === "unauthenticated" ? (
+                    <h1 className={'text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14'}>
+                        Sign in to your <span className={'inline-flex translate-y-6'}> <Logo color={'#7f00ff'}
+                                                                                             width={70}
+                                                                                             height={70}/> </span> account
+                    </h1>) : (<h1 className={'text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14'}>
+                    You&apos;re already signed in to your<span className={'inline-flex translate-y-6'}> <Logo
+                    color={'#7f00ff'} width={70}
+                    height={70}/> </span> account
+                </h1>)}
+
+            </div>
+
+            <TailwindSignIn/>
+
+            <div className={'mx-auto text-center mt-4'}>
+                <h1 className={'text-base font-medium text-gray-500 mx-20'}>
+                    Not a partner yet? Head over to our <Link href={'/pricing'} passHref={true}>
+                    <span className={'text-primary cursor-pointer'}>pricing page</span>
+                </Link> to join!
+                </h1>
             </div>
         </div>
     );
 };
-
 
 export default SignIn;

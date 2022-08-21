@@ -11,6 +11,7 @@ import {CheckIcon, ExclamationCircleIcon, SelectorIcon, XIcon} from '@heroicons/
 import {Combobox} from '@headlessui/react'
 import {signIn, signOut, useSession} from "next-auth/react";
 import {hashPassword} from "../../../lib/auth";
+import {toast} from "react-hot-toast";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -28,6 +29,8 @@ const TailwindSignIn = () => {
     const selectedPartnerName = selectedPartner?.name;
 
     const {data: session, status} = useSession();
+
+    const toastMessage = () => toast('error', {});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -86,11 +89,13 @@ const TailwindSignIn = () => {
     }
 
     return (
-        <div className={'flex flex-col w-11/12 md:w-1/2'}>
+        <div
+            className={'flex flex-col max-w-xl border p-4 lg:p-10 rounded-xl border-gray-300 shadow-md mx-4 sm:mx-auto'}>
             <form onSubmit={submitHandler}>
                 {/*Combobox for Partner Name*/}
                 <Combobox as="div" value={selectedPartner} onChange={setSelectedPartner}>
-                    <Combobox.Label className="block text-sm font-medium text-gray-700">Partner Name</Combobox.Label>
+                    <Combobox.Label className="block text-sm font-medium text-gray-700">Partner
+                        Name</Combobox.Label>
                     <div className="relative mt-1">
                         <Combobox.Input
                             className="text-gray-800 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
@@ -167,7 +172,7 @@ const TailwindSignIn = () => {
                             onClick={async () => {
                                 await signOut()
                             }}
-                            className="btn-secondary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500">
+                            className="btn-primary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500">
                             Sign Out
                         </button>}
 
