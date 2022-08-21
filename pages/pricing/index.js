@@ -8,60 +8,22 @@ import React from 'react';
 import Head from "next/head";
 import {Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
-import StandardPricingCard from "../../components/Cards/StandardPricingCard";
-import AdvancedPricingCard from "../../components/Cards/AdvancedPricingCard";
-import ProPricingCard from "../../components/Cards/ProPricingCard";
-import FAQAccordion from "../../components/Pricing_Page/FAQAccordion";
+import StandardPricingCard from "../../components/Cards/PricingCards/StandardPricingCard";
+import AdvancedPricingCard from "../../components/Cards/PricingCards/AdvancedPricingCard";
+import ProPricingCard from "../../components/Cards/PricingCards/ProPricingCard";
+import FAQAccordion from "../../components/Pages/Pricing/FAQAccordion";
+import TailwindPricingTiers from "../../components/Pages/Pricing/TailwindPricingTiers";
+import TailwindPricingFeatures from "../../components/Pages/Pricing/TailwindPricingFeatures";
+import TailwindPricingGraphic from "../../components/Pages/Pricing/TailwindPricingGraphic";
 
 
 const PricingPage = () => {
     return (
-        <Box sx={{}}>
-            <Container maxWidth='lg'
-                       sx={{
-                           display: 'flex',
-                           flexDirection: 'column',
-                           alignItems: 'center',
-                       }}>
-                <Head>
-                    <title>
-                        Pricing
-                    </title>
-                    <meta/>
-                </Head>
-                <Typography variant={'h1'} sx={{mt: 15}}>
-                    pricing
-                </Typography>
-
-                <Typography variant={'h4'} sx={{my: 5, textAlign: 'center',}}>
-                    Waivez has price points for any business size. Whether you&apos;re a small family business, large
-                    franchise organization, or just getting started — we have you covered... literally.
-                </Typography>
-            </Container>
-
-            <Box sx={{
-                background: "linear-gradient(180deg, #f9f9f9, #7f00ff, #f9f9f9)",
-                minHeight: '100vh',
-            }}>
-                <Container
-                    disableGutters={true}
-                    maxWidth={'lg'}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: {xs: 'column', md: 'row'},
-                    }}>
-                    <StandardPricingCard/>
-                    <AdvancedPricingCard/>
-                    <ProPricingCard/>
-                </Container>
-                <Container disableGutters={true} maxWidth={'lg'}
-                           sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <FAQAccordion/>
-                </Container>
-            </Box>
-        </Box>
+        <div className={''}>
+            <TailwindPricingTiers/>
+            <TailwindPricingFeatures/>
+            <TailwindPricingGraphic/>
+        </div>
     );
 };
 
