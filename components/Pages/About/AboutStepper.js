@@ -8,12 +8,12 @@ const steps = [
         status: 'complete'
     },
     {
-        name: 'Partner Dashboard: Desktop (4/15/22 — 8/15/22)',
+        name: 'Partner Dashboard: Desktop (4/15/22 — 9/1/22)',
         description: "The Desktop Partner Dashboard is a simple, intuitive interface that allows Partners to view the users that signed their company's waivers. A Partner will be able to edit, remove, and add information to an existing waiver. The Partner Dashboard will also feature metadata on the companies user-base, implementing various charts and diagrams to accurately depict the kinds of people that visit your business.",
         status: 'current',
     },
     {
-        name: 'Partner Dashboard: Mobile (8/15/22 — 1/1/23)',
+        name: 'Partner Dashboard: Mobile (9/1/22 — 1/1/23)',
         description: 'This phase will focus on extending the capabilities of the Partner Dashboard natively to mobile platforms, available on the iOS App Store and Google Playstore. Partners will be able to download the app on their phones or tablets and operate the dashboard just as they would in the desktop version.',
         status: 'upcoming'
     },

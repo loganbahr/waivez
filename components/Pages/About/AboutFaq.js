@@ -42,7 +42,7 @@ const AboutFaq = () => {
     ]
 
     return (
-        <div className="bg-gradient-to-bl from-primary to-[#9f40ff] my-20">
+        <div className="bg-gradient-to-bl from-primary to-[#9f40ff] my-10">
             <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                 <h2 className="text-3xl font-extrabold text-secondary">Frequently asked questions</h2>
                 <div className="mt-6 border-t border-secondary border-opacity-40 pt-10">

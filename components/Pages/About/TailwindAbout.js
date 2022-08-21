@@ -15,8 +15,8 @@ const TailwindAbout = () => {
     return (
         <div>
             <AboutHero/>
-            <AboutFaq/>
             <AboutStepper/>
+            <AboutFaq/>
             <AboutTeam/>
         </div>
     )
