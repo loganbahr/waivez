@@ -19,11 +19,6 @@ import WaivezLogo from "../components/Graphics/WaivezLogo";
 import { motion } from "framer-motion";
 
 const HomePage = (props) => {
-
-  useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_API_URL);
-  }, []);
-
   return (
     <Box>
       <Container

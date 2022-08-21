@@ -144,7 +144,6 @@ const signWaivers = async (req, resp) => {
       const filtered = signed.filter(
         (waiver) => waiver.partnerId === partnerId
       );
-      console.log(filtered);
       for (const waiver of filtered) {
         if (waivers.includes(waiver.partnerWaiverId)) {
           alreadySigned.push(
@@ -205,8 +204,6 @@ const lookupWaivers = async (req, resp) => {
   const waiverRows = await databaseManager.searchWaiversByUserId(
     user._id.toString()
   );
-
-  console.log(waiverRows);
 
   if (!waiverRows || waiverRows.length == 0)
     return resp

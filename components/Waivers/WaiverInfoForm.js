@@ -70,7 +70,6 @@ const WaiverInfoForm = (props) => {
         initialValues: props.waiverInfo,
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values);
         },
     });
 

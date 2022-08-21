@@ -13,7 +13,6 @@ const SignatureEntry = (props) => {
     const ref = useRef(null);
 
     const clearedHandler = () => {
-        console.log("Cleared");
         ref.current.clear();
         setIsClear(true);
         props.setSignature("");
