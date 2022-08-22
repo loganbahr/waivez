@@ -10,9 +10,6 @@ import {connectToDatabase} from "../../../lib/db";
 import {comparePassword} from "../../../lib/auth";
 
 export default NextAuth({
-    session: {
-        strategy: 'jwt',
-    },
     secret: process.env.NEXT_PUBLIC_SECRET,
     providers: [
         CredentialsProvider({
