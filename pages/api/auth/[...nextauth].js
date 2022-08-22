@@ -10,7 +10,6 @@ import {connectToDatabase} from "../../../lib/db";
 import {comparePassword} from "../../../lib/auth";
 
 export default NextAuth({
-    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -55,6 +54,11 @@ export default NextAuth({
             }
         }),
     ],
+    secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    jwt: {
+        secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+        maxAge: 60 * 60 * 24 * 30,
+    },
     callbacks: {
         // async signIn({user, account, profile, credentials, email}) {
         //     console.log('credentials:', credentials);
