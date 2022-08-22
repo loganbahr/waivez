@@ -14,9 +14,6 @@ export default NextAuth({
         strategy: 'jwt',
     },
     secret: process.env.NEXT_PUBLIC_SECRET,
-    jwt: {
-        secret: process.env.NEXT_PUBLIC_SECRET,
-    },
     providers: [
         CredentialsProvider({
             name: "credentials",
