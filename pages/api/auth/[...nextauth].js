@@ -15,6 +15,9 @@ export default NextAuth({
     },
     providers: [
         CredentialsProvider({
+            jwt: {
+                secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+            },
             name: "credentials",
             async authorize(credentials, req) {
                 try {
