@@ -11,6 +11,7 @@ import {comparePassword} from "../../../lib/auth";
 
 export default NextAuth({
     secret: '614577ac38fcc2791443ffd4655b34ed',
+    site: 'https://www.waivez.com',
     providers: [
         CredentialsProvider({
             name: "credentials",
