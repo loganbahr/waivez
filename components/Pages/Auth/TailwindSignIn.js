@@ -79,7 +79,7 @@ const TailwindSignIn = () => {
             const result = await signIn('credentials', {
                 name: selectedPartnerName,
                 password: hashedPassword,
-                callbackUrl: `/partner/${partnerURL}/dashboard`,
+                callbackUrl: `https://www.waivez.com/partner/${partnerURL}/dashboard`,
             });
             setError(result?.error);
         } catch (error) {
@@ -170,7 +170,7 @@ const TailwindSignIn = () => {
                         </button> : <button
                             type="submit"
                             onClick={async () => {
-                                await signOut()
+                                await signOut({callbackUrl:'https://www.waivez.com/'});
                             }}
                             className="btn-primary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500">
                             Sign Out

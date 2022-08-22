@@ -23,15 +23,12 @@ export default async function handler(req, res) {
         // Get the collection of partner names
         const partnersCollection = db.collection('partner');
 
-        console.log('test1');
         // Get the array of partner names
         const allPartnerNames = await partnersCollection.find({}).toArray();
 
-        console.log('test2');
         // map each element in the array to just the partner name
         const partnerNames = allPartnerNames.map(partner => partner.partnerName);
 
-        console.log('test3');
         // alphabetize the array
         partnerNames.sort();
 
