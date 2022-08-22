@@ -16,7 +16,7 @@ export default NextAuth({
     providers: [
         CredentialsProvider({
             jwt: {
-                secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+                secret: process.env.NEXTAUTH_SECRET,
             },
             name: "credentials",
             async authorize(credentials, req) {
@@ -70,5 +70,4 @@ export default NextAuth({
         // signIn: '/auth/signin',
         signIn: process.env.NEXTAUTH_URL
     },
-    secret: process.env.NEXTAUTH_SECRET,
 })
