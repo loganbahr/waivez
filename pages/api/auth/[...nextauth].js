@@ -11,13 +11,10 @@ import {comparePassword} from "../../../lib/auth";
 
 export default NextAuth({
     session: {
-        jwt: true,
+        strategy: 'jwt',
     },
     providers: [
         CredentialsProvider({
-            jwt: {
-                secret: process.env.NEXTAUTH_SECRET,
-            },
             name: "credentials",
             async authorize(credentials, req) {
                 try {
@@ -70,4 +67,5 @@ export default NextAuth({
         // signIn: '/auth/signin',
         signIn: process.env.NEXTAUTH_URL
     },
+    secret: process.env.NEXTAUTH_SECRET,
 })
