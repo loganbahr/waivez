@@ -9,7 +9,7 @@ const MyApp = ({Component, pageProps: {session, ...pageProps}}) => {
 
     return (
         <>
-            <SessionProvider session={session}>
+            <SessionProvider session={session} basePath={process.env.NEXTAUTH_URL}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline/>
                     <Layout>
