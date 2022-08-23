@@ -22,7 +22,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const TailwindSignIn = () => {
+const TailwindSignIn = ({ csrfToken }) => {
   const [query, setQuery] = useState("");
   const [selectedPartner, setSelectedPartner] = useState();
   const [partnerNamesArray, setPartnerNamesArray] = useState([]);
@@ -33,8 +33,6 @@ const TailwindSignIn = () => {
   const selectedPartnerName = selectedPartner?.name;
 
   const { data: session, status } = useSession();
-
-  const toastMessage = () => toast("error", {});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,7 +83,6 @@ const TailwindSignIn = () => {
       const result = await signIn("partner-password", {
         name: selectedPartnerName,
         password: hashedPassword,
-        redirect: false,
         callbackUrl: `${process.env.NEXTAUTH_URL}/partner/${partnerURL}/dashboard`,
       });
       setError(result?.error);
@@ -102,6 +99,7 @@ const TailwindSignIn = () => {
       }
     >
       <form onSubmit={submitHandler}>
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         {/*Combobox for Partner Name*/}
         <Combobox
           as="div"

@@ -14,9 +14,9 @@ export default NextAuth({
   site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
-      id: "partner-password",
       type: "credentials",
       name: "credentials",
+      id: "partner-password",
       credentials: {
         username: {
           label: "Partner Name",
@@ -70,6 +70,7 @@ export default NextAuth({
   ],
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   pages: {
     signIn: `/auth/signin`,

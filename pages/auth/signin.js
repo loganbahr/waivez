@@ -7,48 +7,69 @@
  * @since 5/22/22
  */
 
-import React, {} from 'react';
-import {useSession} from "next-auth/react";
+import React from "react";
+import { useSession, getCsrfToken } from "next-auth/react";
 import TailwindSignIn from "../../components/Pages/Auth/TailwindSignIn";
 import Logo from "../../components/Graphics/Logo";
 import Link from "next/link";
-import {toast, Toast, Toaster, useToaster} from "react-hot-toast";
+import { toast, Toast, Toaster, useToaster } from "react-hot-toast";
 
-const SignIn = () => {
+const SignIn = ({ csrfToken }) => {
+  const { data: session, status } = useSession();
 
-    const {data: session, status} = useSession();
+  return (
+    <div className={"max-w-7xl pt-40 mx-auto"}>
+      <div className={"mx-auto text-center"}>
+        {status === "unauthenticated" ? (
+          <h1
+            className={
+              "text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14"
+            }
+          >
+            Sign in to your{" "}
+            <span className={"inline-flex translate-y-6"}>
+              {" "}
+              <Logo color={"#7f00ff"} width={70} height={70} />{" "}
+            </span>{" "}
+            account
+          </h1>
+        ) : (
+          <h1
+            className={
+              "text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14"
+            }
+          >
+            You&apos;re already signed in to your
+            <span className={"inline-flex translate-y-6"}>
+              {" "}
+              <Logo color={"#7f00ff"} width={70} height={70} />{" "}
+            </span>{" "}
+            account
+          </h1>
+        )}
+      </div>
 
-    const notify = () => toast('Here is your toast.');
+      <TailwindSignIn csrfToken={csrfToken} />
 
-    return (
-
-        <div className={'max-w-7xl pt-40 mx-auto'}>
-
-            <div className={'mx-auto text-center'}>
-                {status === "unauthenticated" ? (
-                    <h1 className={'text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14'}>
-                        Sign in to your <span className={'inline-flex translate-y-6'}> <Logo color={'#7f00ff'}
-                                                                                             width={70}
-                                                                                             height={70}/> </span> account
-                    </h1>) : (<h1 className={'text-slate-900 text-2xl md:text-4xl font-bold text-center mb-14'}>
-                    You&apos;re already signed in to your<span className={'inline-flex translate-y-6'}> <Logo
-                    color={'#7f00ff'} width={70}
-                    height={70}/> </span> account
-                </h1>)}
-
-            </div>
-
-            <TailwindSignIn/>
-
-            <div className={'mx-auto text-center mt-4'}>
-                <h1 className={'text-base font-medium text-gray-500 mx-20'}>
-                    Not a partner yet? Head over to our <Link href={'/pricing'} passHref={true}>
-                    <span className={'text-primary cursor-pointer'}>pricing page</span>
-                </Link> to join!
-                </h1>
-            </div>
-        </div>
-    );
+      <div className={"mx-auto text-center mt-4"}>
+        <h1 className={"text-base font-medium text-gray-500 mx-20"}>
+          Not a partner yet? Head over to our{" "}
+          <Link href={"/pricing"} passHref={true}>
+            <span className={"text-primary cursor-pointer"}>pricing page</span>
+          </Link>{" "}
+          to join!
+        </h1>
+      </div>
+    </div>
+  );
 };
 
 export default SignIn;
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
+}
