@@ -98,7 +98,11 @@ const TailwindSignIn = ({ csrfToken }) => {
         "flex flex-col max-w-xl border p-4 lg:p-10 rounded-xl border-gray-300 shadow-md mx-4 sm:mx-auto"
       }
     >
-      <form onSubmit={submitHandler}>
+      <form
+        onSubmit={submitHandler}
+        method="post"
+        action="/api/auth/callback/credentials"
+      >
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         {/*Combobox for Partner Name*/}
         <Combobox
