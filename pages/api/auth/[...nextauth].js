@@ -59,7 +59,7 @@ export default NextAuth({
     }),
   ],
   session: {
-    jwt: true,
+    strategy: "jwt",
   },
   pages: {
     signIn: `${process.env.NEXTAUTH_URL}/auth/signin`,
