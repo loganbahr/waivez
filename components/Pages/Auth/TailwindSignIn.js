@@ -82,7 +82,7 @@ const TailwindSignIn = () => {
 
     // next-auth sign in function that redirects to the partner's dashboard
     try {
-      const result = await signIn("partner-password", {
+      const result = await signIn({
         name: selectedPartnerName,
         password: hashedPassword,
         callbackUrl: `${process.env.NEXTAUTH_URL}/partner/${partnerURL}/dashboard`,
