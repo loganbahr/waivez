@@ -85,7 +85,7 @@ const TailwindSignIn = () => {
       const result = await signIn("credentials", {
         name: selectedPartnerName,
         password: hashedPassword,
-        callbackUrl: `https://www.waivez.com/partner/${partnerURL}/dashboard`,
+        callbackUrl: `${process.env.NEXTAUTH_URL}/partner/${partnerURL}/dashboard`,
       });
       setError(result?.error);
     } catch (error) {
@@ -195,7 +195,7 @@ const TailwindSignIn = () => {
               <button
                 type="submit"
                 onClick={async () => {
-                  await signOut({ callbackUrl: "https://www.waivez.com/" });
+                  await signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}` });
                 }}
                 className="btn-primary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500"
               >

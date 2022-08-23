@@ -10,7 +10,7 @@ import { connectToDatabase } from "../../../lib/db";
 import { comparePassword } from "../../../lib/auth";
 
 export default NextAuth({
-  secret: "614577ac38fcc2791443ffd4655b34ed",
+  secret: process.env.NEXTAUTH_SECRET,
   site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
