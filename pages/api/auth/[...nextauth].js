@@ -17,6 +17,14 @@ export default NextAuth({
       id: "partner-password",
       type: "credentials",
       name: "credentials",
+      credentials: {
+        username: {
+          label: "Partner Name",
+          type: "text",
+          placeholder: "Partner Name",
+        },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials, req) {
         try {
           const client = await connectToDatabase();
@@ -64,6 +72,6 @@ export default NextAuth({
     strategy: "jwt",
   },
   pages: {
-    signIn: `${process.env.NEXTAUTH_URL}/auth/signin`,
+    signIn: `/auth/signin`,
   },
 });
