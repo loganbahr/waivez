@@ -14,6 +14,7 @@ export default NextAuth({
   site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
+      id: "partner-password",
       name: "credentials",
       async authorize(credentials, req) {
         try {
@@ -58,7 +59,10 @@ export default NextAuth({
       },
     }),
   ],
+  session: {
+    jwt: true,
+  },
   pages: {
-    signIn: "https://www.waivez.com/auth/signin",
+    signIn: `${process.env.NEXTAUTH_URL}/auth/signin`,
   },
 });
