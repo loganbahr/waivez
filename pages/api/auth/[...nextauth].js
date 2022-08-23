@@ -14,17 +14,7 @@ export default NextAuth({
   site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
-      type: "credentials",
-      name: "credentials",
-      id: "partner-password",
-      credentials: {
-        username: {
-          label: "Partner Name",
-          type: "text",
-          placeholder: "Partner Name",
-        },
-        password: { label: "Password", type: "password" },
-      },
+      name: "Credentials",
       async authorize(credentials, req) {
         try {
           const client = await connectToDatabase();

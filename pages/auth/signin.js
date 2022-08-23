@@ -14,7 +14,7 @@ import Logo from "../../components/Graphics/Logo";
 import Link from "next/link";
 import { toast, Toast, Toaster, useToaster } from "react-hot-toast";
 
-const SignIn = ({ csrfToken }) => {
+const SignIn = () => {
   const { data: session, status } = useSession();
 
   return (
@@ -49,7 +49,7 @@ const SignIn = ({ csrfToken }) => {
         )}
       </div>
 
-      <TailwindSignIn csrfToken={csrfToken} />
+      <TailwindSignIn />
 
       <div className={"mx-auto text-center mt-4"}>
         <h1 className={"text-base font-medium text-gray-500 mx-20"}>
@@ -65,11 +65,3 @@ const SignIn = ({ csrfToken }) => {
 };
 
 export default SignIn;
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
-  };
-}

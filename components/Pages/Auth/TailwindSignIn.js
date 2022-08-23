@@ -22,7 +22,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const TailwindSignIn = ({ csrfToken }) => {
+const TailwindSignIn = () => {
   const [query, setQuery] = useState("");
   const [selectedPartner, setSelectedPartner] = useState();
   const [partnerNamesArray, setPartnerNamesArray] = useState([]);
@@ -80,10 +80,10 @@ const TailwindSignIn = ({ csrfToken }) => {
 
     // next-auth sign in function that redirects to the partner's dashboard
     try {
-      const result = await signIn("partner-password", {
+      const result = await signIn("credentials", {
         name: selectedPartnerName,
         password: hashedPassword,
-        callbackUrl: `${process.env.NEXTAUTH_URL}/partner/${partnerURL}/dashboard`,
+        callbackUrl: `/partner/${partnerURL}/dashboard`,
       });
       setError(result?.error);
     } catch (error) {
@@ -98,12 +98,7 @@ const TailwindSignIn = ({ csrfToken }) => {
         "flex flex-col max-w-xl border p-4 lg:p-10 rounded-xl border-gray-300 shadow-md mx-4 sm:mx-auto"
       }
     >
-      <form
-        onSubmit={submitHandler}
-        method="post"
-        action="/api/auth/callback/credentials"
-      >
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+      <form onSubmit={submitHandler}>
         {/*Combobox for Partner Name*/}
         <Combobox
           as="div"
