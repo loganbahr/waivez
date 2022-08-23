@@ -14,6 +14,8 @@ export default NextAuth({
   site: process.env.NEXTAUTH_URL,
   providers: [
     CredentialsProvider({
+      id: "partner-password",
+      type: "credentials",
       name: "credentials",
       async authorize(credentials, req) {
         try {
