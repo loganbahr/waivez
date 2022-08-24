@@ -11,6 +11,8 @@ import TailwindDashboard from "../../../components/Dashboard/TailwindDashboard";
 import Error404Page from "../../404";
 
 const Dashboard = () => {
+  Dashboard.displayName = "Dashboard";
+
   const { data: session, status } = useSession();
 
   const [data, setData] = useState([]);

@@ -1,7 +1,7 @@
 import WaivezLogoCropped from "../components/Graphics/WaivezLogoCropped";
 import Link from "next/link";
 
-export default function Error404Page() {
+export default function Example() {
   return (
     <>
       <div className="flex flex-col min-h-screen pt-16 pb-12 bg-secondary">
