@@ -9,6 +9,8 @@ import DeveloperAccordion from "../../components/Pages/About/DeveloperAccordion"
 import { motion } from "framer-motion";
 import { about_background } from "../../components/theme";
 import TailwindAbout from "../../components/Pages/About/TailwindAbout";
+import { WaiverModal } from "../../components/Dashboard/WaiverModal";
+import { useState } from "react";
 
 const AboutPage = () => {
   return (
