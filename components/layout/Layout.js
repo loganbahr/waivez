@@ -6,14 +6,14 @@ import TailwindFooter from "./Footer/TailwindFooter";
 const Layout = (props) => {
   const { data: session, status } = useSession();
 
+  console.log(props.children.type.name);
+
   return (
     <div>
       {/*if there is no session and they are not on the dashboard*/}
-      {status === "authenticated" &&
-      props.children.type.name !== "Dashboard" ? (
+      {props.children.type.name !== "Dashboard" ? (
         <TailwindHeader />
       ) : undefined}
-      {!session && <TailwindHeader />}
 
       <div className={"min-h-screen"}>{props.children}</div>
 
