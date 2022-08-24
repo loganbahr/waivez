@@ -23,6 +23,7 @@ import Link from "next/link";
 import DemographicsPieChart from "./DemographicsPieChart";
 import RegionalDistributionRadarChart from "./RegionalDistributionRadarChart";
 import DashboardTable from "./DashboardTable";
+import { InfinitySpin } from "react-loader-spinner";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -61,7 +62,9 @@ export default function TailwindDashboard({
     <div>
       {/*need to wait until data is loaded, otherwise component render order is unbalanced -> error*/}
       {dataIsLoading ? (
-        <div>Loading...</div>
+        <div className="h-screen mx-auto">
+          <InfinitySpin color="#7f00ff" width="200" />
+        </div>
       ) : (
         <div className="min-h-full">
           <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -82,7 +85,7 @@ export default function TailwindDashboard({
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
               </Transition.Child>
 
-              <div className="fixed inset-0 flex z-40">
+              <div className="fixed inset-0 z-40 flex">
                 <Transition.Child
                   as={Fragment}
                   enter="transition ease-in-out duration-300 transform"
@@ -92,7 +95,7 @@ export default function TailwindDashboard({
                   leaveFrom="translate-x-0"
                   leaveTo="-translate-x-full"
                 >
-                  <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-primary">
+                  <Dialog.Panel className="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 bg-primary">
                     <Transition.Child
                       as={Fragment}
                       enter="ease-in-out duration-300"
@@ -102,26 +105,26 @@ export default function TailwindDashboard({
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <div className="absolute top-0 right-0 -mr-12 pt-2">
+                      <div className="absolute top-0 right-0 pt-2 -mr-12">
                         <button
                           type="button"
-                          className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                          className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                           onClick={() => setSidebarOpen(false)}
                         >
                           <span className="sr-only">Close sidebar</span>
                           <XIcon
-                            className="h-6 w-6 text-white"
+                            className="w-6 h-6 text-white"
                             aria-hidden="true"
                           />
                         </button>
                       </div>
                     </Transition.Child>
-                    <div className="flex-shrink-0 flex items-center content-center px-4">
+                    <div className="flex items-center content-center flex-shrink-0 px-4">
                       <WaivezLogoCropped
                         color={"white"}
                         height={50}
                         width={150}
-                        className="h-8 w-auto"
+                        className="w-auto h-8"
                       />
                     </div>
                   </Dialog.Panel>
@@ -136,7 +139,7 @@ export default function TailwindDashboard({
           {/* Static sidebar for desktop */}
           <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
             {/* Sidebar component, swap this element with another sidebar if you like */}
-            <div className="flex flex-col flex-grow bg-primary pt-5 pb-4 overflow-y-auto">
+            <div className="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto bg-primary">
               <div className="flex items-center flex-shrink-0 px-4">
                 <Link href={"/"}>
                   <a className={""}>
@@ -151,22 +154,22 @@ export default function TailwindDashboard({
             </div>
           </div>
 
-          <div className="lg:pl-64 flex flex-col flex-1">
-            <div className="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
+          <div className="flex flex-col flex-1 lg:pl-64">
+            <div className="relative z-10 flex flex-shrink-0 h-16 bg-white border-b border-gray-200 lg:border-none">
               <button
                 type="button"
-                className="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden"
+                className="px-4 text-gray-400 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden"
                 onClick={() => setSidebarOpen(true)}
               >
                 <span className="sr-only">Open sidebar</span>
-                <MenuAlt1Icon className="h-6 w-6" aria-hidden="true" />
+                <MenuAlt1Icon className="w-6 h-6" aria-hidden="true" />
               </button>
               {/* Search bar */}
-              <div className="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
-                <div className="flex-1 flex">
+              <div className="flex justify-between flex-1 px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
+                <div className="flex flex-1">
                   <form
                     onSubmit={(e) => e.preventDefault()}
-                    className="w-full flex md:ml-0"
+                    className="flex w-full md:ml-0"
                   >
                     <label htmlFor="search-field" className="sr-only">
                       Search
@@ -176,12 +179,12 @@ export default function TailwindDashboard({
                         className="absolute inset-y-0 left-0 flex items-center pointer-events-none"
                         aria-hidden="true"
                       >
-                        <SearchIcon className="h-5 w-5" aria-hidden="true" />
+                        <SearchIcon className="w-5 h-5" aria-hidden="true" />
                       </div>
                       <input
                         id="search-field"
                         name="search-field"
-                        className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                        className="block w-full h-full py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 border-transparent focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         placeholder="Search for a user"
                         type="search"
                         onChange={(e) => setQuery(e.target.value)}
@@ -190,25 +193,25 @@ export default function TailwindDashboard({
                   </form>
                 </div>
 
-                <div className="ml-4 flex items-center md:ml-6">
+                <div className="flex items-center ml-4 md:ml-6">
                   {/*<button*/}
                   {/*    type="button"*/}
-                  {/*    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"*/}
+                  {/*    className="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"*/}
                   {/*>*/}
                   {/*    <span className="sr-only">View notifications</span>*/}
-                  {/*    <BellIcon className="h-6 w-6" aria-hidden="true"/>*/}
+                  {/*    <BellIcon className="w-6 h-6" aria-hidden="true"/>*/}
                   {/*</button>*/}
 
                   {/* Profile dropdown */}
-                  <Menu as="div" className="ml-3 relative">
+                  <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
-                        <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
+                      <Menu.Button className="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+                        <span className="hidden ml-3 text-sm font-medium text-gray-700 lg:block">
                           <span className="sr-only">Open user menu for </span>
                           {session?.user?.name}
                         </span>
                         <ChevronDownIcon
-                          className="flex-shrink-0 ml-1 h-5 w-5 text-primary lg:block"
+                          className="flex-shrink-0 w-5 h-5 ml-1 text-primary lg:block"
                           aria-hidden="true"
                         />
                       </Menu.Button>
@@ -222,7 +225,7 @@ export default function TailwindDashboard({
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -285,8 +288,8 @@ export default function TailwindDashboard({
                               {session?.user?.name}
                             </h1>
                           </div>
-                          <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-                            <dd className="-mt-4 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                          <dl className="flex flex-col mt-6 sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
+                            <dd className="flex items-center -mt-4 text-sm font-medium text-gray-500 capitalize sm:mr-6 sm:mt-0">
                               <CheckCircleIcon
                                 className="flex-shrink-0 mr-1.5 h-5 w-5 text-primary"
                                 aria-hidden="true"
@@ -297,16 +300,16 @@ export default function TailwindDashboard({
                         </div>
                       </div>
                     </div>
-                    <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+                    <div className="flex mt-6 space-x-3 md:mt-0 md:ml-4">
                       <button
                         type="button"
-                        className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                       >
                         Contact Support
                       </button>
                       <button
                         type="button"
-                        className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                       >
                         Documentation
                       </button>
@@ -317,26 +320,26 @@ export default function TailwindDashboard({
 
               <div className="mt-8">
                 {/*********************OVERVIEW STATS*********************/}
-                <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                  <h2 className="text-lg leading-6 font-medium text-gray-900">
+                <div className="px-4 mx-auto sm:px-6 lg:px-8">
+                  <h2 className="text-lg font-medium leading-6 text-gray-900">
                     Overview
                   </h2>
-                  <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-5 mt-2 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Card */}
                     {cards.map((card) => (
                       <div
                         key={card.title}
-                        className="bg-white overflow-hidden shadow rounded-lg"
+                        className="overflow-hidden bg-white rounded-lg shadow"
                       >
                         <div className="p-5">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">
                               <card.icon
-                                className="h-6 w-6 text-primary"
+                                className="w-6 h-6 text-primary"
                                 aria-hidden="true"
                               />
                             </div>
-                            <div className="ml-5 w-0 flex-1">
+                            <div className="flex-1 w-0 ml-5">
                               <dl>
                                 <dt className="text-sm font-medium text-gray-500 truncate">
                                   {card.title}
