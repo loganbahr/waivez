@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import TailwindDashboard from "../../../components/Dashboard/TailwindDashboard";
 import Error404Page from "../../404";
+import Head from "next/head";
 
 const Dashboard = () => {
   Dashboard.displayName = "Dashboard";
@@ -51,6 +52,9 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       {status === "unauthenticated" ? (
         <Error404Page />
       ) : (

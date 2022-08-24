@@ -62,7 +62,7 @@ export default function TailwindDashboard({
     <div>
       {/*need to wait until data is loaded, otherwise component render order is unbalanced -> error*/}
       {dataIsLoading ? (
-        <div className="mx-auto">
+        <div className="flex items-center justify-center h-screen">
           <InfinitySpin color="#7f00ff" width="200" />
         </div>
       ) : (
