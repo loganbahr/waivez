@@ -12,12 +12,14 @@ const Layout = (props) => {
       {status === "authenticated" &&
       props.children.type.name !== "Dashboard" ? (
         <TailwindHeader />
-      ) : null}
+      ) : undefined}
       {!session && <TailwindHeader />}
 
       <div className={"min-h-screen"}>{props.children}</div>
 
-      {props.children.type.name !== "Dashboard" ? <TailwindFooter /> : null}
+      {props.children.type.name !== "Dashboard" ? (
+        <TailwindFooter />
+      ) : undefined}
     </div>
   );
 };
