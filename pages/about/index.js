@@ -1,16 +1,10 @@
 // www.waivez.com/about
 import Head from "next/head";
 import React from "react";
-import Box from "@mui/material/Box";
-import { Container, Typography } from "@mui/material";
-import TimelineStepper from "../../components/Pages/About/TimelineStepper";
-import PhaseTimelineGraphic from "../../components/Pages/About/PhaseTimelineGraphic";
-import DeveloperAccordion from "../../components/Pages/About/DeveloperAccordion";
-import { motion } from "framer-motion";
-import { about_background } from "../../components/theme";
-import TailwindAbout from "../../components/Pages/About/TailwindAbout";
-import { WaiverModal } from "../../components/Dashboard/WaiverModal";
-import { useState } from "react";
+import AboutHero from "../../components/Pages/About/AboutHero";
+import AboutStepper from "../../components/Pages/About/AboutStepper";
+import AboutFaq from "../../components/Pages/About/AboutFaq";
+import AboutTeam from "../../components/Pages/About/AboutTeam";
 
 const AboutPage = () => {
   return (
@@ -20,7 +14,10 @@ const AboutPage = () => {
         <meta name="description" content="About Waivez." />
       </Head>
       <div className={""}>
-        <TailwindAbout />
+        <AboutHero />
+        <AboutStepper />
+        <AboutFaq />
+        <AboutTeam />
       </div>
     </div>
   );

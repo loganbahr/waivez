@@ -11,15 +11,7 @@ import AboutTeam from "./AboutTeam";
 import AboutStepper from "./AboutStepper";
 
 const TailwindAbout = () => {
-
-    return (
-        <div>
-            <AboutHero/>
-            <AboutStepper/>
-            <AboutFaq/>
-            <AboutTeam/>
-        </div>
-    )
-}
+  return <div></div>;
+};
 
 export default TailwindAbout;
