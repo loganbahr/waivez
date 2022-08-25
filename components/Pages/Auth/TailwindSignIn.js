@@ -110,20 +110,20 @@ const TailwindSignIn = () => {
           </Combobox.Label>
           <div className="relative mt-1">
             <Combobox.Input
-              className="text-gray-800 w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
+              className="w-full py-2 pl-3 pr-10 text-gray-800 bg-white border border-gray-300 rounded-md shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
               onChange={(event) => setQuery(event.target.value)}
               displayValue={(person) => person?.name}
             />
 
-            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center px-2 rounded-r-md focus:outline-none">
               <SelectorIcon
-                className="h-5 w-5 text-gray-400"
+                className="w-5 h-5 text-gray-400"
                 aria-hidden="true"
               />
             </Combobox.Button>
 
             {filteredPartners.length > 0 && (
-              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {filteredPartners.map((person) => (
                   <Combobox.Option
                     key={person.id}
@@ -153,7 +153,7 @@ const TailwindSignIn = () => {
                               active ? "text-white" : "text-indigo-600"
                             )}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
                           </span>
                         )}
                       </>
@@ -179,31 +179,21 @@ const TailwindSignIn = () => {
               type="password"
               name="password"
               id="password"
-              className="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 rounded-md text-black"
+              className="block w-full text-black border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             />
           </div>
 
           <div className={"flex justify-center"}>
             {/*Button for Sign In*/}
             {!session ? (
-              <button type="submit" className="btn-primary mt-2">
+              <button type="submit" className="mt-2 btn-primary">
                 Sign In
               </button>
-            ) : (
-              <button
-                type="submit"
-                onClick={async () => {
-                  await signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}` });
-                }}
-                className="btn-primary mt-2 border-primary hover:bg-red-500 hover:text-white hover:border-red-500 focus:ring-red-500"
-              >
-                Sign Out
-              </button>
-            )}
+            ) : undefined}
           </div>
         </div>
       </form>
-      {error && <h1 className="text-red-500 text-center">{error}</h1>}
+      {error && <h1 className="text-center text-red-500">{error}</h1>}
     </div>
   );
 };

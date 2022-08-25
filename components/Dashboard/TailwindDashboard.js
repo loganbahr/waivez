@@ -55,7 +55,7 @@ export default function TailwindDashboard({
       data: mostPopularState,
     },
     { title: "Average Age", icon: LightningBoltIcon, data: avgAge },
-    { title: "Had Minors", icon: LightningBoltIcon, data: "50%" },
+    { title: "Total Users", icon: LightningBoltIcon, data: data.length },
   ];
 
   return (

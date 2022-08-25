@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import TailwindDashboard from "../../../components/Dashboard/TailwindDashboard";
 import Error404Page from "../../404";
 import Head from "next/head";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Dashboard = () => {
   Dashboard.displayName = "Dashboard";
@@ -22,6 +23,7 @@ const Dashboard = () => {
   const [mostPopularState, setMostPopularState] = useState();
   const [ageDemos, setAgeDemos] = useState([]);
   const [regionDemos, setRegionDemos] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   // grabs all the dashboard data from database
   useEffect(() => {
@@ -46,6 +48,7 @@ const Dashboard = () => {
       setMostPopularState(mostPopularState);
       setAgeDemos(ageDemographics);
       setRegionDemos(regionalDistribution);
+      setIsLoading(false);
     };
     fetchData().catch((error) => console.log(error));
   }, [session]);
@@ -55,6 +58,11 @@ const Dashboard = () => {
       <Head>
         <title>Dashboard</title>
       </Head>
+      {isLoading && (
+        <div className="flex items-center justify-center h-screen">
+          <InfinitySpin color="#7f00ff" width="200" />
+        </div>
+      )}
       {status === "unauthenticated" ? (
         <Error404Page />
       ) : (
