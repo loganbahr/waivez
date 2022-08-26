@@ -43,6 +43,9 @@ export default function TailwindDashboard({
 
   const { data: session, status } = useSession();
 
+  const partnerName = session?.user?.name;
+  const partnerURL = partnerName?.toLowerCase()?.replace(/\s/g, "");
+
   // making sure the data is loaded before rendering the dashboard
   useEffect(() => {
     data && setDataIsLoading(false);
@@ -229,7 +232,7 @@ export default function TailwindDashboard({
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href={`/partner/${partnerURL}/profile`}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -242,7 +245,7 @@ export default function TailwindDashboard({
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href={`/partner/${partnerURL}/settings`}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
