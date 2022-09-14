@@ -11,6 +11,8 @@ const Layout = (props) => {
 
   const router = useRouter();
 
+  // github not syncing with aws
+
   return (
     <div>
       {/*if there is no session and they are not on the dashboard*/}
