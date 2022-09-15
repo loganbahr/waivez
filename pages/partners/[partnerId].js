@@ -548,7 +548,7 @@ const PartnerPage = (props) => {
   );
 };
 
-export async function getStaticPaths({ req, query }) {
+export async function getServerSideProps({ req, query }) {
   const partnerId = query.partnerId;
   const res = await Axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/company`,
