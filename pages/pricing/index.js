@@ -17,6 +17,7 @@ import TailwindPricingFeatures from "../../components/Pages/Pricing/TailwindPric
 import TailwindPricingGraphic from "../../components/Pages/Pricing/TailwindPricingGraphic";
 
 const PricingPage = () => {
+  console.log("Pricing Page");
   return (
     <div>
       <Head>
