@@ -32,7 +32,7 @@ const HomePage = (props) => {
   );
 };
 
-export async function getServerSideProps({ req, query }) {
+export async function getStaticProps({ req, query }) {
   const res = await Axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/companies`
   );
