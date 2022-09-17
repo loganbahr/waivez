@@ -12,13 +12,13 @@ const steps = [
     name: "Partner Dashboard: Desktop (4/15/22 — 9/1/22)",
     description:
       "The Desktop Partner Dashboard is a simple, intuitive interface that allows Partners to view the users that signed their company's waivers. A Partner will be able to edit, remove, and add information to an existing waiver. The Partner Dashboard will also feature metadata on the companies user-base, implementing various charts and diagrams to accurately depict the kinds of people that visit your business.",
-    status: "current",
+    status: "complete",
   },
   {
     name: "Partner Dashboard: Mobile (9/1/22 — 1/1/23)",
     description:
       "This phase will focus on extending the capabilities of the Partner Dashboard natively to mobile platforms, available on the iOS App Store and Google Playstore. Partners will be able to download the app on their phones or tablets and operate the dashboard just as they would in the desktop version.",
-    status: "upcoming",
+    status: "current",
   },
   {
     name: "Testing",
@@ -29,7 +29,7 @@ const steps = [
   {
     name: "Deployment",
     description:
-      "We do not currently have an exact date of deployment, but we intend to officially launch Waivez sometime in the first quarter of 2023. We see no reason to rush the launch with consideration to the sensitive nature of the data we are storing and its' potential for abuse. We are working diligently to ensure that the product we deliver is exceptional at launch.",
+      "We do not currently have an exact date of deployment, but we intend to officially launch Waivez sometime in the second quarter of 2023. We see no reason to rush the launch with consideration to the sensitive nature of the data we are storing and its potential for abuse. We are working diligently to ensure that the product we deliver is exceptional at launch.",
     status: "upcoming",
   },
 ];
